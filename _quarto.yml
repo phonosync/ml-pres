@@ -1,0 +1,37 @@
+project:
+  title: "ML"
+
+jupyter: python3
+toc: true
+number-sections: false
+
+editor:
+  render-on-save: true
+
+format: 
+  revealjs:
+    theme: default
+    toc: false
+    code-fold: true
+    controls: false
+    chalkboard: false
+    from: markdown+emoji
+    
+    slide-number: true
+    self-contained: false
+    css: quarto_css/hscroll.css
+    author: "Manuel Dömer<br>ZHAW School of Engineering"
+    title-slide-attributes: 
+      data-background-image: ressources/en-zhaw-cmyk.png
+      data-background-size: 25%
+      data-background-position: 98% 2%
+    include-in-header: 
+      text: |
+        <style>
+        .v-center-container {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          height: 90%;
+        }
+        </style>

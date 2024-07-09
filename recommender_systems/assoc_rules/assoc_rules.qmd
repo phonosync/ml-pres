@@ -1,0 +1,1211 @@
+---
+title: Association Rules Mining
+---
+
+## Items & Users
+
+::: {.incremental}
+* Market basket/shopping cart (physical or online)
+    * Items: Products
+    * Users: Customers
+* Library
+    * Items: Books
+    * Users: Library visitors
+* News site
+    * Items: News articles
+    * Users: Readers
+:::
+
+## Recommender Systems
+
+Suggest personalised and relevant items
+
+::: {.incremental}
+* Cover the entire spectrum of the user's interests
+* Take the user's context into account
+* Avoid suggestions from what is already known
+* Expand the user's range of interests
+:::
+
+## Why Recommender Systems?
+![](pics/human_recommender.svg){fig-align="center"}
+
+## Aproaches for Recommender Systems
+
+::: {.incremental}
+- Popularity-based recommendation
+- Frequent itemsets & association rules mining
+- Content-based recommendation
+- Collaborative filtering
+:::
+
+## Popularity-based recommendations
+
+Example: [The New York Times Online](https://www.nytimes.com/trending/){preview-link="true"}
+
+:::: {.columns}
+
+::: {.column width="50%"}
+Pros:
+
+- Small complexity
+- Explainable
+:::
+
+::: {.column width="50%"}
+Cons:
+
+- No personalisation
+- Item properties not taken into account
+:::
+
+::::
+
+## Association Rules Mining
+Synonym: Market basket analysis
+
+![Source: [www.quickmeme.com](http://www.quickmeme.com/img/26/2647c127c4d867ae443f3522452eed68a196a6ff6e2f7d070d20e8fee3f9cd41.jpg)](http://www.quickmeme.com/img/26/2647c127c4d867ae443f3522452eed68a196a6ff6e2f7d070d20e8fee3f9cd41.jpg){fig-align="center"}
+
+## Terminology - items
+
+* Items $I$: The set of available items $I = \{i_1, ..., i_M\}$
+* Itemset $X$: A set of items $X \subseteq I$
+* Itemset size $K$: The number of items in the itemset
+* $K$-itemset: An itemset of size $K$
+* Items are ordered: $$X_n=\{x_1, x_2, ...,x_K\}, \text{ such that } x_1 ≤ x_2 ≤ ... ≤ x_K$$
+
+## Terminology - transactions
+
+* Transaction: $T=(tid, X_{\text tid})$
+* Transactions in database: $\{X_1, X_2, ..., X_N\}$
+
+```{=html}
+<table data-quarto-disable-processing="true">
+<head>
+<style>
+table {
+  border-collapse: collapse;
+}
+
+thead {
+  border-bottom: 2px solid grey;
+}
+
+tr td{
+  border-bottom: none !important;
+}
+
+tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+td {
+  vertical-align: middle;
+}
+
+</style>
+</head>
+<thead>
+  <tr>
+    <th>tid</th>
+    <th>itemset</th>
+  </tr>
+</thead>
+<tbody>
+  <tr>
+    <td>1</td>
+    <td>apple, bread,  honey, milk, peanuts</td>
+  </tr>
+  <tr>
+    <td>2</td>
+    <td>bread, chips, coke, honey, milk</td>
+  </tr>
+  <tr>
+    <td>3</td>
+    <td>bread, chips, coke, honey, steak</td>
+  </tr>
+  <tr>
+    <td colspan="2">...</td>
+  </tr>
+  <tr>
+    <td>8</td>
+    <td>apple, bread, cheese, milk, peanuts</td>
+  </tr>
+</tbody>
+</table>
+```
+
+## Support
+<!--
+* support count $\sigma(X)$: number of transactions that contain the itemset $$\sigma(X)=\left|\{tid | (tid, X_T) \in DB, X \subseteq X_T\}\right|$$ 
+$$\sigma(\{milk, bread\}) =\ ?$$
+$$\sigma(\{coke, chips\}) =\ ?$$
+-->
+* $s(X)$: fraction of transactions that contain $X$
+$$s(\{bread, milk\}) =\ ?$$
+$$s(\{chips, coke\}) =\ ?$$
+
+## Example
+```{=html}
+<table data-quarto-disable-processing="true">
+<head>
+<style>
+table {
+  border-collapse: collapse;
+}
+
+thead {
+  border-bottom: 2px solid grey;
+}
+
+tr td{
+  border-bottom: none !important;
+}
+
+tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+td {
+  vertical-align: middle;
+}
+
+</style>
+</head>
+<thead>
+  <tr>
+    <th>tid</th>
+    <th>itemset</th>
+  </tr>
+</thead>
+<tbody>
+  <tr>
+    <td>1</td>
+    <td>apple, bread, honey, milk, peanuts</td>
+  </tr>
+  <tr>
+    <td>2</td>
+    <td>bread, chips, coke, honey, milk</td>
+  </tr>
+  <tr>
+    <td>3</td>
+    <td>bread, chips, coke, honey, steak</td>
+  </tr>
+  <tr>
+    <td>4</td>
+    <td>apple, coke, honey, milk, peanuts</td>
+  </tr>
+  <tr>
+    <td>5</td>
+    <td>bread, chips, coke, honey, milk</td>
+  </tr>
+  <tr>
+    <td>6</td>
+    <td>apple, chips, coke, milk</td>
+  </tr>
+  <tr>
+    <td>7</td>
+    <td>apple, bread, coke, milk, peanuts</td>
+  </tr>
+  <tr>
+    <td>8</td>
+    <td>apple, bread, cheese, milk, peanuts</td>
+  </tr>
+</tbody>
+</table>
+```
+
+## Frequent Itemsets Mining (FIM)
+* An itemset $X$ is frequent in DB if its support is greater or equal than a minimum support threshold $t_s$:
+$$s(X) \geq t_s$$
+
+* Given:
+    * Set of items $I$
+    * Transaction database over $I$
+    * Minimum support threshold $t_s$
+* Goal: Find all frequent itemsets in DB, i.e.:
+$$\{X \subseteq I | s(X) \geq t_s\}$$
+
+## FIM - example
+
+:::: {.columns}
+
+::: {.column width="30%"}
+```{=html}
+<table data-quarto-disable-processing="true">
+<head>
+<style>
+table {
+  border-collapse: collapse;
+}
+
+thead {
+  border-bottom: 2px solid grey;
+}
+
+tr td{
+  border-bottom: none !important;
+}
+
+tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+td {
+  vertical-align: middle;
+}
+
+</style>
+</head>
+<thead>
+  <tr>
+    <th><math>tid</math></th>
+    <th>Items</th>
+  </tr>
+</thead>
+<tbody>
+  <tr>
+    <td>2000</td>
+    <td>A,B,C</td>
+  </tr>
+  <tr>
+    <td>1000</td>
+    <td>A,C</td>
+  </tr>
+  <tr>
+    <td>4000</td>
+    <td>A,D</td>
+  </tr>
+  <tr>
+    <td>5000</td>
+    <td>B,E,F</td>
+  </tr>
+</tbody>
+</table>
+```
+:::
+
+::: {.column width="70%"}
+- Support of 1-itemsets:   
+
+::: {.fragment .fade-in}
+(A): 75%, (B), (C): 50%, (D), (E), (F): 25%
+:::
+
+- Support of 2-itemsets:  
+
+::: {.fragment .fade-in}
+(A, C): 50%,  
+(A,B), (A,D), (B,C), (B,E), (B,F), (E,F): 25%
+:::
+
+:::
+
+::::
+
+## Association rules
+Let $X$, $Y$ be two itemsets: $X,Y \subseteq I$ and $X \cap Y=\emptyset$.
+
+* Association rules represent implications of the form 
+$X \rightarrow Y$
+
+* Support of a rule: The fraction of transactions containing $X \cup Y$  
+$$s(X \rightarrow Y)=s(X \cup Y)$$
+
+* Confidence $c$ of a rule: the fraction of transactions containing $X \cup Y$ in the set of transactions containing $X$. 
+$$c(X \rightarrow Y)=\frac{s(X \cup Y)}{s(X)}$$
+
+## Association Rule Mining (ARM)
+* Given:
+    * Set of items $I$
+    * Transaction database over $I$
+    * Minimum support threshold $t_s$ and a minimum confidence threshold $t_c$
+* Goal: Find all association rules $X\rightarrow Y$ in DB with minimum support threshold and a minimum confidence i.e.:
+$$\{X\rightarrow Y | s(X \cup Y) \geq t_s, c(X\rightarrow Y)\geq c_s \}$$
+These rules are called strong.
+
+
+## ARM - example
+
+:::: {.columns}
+
+::: {.column width="30%"}
+```{=html}
+<table data-quarto-disable-processing="true">
+<head>
+<style>
+table {
+  border-collapse: collapse;
+}
+
+thead {
+  border-bottom: 2px solid grey;
+}
+
+tr td{
+  border-bottom: none !important;
+}
+
+tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+td {
+  vertical-align: middle;
+}
+
+</style>
+</head>
+<thead>
+  <tr>
+    <th><math>tid</math></th>
+    <th>Items</th>
+  </tr>
+</thead>
+<tbody>
+  <tr>
+    <td>2000</td>
+    <td>A,B,C</td>
+  </tr>
+  <tr>
+    <td>1000</td>
+    <td>A,C</td>
+  </tr>
+  <tr>
+    <td>4000</td>
+    <td>A,D</td>
+  </tr>
+  <tr>
+    <td>5000</td>
+    <td>B,E,F</td>
+  </tr>
+</tbody>
+</table>
+```
+:::
+
+::: {.column width="70%"}
+Association rules:
+
+- $A\rightarrow C$:  
+
+::: {.fragment .fade-in}  
+$s(A\rightarrow C)=0.50, c(A\rightarrow C)=0.67$
+:::
+
+- $C\rightarrow A$:  
+
+::: {.fragment .fade-in}
+$s(C\rightarrow A)=0.50, c(A\rightarrow C)=1.0$  
+:::
+
+:::
+::::
+
+## Finding Strong Association Rules
+1. FIM: Find the frequent itemsets w.r.t. minimum support threshold.
+2. ARM: Find strong association rules among the frequent itemsets.
+
+
+## FRM by brute-force is inefficient {.smaller}
+Example with small set of items: $I = \{A,B,C,D\}$
+
+:::: {.columns}
+::: {.column width="50%"}
+
+- \# 1-itemsets: $\binom{4}{1} = \frac{4!}{1!(4-1)!}=\frac{4!}{3!}=4$
+- \# 2-itemsets: $\binom{4}{2} = \frac{4!}{2!(4-2)!}=\frac{4!}{2!2!}=6$
+- \# 3-itemsets: $\binom{4}{3} = \frac{4!}{3!(4-3)!}=\frac{4!}{3!}=4$
+- \# 4-itemsets: $\binom{4}{4} = \frac{4!}{4!(4-4)!}=1$
+:::
+
+::: {.column width="50%"}
+```{mermaid}
+flowchart TB
+%%| fig-align: right
+    emptySet["{}"]
+    A["{A}"]
+    B["{B}"]
+    C["{C}"]
+    D["{D}"]
+    AB["{A,B}"]
+    AC["{A,C}"]
+    AD["{A,D}"]
+    BC["{B,C}"]
+    BD["{B,D}"]
+    CD["{C,D}"]
+    ABC["{A,B,C} "]
+    ABD["{A,B,D} "]
+    ACD["{A,C,D} "]
+    BCD["{B,C,D} "]
+    ABCD["{A,B,C,D}    "]
+
+    emptySet --> A
+    emptySet --> B
+    emptySet --> C
+    emptySet --> D
+
+    A --> AB
+    A --> AC
+    A --> AD
+    B --> AB
+    B --> BC
+    B --> BD
+    C --> AC
+    C --> BC
+    C --> CD
+    D --> AD
+    D --> BD
+    D --> CD
+
+    AB --> ABC
+    AB --> ABD
+    AC --> ABC
+    AC --> ACD
+    AD --> ABD
+    AD --> ACD
+    BC --> ABC
+    BC --> BCD
+    BD --> ABD
+    BD --> BCD
+    CD --> ACD
+    CD --> BCD
+
+    ABC --> ABCD
+    ABD --> ABCD
+    ACD --> ABCD
+    BCD --> ABCD
+```
+:::
+::::
+
+In general for $|I|$ items: $\binom{|I|}{1} + \binom{|I|}{2} + ... + \binom{|I|}{k} = 2^{|I|}-1$ itemsets
+
+## Apriori Algorithm {.smaller}
+Idea: If an itemset is frequent, then all of its subsets must also be frequent. And if an itemset is infrequent, its supersets must not be tested &rarr; reduces the candidate itemsets to be tested
+
+initialise: $k=1$. Scan DB to get frequent 1-itemsets
+
+Repeat:
+
+1. Set $k=k+1$ 
+2. generate length $k$ candidate itemsets from length $k-1$ frequent itemsets
+3. test the candidates against DB to get frequent $k$-itemset
+4. Stop when no frequent or candidate set was generated in 3.
+
+## Example {.smaller}
+
+:::: {.columns}
+::: {.column width="60%"}
+
+- Database with 9 transactions
+- Minimum support $t_{s}=22\%$
+- Minimum confidence $t_c=70\%$
+- 1. Identify frequent itemsets using Apriori
+- 2. Identify association rules
+:::
+
+::: {.column width="40%"}
+```{=html}
+<table data-quarto-disable-processing="true">
+<head>
+<style>
+table {
+  border-collapse: collapse;
+}
+
+thead {
+  border-bottom: 2px solid grey;
+}
+
+tr td{
+  border-bottom: none !important;
+}
+
+tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+td {
+  vertical-align: middle;
+}
+
+</style>
+</head>
+<thead>
+  <tr>
+    <tr>
+    <th colspan=2>Database</th>
+    </tr>
+    <th>tid</th>
+    <th>items</th>
+  </tr>
+</thead>
+<tbody>
+  <tr>
+    <td>1</td>
+    <td>chips, coke, whiskey</td>
+  </tr>
+  <tr>
+    <td>2</td>
+    <td>beer, chips</td>
+  </tr>
+  <tr>
+    <td>3</td>
+    <td>chips, ice</td>
+  </tr>
+  <tr>
+    <td>4</td>
+    <td>beer, chips, coke</td>
+  </tr>
+  <tr>
+    <td>5</td>
+    <td>coke, ice</td>
+  </tr>
+  <tr>
+    <td>6</td>
+    <td>chips, ice</td>
+  </tr>
+  <tr>
+    <td>7</td>
+    <td>coke, ice</td>
+  </tr>
+  <tr>
+    <td>8</td>
+    <td>chips, ice, coke, whiskey</td>
+  </tr>
+  <tr>
+    <td>9</td>
+    <td>chips, coke, ice</td>
+  </tr>
+</tbody>
+</table>
+```
+:::
+
+::::
+
+## Example - $k=1$ {.smaller}
+
+:::: {.columns}
+::: {.column width="40%"}
+```{=html}
+<table data-quarto-disable-processing="true">
+<head>
+<style>
+table {
+  border-collapse: collapse;
+}
+
+thead {
+  border-bottom: 2px solid grey;
+}
+
+tr td{
+  border-bottom: none !important;
+}
+
+tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+td {
+  vertical-align: middle;
+}
+
+</style>
+</head>
+<thead>
+  <tr>
+    <tr>
+    <th colspan=2>Database</th>
+    </tr>
+    <th>tid</th>
+    <th>Items</th>
+  </tr>
+</thead>
+<tbody>
+  <tr>
+    <td>1</td>
+    <td>chips, coke, whiskey</td>
+  </tr>
+  <tr>
+    <td>2</td>
+    <td>beer, chips</td>
+  </tr>
+  <tr>
+    <td>3</td>
+    <td>chips, ice</td>
+  </tr>
+  <tr>
+    <td>4</td>
+    <td>beer, chips, coke</td>
+  </tr>
+  <tr>
+    <td>5</td>
+    <td>coke, ice</td>
+  </tr>
+  <tr>
+    <td>6</td>
+    <td>chips, ice</td>
+  </tr>
+  <tr>
+    <td>7</td>
+    <td>coke, ice</td>
+  </tr>
+  <tr>
+    <td>8</td>
+    <td>chips, ice, coke, whiskey</td>
+  </tr>
+  <tr>
+    <td>9</td>
+    <td>chips, coke, ice</td>
+  </tr>
+</tbody>
+</table>
+```
+:::
+
+::: {.column width="30%"}
+```{=html}
+<table data-quarto-disable-processing="true">
+<head>
+<style>
+table {
+  border-collapse: collapse;
+}
+
+thead {
+  border-bottom: 2px solid grey;
+}
+
+tr td{
+  border-bottom: none !important;
+}
+
+tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+td {
+  vertical-align: middle;
+}
+
+</style>
+</head>
+<thead>
+  <tr>
+    <th colspan=2> Candidates C<sub>1</sub></th>
+  </tr>
+  <tr>
+    <th>itemset</th>
+    <th>s</th>
+  </tr>
+</thead>
+<tbody>
+  <tr>
+    <td>{coke}</td>
+    <td>67%</td>
+  </tr>
+  <tr>
+    <td>{chips}</td>
+    <td>78%</td>
+  </tr>
+  <tr>
+    <td>{ice}</td>
+    <td>67%</td>
+  </tr>
+  <tr>
+    <td>{beer}</td>
+    <td>22%</td>
+  </tr>
+  <tr>
+    <td>{whiskey}</td>
+    <td>22%</td>
+  </tr>
+</tbody>
+</table>
+```
+:::
+
+::: {.column width="30%"}
+```{=html}
+<table data-quarto-disable-processing="true">
+<head>
+<style>
+table {
+  border-collapse: collapse;
+}
+
+thead {
+  border-bottom: 2px solid grey;
+}
+
+tr td{
+  border-bottom: none !important;
+}
+
+tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+td {
+  vertical-align: middle;
+}
+
+</style>
+</head>
+<thead>
+  <tr>
+    <th colspan=2> Frequent itemsets L<sub>1</sub></th>
+  </tr>
+  <tr>
+    <th>itemset</th>
+    <th>s</th>
+  </tr>
+</thead>
+<tbody>
+  <tr>
+    <td>{coke}</td>
+    <td>67%</td>
+  </tr>
+  <tr>
+    <td>{chips}</td>
+    <td>78%</td>
+  </tr>
+  <tr>
+    <td>{ice}</td>
+    <td>67%</td>
+  </tr>
+  <tr>
+    <td>{beer}</td>
+    <td>22%</td>
+  </tr>
+  <tr>
+    <td>{whiskey}</td>
+    <td>22%</td>
+  </tr>
+</tbody>
+</table>
+```
+:::
+
+::::
+
+## Generate candidates
+
+$C_k$ is generated by 
+
+1. Self-joining $L_{k-1}$: $L_{k-1} \cdot L_{k-1}$. Two $(k-1)$-itemsets are joined, if they agree in the first $(k-2)$ items  
+2. Pruning all $k$-itemsets with a $(k-1)$-subset that is not frequent, i.e. not in $L_{k-1}$)
+
+
+Example: $L_3=\{abc, abd, acd, ace, bcd\}$  
+
+1. $C_4=L_3 \cdot L_3=\{abc \cdot abd=abcd, acd\cdot ace=acde\}$
+2. $acde$ is pruned since $cde$ is not in $L_3$
+
+
+## Example - $k=2$ {.smaller}
+Generate $C_2$ by self-joining $L_1$, determine $s$ for $C_2$ and prune by support threshold $\rightarrow L_2$
+
+:::: {.columns}
+::: {.column width="40%"}
+```{=html}
+<table data-quarto-disable-processing="true">
+<head>
+<style>
+table {
+  border-collapse: collapse;
+}
+
+thead {
+  border-bottom: 2px solid grey;
+}
+
+tr td{
+  border-bottom: none !important;
+}
+
+tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+td {
+  vertical-align: middle;
+}
+
+</style>
+</head>
+<thead>
+  <tr>
+    <tr>
+    <th colspan=2>Database</th>
+    </tr>
+    <th>tid</th>
+    <th>Items</th>
+  </tr>
+</thead>
+<tbody>
+  <tr>
+    <td>1</td>
+    <td>chips, coke, whiskey</td>
+  </tr>
+  <tr>
+    <td>2</td>
+    <td>chips, beer</td>
+  </tr>
+  <tr>
+    <td>3</td>
+    <td>chips, ice</td>
+  </tr>
+  <tr>
+    <td>4</td>
+    <td>coke, chips, beer</td>
+  </tr>
+  <tr>
+    <td>5</td>
+    <td>coke, ice</td>
+  </tr>
+  <tr>
+    <td>6</td>
+    <td>chips, ice</td>
+  </tr>
+  <tr>
+    <td>7</td>
+    <td>coke, ice</td>
+  </tr>
+  <tr>
+    <td>8</td>
+    <td>coke, chips, ice, whiskey</td>
+  </tr>
+  <tr>
+    <td>9</td>
+    <td>coke, chips, ice</td>
+  </tr>
+</tbody>
+</table>
+```
+
+:::
+
+::: {.column width="30%"}
+```{=html}
+<table data-quarto-disable-processing="true">
+<head>
+<style>
+table {
+  border-collapse: collapse;
+}
+
+thead {
+  border-bottom: 2px solid grey;
+}
+
+tr td{
+  border-bottom: none !important;
+}
+
+tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+td {
+  vertical-align: middle;
+}
+
+</style>
+</head>
+<thead>
+  <tr>
+    <th colspan=2> Candidates C<sub>2</sub></th>
+  </tr>
+  <tr>
+    <th>itemset</th>
+    <th>s</th>
+  </tr>
+</thead>
+<tbody>
+  <tr>
+    <td>{beer, chips}</td>
+    <td>22%</td>
+  </tr>
+  <tr>
+    <td>{beer, coke}</td>
+    <td>11%</td>
+  </tr>
+  <tr>
+    <td>{beer, ice}</td>
+    <td>0%</td>
+  </tr>
+  <tr>
+    <td>{beer, whiskey}</td>
+    <td>0%</td>
+  </tr>
+  <tr>
+    <td>{chips, coke}</td>
+    <td>44%</td>
+  </tr>
+   <tr>
+    <td>{chips, ice}</td>
+    <td>44%</td>
+  </tr>
+  <tr>
+    <td>{chips, whiskey}</td>
+    <td>22%</td>
+  </tr>
+  <tr>
+    <td>{coke, ice}</td>
+    <td>44%</td>
+  </tr>
+  <tr>
+    <td>{coke, whiskey}</td>
+    <td>22%</td>
+  </tr>
+  <tr>
+    <td>{ice, whiskey}</td>
+    <td>11%</td>
+  </tr>
+  
+</tbody>
+</table>
+```
+:::
+
+::: {.column width="30%"}
+```{=html}
+<table data-quarto-disable-processing="true">
+<head>
+<style>
+table {
+  border-collapse: collapse;
+}
+
+thead {
+  border-bottom: 2px solid grey;
+}
+
+tr td{
+  border-bottom: none !important;
+}
+
+tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+td {
+  vertical-align: middle;
+}
+
+</style>
+</head>
+<thead>
+  <tr>
+    <th colspan=2> Frequent itemsets L<sub>2</sub></th>
+  </tr>
+  <tr>
+    <th>itemset</th>
+    <th>s</th>
+  </tr>
+</thead>
+<tbody>
+  <tr>
+    <td>{beer, chips}</td>
+    <td>22%</td>
+  </tr>
+  <tr>
+    <td>{chips, coke}</td>
+    <td>44%</td>
+  </tr>
+  <tr>
+    <td>{chips, ice}</td>
+    <td>44%</td>
+  </tr>
+  <tr>
+    <td>{chips, whiskey}</td>
+    <td>22%</td>
+  </tr>
+  <tr>
+    <td>{coke, ice}</td>
+    <td>44%</td>
+  </tr>
+  <tr>
+    <td>{coke, whiskey}</td>
+    <td>22%</td>
+  </tr>
+</tbody>
+</table>
+```
+:::
+
+::::
+
+## Example - $k=3$ {.smaller}
+Generate $C_3$ by self-joining $L_2$, determine $s$ for $C_2$ and prune by support threshold $\rightarrow L_3$
+
+:::: {.columns}
+
+::: {.column width="10%"}
+
+:::
+
+::: {.column width="40%"}
+```{=html}
+<table data-quarto-disable-processing="true">
+<head>
+<style>
+table {
+  border-collapse: collapse;
+}
+
+thead {
+  border-bottom: 2px solid grey;
+}
+
+tr td{
+  border-bottom: none !important;
+}
+
+tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+td {
+  vertical-align: middle;
+}
+
+</style>
+</head>
+<thead>
+  <tr>
+    <th colspan=2> Candidates C<sub>3</sub></th>
+  </tr>
+  <tr>
+    <th>itemset</th>
+    <th>s</th>
+  </tr>
+</thead>
+<tbody>
+  <tr>
+    <td>{chips, coke, ice}</td>
+    <td>22%</td>
+  </tr>
+  <tr>
+    <td>{chips, coke, whiskey}</td>
+    <td>22%</td>
+  </tr>
+  <tr>
+    <td>{coke, ice, whiskey}</td>
+    <td>11%</td>
+  </tr>
+</tbody>
+</table>
+```
+:::
+
+::: {.column width="40%"}
+```{=html}
+<table data-quarto-disable-processing="true">
+<head>
+<style>
+table {
+  border-collapse: collapse;
+}
+
+thead {
+  border-bottom: 2px solid grey;
+}
+
+tr td{
+  border-bottom: none !important;
+}
+
+tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+td {
+  vertical-align: middle;
+}
+
+</style>
+</head>
+<thead>
+  <tr>
+    <th colspan=2> Frequent itemsets L<sub>3</sub></th>
+  </tr>
+  <tr>
+    <th>itemset</th>
+    <th>s</th>
+  </tr>
+</thead>
+<tbody>
+  <tr>
+    <td>{chips, coke, ice}</td>
+    <td>22%</td>
+  </tr>
+  <tr>
+    <td>{chips, coke, whiskey}</td>
+    <td>22%</td>
+  </tr>
+
+</tbody>
+</table>
+```
+:::
+
+::::
+
+## Example - $k=4$
+Self-joining $\rightarrow C_3=\emptyset \rightarrow$ stop
+
+## Identify Association Rules
+
+- For every frequent itemset $X$
+    - For every subset $Y: Y\neq \emptyset, Y\neq X$, form the rule $Y\rightarrow (X - Y)$
+    - Remove rules with $c(Y\rightarrow (X - Y))=\frac{s(X)}{s(Y)}\lt t_c$
+
+## Example - Association Rules {.smaller}
+From $L_2$:
+
+- $\text{beer} \rightarrow \text{chips}: c = \frac{s(\text{beer}, \text{chips})}{s(\text{beer})} = \frac{22\%}{22\%} = 100\%$
+- $\text{beer} \rightarrow \text{chips}: c = \frac{s(\text{beer}, \text{chips})}{s(\text{chips})} = \frac{22\%}{78\%} = 28\%$   
+- $\text{chips} \rightarrow \text{coke}: c = \frac{s(\text{chips}, \text{coke})}{s(\text{chips})} = \frac{44\%}{78\%} = 56\%$
+- ...  
+
+From $L_3$:  
+
+- $\text{chips, coke} \rightarrow \text{ice}: c = \frac{s(\text{chips}, \text{coke}, \text{ice})}{s(\text{chips, coke})} = \frac{22\%}{44\%} = 50\%$
+- $\text{chips, ice} \rightarrow \text{coke}: c = \frac{s(\text{chips}, \text{coke}, \text{ice})}{s(\text{chips, ice})} = \frac{22\%}{44\%} = 50\%$  
+...  
+- $\text{chips} \rightarrow \text{\{coke, ice\}}: c = \frac{s(\text{chips}, \text{coke}, \text{ice})}{s(\text{chips})} = \frac{22\%}{78\%} = 28\%$  
+...  
+- $\text{whiskey} \rightarrow \text{\{chips, coke\}}: c = \frac{s(\text{chips}, \text{coke}, \text{whiskey})}{s(\text{whiskey})} = \frac{22\%}{22\%} = 100\%$
+
+## The Efficient Apriori Package
+
+```{.python}
+from efficient_apriori import apriori
+transactions = [('eggs', 'bacon', 'soup'),
+                ('eggs', 'bacon', 'apple'),
+                ('soup', 'bacon', 'banana')]
+itemsets, rules = apriori(transactions, min_support=0.5,  min_confidence=1)
+print(rules)  # [{eggs} -> {bacon}, {soup} -> {bacon}]
+```
+
+## Beyond the Apriori Algorithm
+Computational challenge: Multiple scans of transaction database required. Problematic with growing number of transactions and candidate itemsets.
+
+Possible improvements:
+
+- Reduce database scans
+- shrink number of candidate itemsets
+
+Frequent Pattern Tree: Allows frequent itemsets discovery without candidates generation.
+
+## Summary Association Rules Mining
+
+* identifes item combinations frequently appearing together across all transactions, not grouped by users
+* does not take into account ratings
+* does not allow to build a latent representation of users and/or items
+* &rarr; does not offer personalisation

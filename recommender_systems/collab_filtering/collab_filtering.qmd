@@ -1,0 +1,309 @@
+---
+title: Collaborative Filtering
+---
+## Recommending Movies
+
+* [The Netflix Prize](https://web.archive.org/web/20150729162413/http://www.netflixprize.com/index){preview-link="true"}
+
+## Supervised Learning Setting
+Feature representation (encoding)
+$$\Phi: \text{item}^{(m)} \rightarrow \mathbf{x}^{(m)}=\begin{pmatrix}x_1^{(m)} \\ \vdots \\ x_N^{(m)}\end{pmatrix}$$
+
+
+## Training Data
+
+:::: {.columns}
+
+::: {.column width="60%"}
+Design matrix $\mathbf{X}$
+```{=html}
+<table style="border-collapse: collapse;" data-quarto-disable-processing="true">
+  <tr>
+    <th style="background-color: lightgrey; border: 1px solid black;">feature n &rightarrow;<br>item m &downarrow;</th>
+    <th style="background-color: lightgrey; border: 1px solid black; text-align: center;">1</th>
+    <th style="background-color: lightgrey; border: 1px solid black; text-align: center;">2</th>
+    <th style="background-color: lightgrey; border: 1px solid black; text-align: center;" colspan=2>&hellip;</th>
+    <th style="background-color: lightgrey; border: 1px solid black; text-align: center;">\(N\)</th>
+  </tr>
+  <tr>
+    <td style="background-color: lightgrey; border: 1px solid black;">1</td>
+    <td style="border: 1px solid black; text-align: center;">\(x^{1}_1\)</td>
+    <td style="border: 1px solid black; text-align: center;">\(x^{1}_2\)</td>
+    <td style="border: 1px solid black; text-align: center;"  colspan=2>&nbsp;</td>
+    <td style="border: 1px solid black; text-align: center;">\(x^{1}_N\)</td>
+  </tr>
+  <tr>
+    <td style="background-color: lightgrey; border: 1px solid black;">2</td>
+    <td style="border: 1px solid black; text-align: center;">\(x^{2}_1\)</td>
+    <td style="border: 1px solid black; text-align: center;">\(x^{2}_2\)</td>
+    <td style="border: 1px solid black; text-align: center;" colspan=2>&nbsp;</td>
+    <td style="border: 1px solid black; text-align: center;">\(x^{2}_N\)</td>
+  </tr>
+  <tr>
+    <td style="background-color: lightgrey; border: 1px solid black;">&vellip;</td>
+    <td style="border: 1px solid black; text-align: center;">&nbsp;</td>
+    <td style="border: 1px solid black; text-align: center;">&nbsp;</td>
+    <td style="border: 1px solid black; text-align: center;"  colspan=2>&nbsp;</td>
+    <td style="border: 1px solid black; text-align: center;">&nbsp;</td>
+  </tr>
+  <tr>
+    <td style="background-color: lightgrey; border: 1px solid black;">\(M\)</td>
+    <td style="border: 1px solid black; text-align: center;">\(x^{M}_1\)</td>
+    <td style="border: 1px solid black; text-align: center;">\(x^{M}_2\)</td>
+    <td style="border: 1px solid black; text-align: center;"  colspan=2>&nbsp;</td>
+    <td style="border: 1px solid black; text-align: center;">\(x^{M}_N\)</td>
+  </tr>
+</table>
+```
+:::
+
+::: {.column width="20%"}
+Ratings $\mathbf{y}$
+```{=html}
+<table style="border-collapse: collapse; width: 100%;" data-quarto-disable-processing="true">
+  <tr>
+    <th style="background-color: lightgrey; border: 1px solid black;">&nbsp<br>&nbsp</th>
+  </tr>
+  <tr>
+    <td style="border: 1px solid black; text-align: center;">\(y^{1}\)</td>
+  </tr>
+  <tr>
+    <td style="border: 1px solid black; text-align: center;">\(y^{2}\)</td>
+  </tr>
+  <tr>
+    <td style="border: 1px solid black; text-align: center;">&vellip;</td>
+  </tr>
+  <tr>
+    <td style="border: 1px solid black; text-align: center;">\(y^{M}\)</td>
+  </tr>
+</table>
+```
+:::
+
+::::
+
+## Learning Task
+Learn a predictor, $f$, that maps an $N$-dimensional vector representation of an item (row in $\mathbf{X}$) to an output value (element in $\mathbf{y}$)
+
+$$f\left(\mathbf{x}^{(m)}\right) \rightarrow y^{(m)}$$
+
+* $y^{(m)} \in \{1,2,3,4,5\} \rightarrow$ classification
+* $y^{(m)} \in \mathbb{R} \rightarrow$ regression
+
+## Regression Problem
+* Hypothesis, e.g. linear: $f(\mathbf{x}^{(m)})=\mathbf{\theta}^T\mathbf{x}^{(m)}$
+* Loss function: $\mathcal{L}=\sum_{m=1}^{M}\left(y^{m}-f(\mathbf{x}^{(m)})\right)^2$
+
+* $+$ regularisation
+* Cost function:
+$$J(\mathbf{\theta})=\frac{1}{2M}\sum_{m=1}^{M}\left(y^{m}-\mathbf{\theta}^T\mathbf{x}^{(m)}\right)^2+\frac{\lambda}{2}||\mathbf{\theta}||^2$$
+* Minimise: Solve analytically or by gradient descent
+
+## Problems
+
+* Difficult to design expressive features
+* For personal recommendations data from other users is not leveraged  
+
+
+## Rating Matrix
+$\mathbf{Y}: M \text{ users} \times N \text{ items}$
+
+```{=html}
+<table style="border-collapse: collapse; width: 100%;" data-quarto-disable-processing="true">
+  <tr>
+    <th style="background-color: lightgrey; border: 1px solid black;">item n &rightarrow;<br>user m &downarrow;</th>
+    <th style="background-color: lightgrey; border: 1px solid black; text-align: center;">1</th>
+    <th style="background-color: lightgrey; border: 1px solid black; text-align: center;">2</th>
+    <th style="background-color: lightgrey; border: 1px solid black; text-align: center;" colspan=2>&hellip;</th>
+    <th style="background-color: lightgrey; border: 1px solid black; text-align: center;">\(N\)</th>
+  </tr>
+  <tr>
+    <td style="background-color: lightgrey; border: 1px solid black;">1</td>
+    <td style="border: 1px solid black; text-align: center;">\(y^{(1)}_1\)</td>
+    <td style="border: 1px solid black; text-align: center;">\(y^{(1)}_2\)</td>
+    <td style="border: 1px solid black; text-align: center;"  colspan=2>&nbsp;</td>
+    <td style="border: 1px solid black; text-align: center;">\(y^{(1)}_N\)</td>
+  </tr>
+  <tr>
+    <td style="background-color: lightgrey; border: 1px solid black;">2</td>
+    <td style="border: 1px solid black; text-align: center;">\(y^{(2)}_1\)</td>
+    <td style="border: 1px solid black; text-align: center;">\(y^{(2)}_2\)</td>
+    <td style="border: 1px solid black; text-align: center;" colspan=2>&nbsp;</td>
+    <td style="border: 1px solid black; text-align: center;">\(y^{(2)}_N\)</td>
+  </tr>
+  <tr>
+    <td style="background-color: lightgrey; border: 1px solid black;">&vellip;</td>
+    <td style="border: 1px solid black; text-align: center;">&nbsp;</td>
+    <td style="border: 1px solid black; text-align: center;">&nbsp;</td>
+    <td style="border: 1px solid black; text-align: center;"  colspan=2>&nbsp;</td>
+    <td style="border: 1px solid black; text-align: center;">&nbsp;</td>
+  </tr>
+  <tr>
+    <td style="background-color: lightgrey; border: 1px solid black;">\(M\)</td>
+    <td style="border: 1px solid black; text-align: center;">\(y^{(M)}_1\)</td>
+    <td style="border: 1px solid black; text-align: center;">\(y^{(M)}_2\)</td>
+    <td style="border: 1px solid black; text-align: center;"  colspan=2>&nbsp;</td>
+    <td style="border: 1px solid black; text-align: center;">\(y^{(M)}_N\)</td>
+  </tr>
+</table>
+```
+
+## Matrix Filling Task
+Rating matrix is very sparse
+
+```{=html}
+<table style="border-collapse: collapse; width: 100%;" data-quarto-disable-processing="true">
+  <tr>
+    <th style="background-color: lightgrey; border: 1px solid black;">item n &rightarrow;<br>user m &downarrow;</th>
+    <th style="background-color: lightgrey; border: 1px solid black; text-align: center;">1</th>
+    <th style="background-color: lightgrey; border: 1px solid black; text-align: center;">2</th>
+    <th style="background-color: lightgrey; border: 1px solid black; text-align: center;" colspan=2>&hellip;</th>
+    <th style="background-color: lightgrey; border: 1px solid black; text-align: center;">\(N\)</th>
+  </tr>
+  <tr>
+    <td style="background-color: lightgrey; border: 1px solid black;">1</td>
+    <td style="border: 1px solid black; text-align: center;">5</td>
+    <td style="border: 1px solid black; text-align: center;">&nbsp;</td>
+    <td style="border: 1px solid black; text-align: center;"  colspan=2>&nbsp;</td>
+    <td style="border: 1px solid black; text-align: center;">3</td>
+  </tr>
+  <tr>
+    <td style="background-color: lightgrey; border: 1px solid black;">2</td>
+    <td style="border: 1px solid black; text-align: center;">&nbsp;</td>
+    <td style="border: 1px solid black; text-align: center;">1</td>
+    <td style="border: 1px solid black; text-align: center;" colspan=2>&nbsp;</td>
+    <td style="border: 1px solid black; text-align: center;">&nbsp;</td>
+  </tr>
+  <tr>
+    <td style="background-color: lightgrey; border: 1px solid black;">&vellip;</td>
+    <td style="border: 1px solid black; text-align: center;">&nbsp;</td>
+    <td style="border: 1px solid black; text-align: center;">&nbsp;</td>
+    <td style="border: 1px solid black; text-align: center;"  colspan=2>&nbsp;</td>
+    <td style="border: 1px solid black; text-align: center;">2</td>
+  </tr>
+  <tr>
+    <td style="background-color: lightgrey; border: 1px solid black;">\(M\)</td>
+    <td style="border: 1px solid black; text-align: center;">1</td>
+    <td style="border: 1px solid black; text-align: center;">&nbsp;</td>
+    <td style="border: 1px solid black; text-align: center;"  colspan=2>&nbsp;</td>
+    <td style="border: 1px solid black; text-align: center;">&nbsp;</td>
+  </tr>
+</table>
+```
+
+## Collaborative Filtering - The Principle
+Using the Nearest Neighbour approach
+
+![&nbsp;](pics/movie_rating_matrix.svg)
+
+* User-based vs. item-based
+
+## The Nearest Neighbour Approach
+
+Calculate the unknown rating as the average rating of the other users weighted by similarity
+
+:::: {.columns}
+
+::: {.column width=50%}
+
+E.g. by cosine similarity
+
+$$s_{m,m'}=\frac{\mathbf{x}^{(m)} \cdot \mathbf{x}^{(m')}}{|\mathbf{x}^{(m)}||\mathbf{x}^{(m')}|}$$
+
+* by row &#8594; user-based
+* By columns &#8594; item-based
+
+:::
+
+::: {.column width=50%}
+
+![&nbsp;](pics/many_ratings.svg)
+
+:::
+
+::::
+
+## Similarity of Users 1 and 2
+
+![&nbsp;](pics/user_12.svg)
+
+Only consider items rated by both users
+
+$$
+\begin{align*}
+s_{1,2} &= \frac{\mathbf{x}^{(1)} \cdot \mathbf{x}^{(2)}}{|\mathbf{x}^{(1)}||\mathbf{x}^{(2)}|} \\
+&= \frac{1\cdot 5+3\cdot 4+1 \cdot 4+5 \cdot 1}{\sqrt{1^2+3^2+1^2+5^2}\cdot \sqrt{5^2+4^2+4^2+1^2}} = 0.57
+\end{align*}
+$$
+
+## Similarity Matrix
+
+![&nbsp;](pics/similarity_matrix.svg)
+
+## Calculation of an Unknown Rating {.smaller}
+
+![&nbsp;](pics/rating_24.svg)
+
+Predicted rating for user $m=2$, item $n=4$:
+$$
+\begin{align*}
+\hat{y}_{2,4} &= \frac{1}{s_{2,3}+s_{2,5}+s_{2,6}} \left(s_{2,3}\cdot y_{3,4}+ s_{2,5} \cdot y_{5,4}+s_{2,6}\cdot y_{6,4}\right) \\
+&= \frac{1}{0.73+0.65+1.0} \left( 0.73 \cdot 4+0.65 \cdot 5+1.0 \cdot 4 \right) \\
+&= 4.27
+\end{align*}
+$$
+
+## Matrix Factorisation
+
+For a matrix $\mathbf{Y}:M\times N$ of rank $K$ there exist $\mathbf{U}: N\times K$ and $\mathbf{V}: M\times K$, such that
+
+$$\mathbf{Y}=\mathbf{U}\mathbf{V}^T$$
+
+![&nbsp;](pics/decomposition.svg)
+
+## Matrix Factorisation 
+$$\mathbf{Y}=\mathbf{U}\mathbf{V}^T$$
+
+* Problem: $\mathbf{Y}$ is sparse
+* Approach:
+  * Calculate $\mathbf{U}$ and $\mathbf{V}$ based on available entries in $\mathbf{Y}$
+  * Use $\mathbf{U}$ and $\mathbf{V}$ to predict unknown ratings $\mathbf{\hat{Y}}$
+
+## Factorisation Machines {.smaller}
+![&nbsp;](pics/decomposition.svg)
+
+$$
+\begin{align*}
+\text{Cost: } J(U,V) &= \frac{1}{2}\sum_{(m,n) \text{ where}\\ y_{m,n}\neq 0} \left(y_{m,n}- \left(\mathbf{u}^{(m)}\cdot \mathbf{v}^{(n)}+b_u^{(m)}+b_v^{(n)}\right)\right)^2 \\
+&+ \frac{\lambda}{2}\sum||\mathbf{u}^{(m)}||^2 + \frac{\lambda}{2}\sum||\mathbf{v}^{(n)}||^2
+\end{align*}
+$$
+
+Minimise by alternating least squares or stochastic gradient descent
+
+
+## Summary 
+
+:::: {.columns}
+
+::: {.column width=50%}
+Collaborative filtering:
+
+- No item features needed
+- User ratings required
+- Current interests infered from historic user behavior
+- Sparsity
+- Cold start problems
+- Users's range of interests can be expanded
+:::
+
+::: {.column width=50%}
+Content-based:
+
+- Item features required
+- No ratings required
+- No cold-start or sparsity problem
+- new and less famous objects are also recommended
+- Serendipity effect is not really supported
+:::
+::::
