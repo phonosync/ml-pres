@@ -66,18 +66,18 @@ Synonym: Market basket analysis
 
 ![Source: [www.quickmeme.com](http://www.quickmeme.com/img/26/2647c127c4d867ae443f3522452eed68a196a6ff6e2f7d070d20e8fee3f9cd41.jpg)](http://www.quickmeme.com/img/26/2647c127c4d867ae443f3522452eed68a196a6ff6e2f7d070d20e8fee3f9cd41.jpg){fig-align="center"}
 
-## Terminology - items
+## Itemsets
 
 * Items $I$: The set of available items $I = \{i_1, ..., i_M\}$
 * Itemset $X$: A set of items $X \subseteq I$
 * Itemset size $K$: The number of items in the itemset
 * $K$-itemset: An itemset of size $K$
-* Items are ordered: $$X_n=\{x_1, x_2, ...,x_K\}, \text{ such that } x_1 ≤ x_2 ≤ ... ≤ x_K$$
+* Items are ordered: $$X_n=\{x_1, x_2, ...,x_K\}, \text{ such that } x_1 \leq x_2 \leq ... \leq x_K$$
 
-## Terminology - transactions
+## Transactions
 
-* Transaction: $T=(tid, X_{\text tid})$
-* Transactions in database: $\{X_1, X_2, ..., X_N\}$
+* Transaction: $T_n=(tid, X_{\text{tid}})$
+* Transactions in database: $\{T_1, T_2, ..., X_N\}$
 
 ```{=html}
 <table data-quarto-disable-processing="true">
@@ -114,22 +114,22 @@ td {
 <tbody>
   <tr>
     <td>1</td>
-    <td>apple, bread,  honey, milk, peanuts</td>
+    <td>{apple, bread,  honey, milk, peanuts}</td>
   </tr>
   <tr>
     <td>2</td>
-    <td>bread, chips, coke, honey, milk</td>
+    <td>{bread, chips, coke, honey, milk}</td>
   </tr>
   <tr>
     <td>3</td>
-    <td>bread, chips, coke, honey, steak</td>
+    <td>{bread, chips, coke, honey, steak}</td>
   </tr>
   <tr>
     <td colspan="2">...</td>
   </tr>
   <tr>
     <td>8</td>
-    <td>apple, bread, cheese, milk, peanuts</td>
+    <td>{apple, bread, cheese, milk, peanuts}</td>
   </tr>
 </tbody>
 </table>
@@ -181,50 +181,49 @@ td {
 <tbody>
   <tr>
     <td>1</td>
-    <td>apple, bread, honey, milk, peanuts</td>
+    <td>{apple, bread, honey, milk, peanuts}</td>
   </tr>
   <tr>
     <td>2</td>
-    <td>bread, chips, coke, honey, milk</td>
+    <td>{bread, chips, coke, honey, milk}</td>
   </tr>
   <tr>
     <td>3</td>
-    <td>bread, chips, coke, honey, steak</td>
+    <td>{bread, chips, coke, honey, steak}</td>
   </tr>
   <tr>
     <td>4</td>
-    <td>apple, coke, honey, milk, peanuts</td>
+    <td>{apple, coke, honey, milk, peanuts}</td>
   </tr>
   <tr>
     <td>5</td>
-    <td>bread, chips, coke, honey, milk</td>
+    <td>{bread, chips, coke, honey, milk}</td>
   </tr>
   <tr>
     <td>6</td>
-    <td>apple, chips, coke, milk</td>
+    <td>{apple, chips, coke, milk}</td>
   </tr>
   <tr>
     <td>7</td>
-    <td>apple, bread, coke, milk, peanuts</td>
+    <td>{apple, bread, coke, milk, peanuts}</td>
   </tr>
   <tr>
     <td>8</td>
-    <td>apple, bread, cheese, milk, peanuts</td>
+    <td>{apple, bread, cheese, milk, peanuts}</td>
   </tr>
 </tbody>
 </table>
 ```
 
 ## Frequent Itemsets Mining (FIM)
-* An itemset $X$ is frequent in DB if its support is greater or equal than a minimum support threshold $t_s$:
+* An itemset $X$ is frequent if its support in the DB is greater or equal than a minimum support threshold $t_s$:
 $$s(X) \geq t_s$$
 
 * Given:
     * Set of items $I$
     * Transaction database over $I$
     * Minimum support threshold $t_s$
-* Goal: Find all frequent itemsets in DB, i.e.:
-$$\{X \subseteq I | s(X) \geq t_s\}$$
+* Goal: Find all frequent itemsets $\{X \subseteq I | s(X) \geq t_s\}$
 
 ## FIM - example
 
@@ -260,25 +259,25 @@ td {
 <thead>
   <tr>
     <th><math>tid</math></th>
-    <th>Items</th>
+    <th>items</th>
   </tr>
 </thead>
 <tbody>
   <tr>
     <td>2000</td>
-    <td>A,B,C</td>
+    <td>{A,B,C}</td>
   </tr>
   <tr>
     <td>1000</td>
-    <td>A,C</td>
+    <td>{A,C}</td>
   </tr>
   <tr>
     <td>4000</td>
-    <td>A,D</td>
+    <td>{A,D}</td>
   </tr>
   <tr>
     <td>5000</td>
-    <td>B,E,F</td>
+    <td>{B,E,F}</td>
   </tr>
 </tbody>
 </table>
@@ -321,7 +320,7 @@ $$c(X \rightarrow Y)=\frac{s(X \cup Y)}{s(X)}$$
     * Transaction database over $I$
     * Minimum support threshold $t_s$ and a minimum confidence threshold $t_c$
 * Goal: Find all association rules $X\rightarrow Y$ in DB with minimum support threshold and a minimum confidence i.e.:
-$$\{X\rightarrow Y | s(X \cup Y) \geq t_s, c(X\rightarrow Y)\geq c_s \}$$
+$$\{X\rightarrow Y | s(X \cup Y) \geq t_s, c(X\rightarrow Y)\geq t_c \}$$
 These rules are called strong.
 
 
@@ -359,25 +358,25 @@ td {
 <thead>
   <tr>
     <th><math>tid</math></th>
-    <th>Items</th>
+    <th>items</th>
   </tr>
 </thead>
 <tbody>
   <tr>
     <td>2000</td>
-    <td>A,B,C</td>
+    <td>{A,B,C}</td>
   </tr>
   <tr>
     <td>1000</td>
-    <td>A,C</td>
+    <td>{A,C}</td>
   </tr>
   <tr>
     <td>4000</td>
-    <td>A,D</td>
+    <td>{A,D}</td>
   </tr>
   <tr>
     <td>5000</td>
-    <td>B,E,F</td>
+    <td>{B,E,F}</td>
   </tr>
 </tbody>
 </table>
@@ -396,7 +395,7 @@ $s(A\rightarrow C)=0.50, c(A\rightarrow C)=0.67$
 - $C\rightarrow A$:  
 
 ::: {.fragment .fade-in}
-$s(C\rightarrow A)=0.50, c(A\rightarrow C)=1.0$  
+$s(C\rightarrow A)=0.50, c(C\rightarrow A)=1.0$  
 :::
 
 :::
@@ -479,12 +478,12 @@ flowchart TB
 :::
 ::::
 
-In general for $|I|$ items: $\binom{|I|}{1} + \binom{|I|}{2} + ... + \binom{|I|}{k} = 2^{|I|}-1$ itemsets
+In general for $|I|$ items: $\binom{|I|}{1} + \binom{|I|}{2} + ... + \binom{|I|}{K} = 2^{|I|}-1$ itemsets
 
 ## Apriori Algorithm {.smaller}
-Idea: If an itemset is frequent, then all of its subsets must also be frequent. And if an itemset is infrequent, its supersets must not be tested &rarr; reduces the candidate itemsets to be tested
+Reduces the candidate itemsets to be tested: If an itemset is frequent, then all of its subsets must also be frequent. And if an itemset is infrequent, its supersets must not be tested. 
 
-initialise: $k=1$. Scan DB to get frequent 1-itemsets
+Initialise: $k=1$. Scan DB to get frequent 1-itemsets
 
 Repeat:
 
@@ -544,39 +543,39 @@ td {
 <tbody>
   <tr>
     <td>1</td>
-    <td>chips, coke, whiskey</td>
+    <td>{chips, coke, whiskey}</td>
   </tr>
   <tr>
     <td>2</td>
-    <td>beer, chips</td>
+    <td>{beer, chips}</td>
   </tr>
   <tr>
     <td>3</td>
-    <td>chips, ice</td>
+    <td>{chips, ice}</td>
   </tr>
   <tr>
     <td>4</td>
-    <td>beer, chips, coke</td>
+    <td>{beer, chips, coke}</td>
   </tr>
   <tr>
     <td>5</td>
-    <td>coke, ice</td>
+    <td>{coke, ice}</td>
   </tr>
   <tr>
     <td>6</td>
-    <td>chips, ice</td>
+    <td>{chips, ice}</td>
   </tr>
   <tr>
     <td>7</td>
-    <td>coke, ice</td>
+    <td>{coke, ice}</td>
   </tr>
   <tr>
     <td>8</td>
-    <td>chips, ice, coke, whiskey</td>
+    <td>{chips, ice, coke, whiskey}</td>
   </tr>
   <tr>
     <td>9</td>
-    <td>chips, coke, ice</td>
+    <td>{chips, coke, ice}</td>
   </tr>
 </tbody>
 </table>
@@ -621,45 +620,45 @@ td {
     <th colspan=2>Database</th>
     </tr>
     <th>tid</th>
-    <th>Items</th>
+    <th>items</th>
   </tr>
 </thead>
 <tbody>
   <tr>
     <td>1</td>
-    <td>chips, coke, whiskey</td>
+    <td>{chips, coke, whiskey}</td>
   </tr>
   <tr>
     <td>2</td>
-    <td>beer, chips</td>
+    <td>{beer, chips}</td>
   </tr>
   <tr>
     <td>3</td>
-    <td>chips, ice</td>
+    <td>{chips, ice}</td>
   </tr>
   <tr>
     <td>4</td>
-    <td>beer, chips, coke</td>
+    <td>{beer, chips, coke}</td>
   </tr>
   <tr>
     <td>5</td>
-    <td>coke, ice</td>
+    <td>{coke, ice}</td>
   </tr>
   <tr>
     <td>6</td>
-    <td>chips, ice</td>
+    <td>{chips, ice}</td>
   </tr>
   <tr>
     <td>7</td>
-    <td>coke, ice</td>
+    <td>{coke, ice}</td>
   </tr>
   <tr>
     <td>8</td>
-    <td>chips, ice, coke, whiskey</td>
+    <td>{chips, ice, coke, whiskey}</td>
   </tr>
   <tr>
     <td>9</td>
-    <td>chips, coke, ice</td>
+    <td>{chips, coke, ice}</td>
   </tr>
 </tbody>
 </table>
@@ -695,11 +694,11 @@ td {
 </head>
 <thead>
   <tr>
-    <th colspan=2> Candidates C<sub>1</sub></th>
+    <th colspan=2> Candidates \(C_1\)</th>
   </tr>
   <tr>
     <th>itemset</th>
-    <th>s</th>
+    <th>\(s\)</th>
   </tr>
 </thead>
 <tbody>
@@ -757,11 +756,11 @@ td {
 </head>
 <thead>
   <tr>
-    <th colspan=2> Frequent itemsets L<sub>1</sub></th>
+    <th colspan=2> Frequent itemsets \(L_1\)</th>
   </tr>
   <tr>
     <th>itemset</th>
-    <th>s</th>
+    <th>\(s\)</th>
   </tr>
 </thead>
 <tbody>
@@ -797,7 +796,7 @@ td {
 $C_k$ is generated by 
 
 1. Self-joining $L_{k-1}$: $L_{k-1} \cdot L_{k-1}$. Two $(k-1)$-itemsets are joined, if they agree in the first $(k-2)$ items  
-2. Pruning all $k$-itemsets with a $(k-1)$-subset that is not frequent, i.e. not in $L_{k-1}$)
+2. Pruning all $k$-itemsets with a $(k-1)$-subset that is not frequent, i.e. not in $L_{k-1}$
 
 
 Example: $L_3=\{abc, abd, acd, ace, bcd\}$  
@@ -807,7 +806,7 @@ Example: $L_3=\{abc, abd, acd, ace, bcd\}$
 
 
 ## Example - $k=2$ {.smaller}
-Generate $C_2$ by self-joining $L_1$, determine $s$ for $C_2$ and prune by support threshold $\rightarrow L_2$
+Generate $C_2$ by self-joining $L_1$, determine $s$ and prune by support threshold $\rightarrow L_2$
 
 :::: {.columns}
 ::: {.column width="40%"}
@@ -843,45 +842,45 @@ td {
     <th colspan=2>Database</th>
     </tr>
     <th>tid</th>
-    <th>Items</th>
+    <th>items</th>
   </tr>
 </thead>
 <tbody>
   <tr>
     <td>1</td>
-    <td>chips, coke, whiskey</td>
+    <td>{chips, coke, whiskey}</td>
   </tr>
   <tr>
     <td>2</td>
-    <td>chips, beer</td>
+    <td>{chips, beer}</td>
   </tr>
   <tr>
     <td>3</td>
-    <td>chips, ice</td>
+    <td>{chips, ice}</td>
   </tr>
   <tr>
     <td>4</td>
-    <td>coke, chips, beer</td>
+    <td>{coke, chips, beer}</td>
   </tr>
   <tr>
     <td>5</td>
-    <td>coke, ice</td>
+    <td>{coke, ice}</td>
   </tr>
   <tr>
     <td>6</td>
-    <td>chips, ice</td>
+    <td>{chips, ice}</td>
   </tr>
   <tr>
     <td>7</td>
-    <td>coke, ice</td>
+    <td>{coke, ice}</td>
   </tr>
   <tr>
     <td>8</td>
-    <td>coke, chips, ice, whiskey</td>
+    <td>{coke, chips, ice, whiskey}</td>
   </tr>
   <tr>
     <td>9</td>
-    <td>coke, chips, ice</td>
+    <td>{coke, chips, ice}</td>
   </tr>
 </tbody>
 </table>
@@ -918,11 +917,11 @@ td {
 </head>
 <thead>
   <tr>
-    <th colspan=2> Candidates C<sub>2</sub></th>
+    <th colspan=2> Candidates \(C_2\)</th>
   </tr>
   <tr>
     <th>itemset</th>
-    <th>s</th>
+    <th>\(s\)</th>
   </tr>
 </thead>
 <tbody>
@@ -1001,11 +1000,11 @@ td {
 </head>
 <thead>
   <tr>
-    <th colspan=2> Frequent itemsets L<sub>2</sub></th>
+    <th colspan=2> Frequent itemsets \(L_2\)</th>
   </tr>
   <tr>
     <th>itemset</th>
-    <th>s</th>
+    <th>\(s\)</th>
   </tr>
 </thead>
 <tbody>
@@ -1041,7 +1040,7 @@ td {
 ::::
 
 ## Example - $k=3$ {.smaller}
-Generate $C_3$ by self-joining $L_2$, determine $s$ for $C_2$ and prune by support threshold $\rightarrow L_3$
+Generate $C_3$ by self-joining $L_2$, determine $s$ and prune by support threshold $\rightarrow L_3$
 
 :::: {.columns}
 
@@ -1078,11 +1077,11 @@ td {
 </head>
 <thead>
   <tr>
-    <th colspan=2> Candidates C<sub>3</sub></th>
+    <th colspan=2> Candidates \(C_3\)</th>
   </tr>
   <tr>
     <th>itemset</th>
-    <th>s</th>
+    <th>\(s\)</th>
   </tr>
 </thead>
 <tbody>
@@ -1132,11 +1131,11 @@ td {
 </head>
 <thead>
   <tr>
-    <th colspan=2> Frequent itemsets L<sub>3</sub></th>
+    <th colspan=2> Frequent itemsets \(L_3\)</th>
   </tr>
   <tr>
     <th>itemset</th>
-    <th>s</th>
+    <th>\(s\)</th>
   </tr>
 </thead>
 <tbody>
@@ -1168,19 +1167,19 @@ Self-joining $\rightarrow C_3=\emptyset \rightarrow$ stop
 ## Example - Association Rules {.smaller}
 From $L_2$:
 
-- $\text{beer} \rightarrow \text{chips}: c = \frac{s(\text{beer}, \text{chips})}{s(\text{beer})} = \frac{22\%}{22\%} = 100\%$
-- $\text{beer} \rightarrow \text{chips}: c = \frac{s(\text{beer}, \text{chips})}{s(\text{chips})} = \frac{22\%}{78\%} = 28\%$   
-- $\text{chips} \rightarrow \text{coke}: c = \frac{s(\text{chips}, \text{coke})}{s(\text{chips})} = \frac{44\%}{78\%} = 56\%$
+- $\text{\{beer\}} \rightarrow \text{\{chips\}}: c = \frac{s(\{\text{beer, chips\}})}{s(\text{\{beer\}})} = \frac{22\%}{22\%} = 100\%$
+- $\text{\{beer\}} \rightarrow \text{\{chips\}}: c = \frac{s(\text{\{beer, chips\}})}{s(\text{\{chips\}})} = \frac{22\%}{78\%} = 28\%$   
+- $\text{\{chips\}} \rightarrow \text{\{coke\}}: c = \frac{s(\text{\{chips, coke\}})}{s(\text{\{chips\}})} = \frac{44\%}{78\%} = 56\%$
 - ...  
 
 From $L_3$:  
 
-- $\text{chips, coke} \rightarrow \text{ice}: c = \frac{s(\text{chips}, \text{coke}, \text{ice})}{s(\text{chips, coke})} = \frac{22\%}{44\%} = 50\%$
-- $\text{chips, ice} \rightarrow \text{coke}: c = \frac{s(\text{chips}, \text{coke}, \text{ice})}{s(\text{chips, ice})} = \frac{22\%}{44\%} = 50\%$  
+- $\text{\{chips, coke\}} \rightarrow \text{\{ice\}}: c = \frac{s(\text{\{chips, coke, ice\}})}{s(\text{\{chips, coke\}})} = \frac{22\%}{44\%} = 50\%$
+- $\text{\{chips, ice\}} \rightarrow \text{\{ccoke\}}: c = \frac{s(\text{\{chips, coke, ice\}})}{s(\text{\{chips, ice\}})} = \frac{22\%}{44\%} = 50\%$  
 ...  
-- $\text{chips} \rightarrow \text{\{coke, ice\}}: c = \frac{s(\text{chips}, \text{coke}, \text{ice})}{s(\text{chips})} = \frac{22\%}{78\%} = 28\%$  
+- $\text{chips\}} \rightarrow \text{\{coke, ice\}}: c = \frac{s(\text{\{chips, coke, ice\}})}{s(\text{\{chips\}})} = \frac{22\%}{78\%} = 28\%$  
 ...  
-- $\text{whiskey} \rightarrow \text{\{chips, coke\}}: c = \frac{s(\text{chips}, \text{coke}, \text{whiskey})}{s(\text{whiskey})} = \frac{22\%}{22\%} = 100\%$
+- $\text{whiskey} \rightarrow \text{\{chips, coke\}}: c = \frac{s(\text{\{chips, coke, whiskey\}})}{s(\text{\{whiskey\}})} = \frac{22\%}{22\%} = 100\%$
 
 ## The Efficient Apriori Package
 

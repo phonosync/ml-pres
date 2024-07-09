@@ -487,21 +487,21 @@ Manuel Dömer<br>ZHAW School of Engineering
 <p>Synonym: Market basket analysis</p>
 
 <img data-src="http://www.quickmeme.com/img/26/2647c127c4d867ae443f3522452eed68a196a6ff6e2f7d070d20e8fee3f9cd41.jpg" class="quarto-figure quarto-figure-center r-stretch"><p class="caption">Source: <a href="http://www.quickmeme.com/img/26/2647c127c4d867ae443f3522452eed68a196a6ff6e2f7d070d20e8fee3f9cd41.jpg">www.quickmeme.com</a></p></section>
-<section id="terminology---items" class="slide level2">
-<h2>Terminology - items</h2>
+<section id="itemsets" class="slide level2">
+<h2>Itemsets</h2>
 <ul>
 <li>Items <span class="math inline">\(I\)</span>: The set of available items <span class="math inline">\(I = \{i_1, ..., i_M\}\)</span></li>
 <li>Itemset <span class="math inline">\(X\)</span>: A set of items <span class="math inline">\(X \subseteq I\)</span></li>
 <li>Itemset size <span class="math inline">\(K\)</span>: The number of items in the itemset</li>
 <li><span class="math inline">\(K\)</span>-itemset: An itemset of size <span class="math inline">\(K\)</span></li>
-<li>Items are ordered: <span class="math display">\[X_n=\{x_1, x_2, ...,x_K\}, \text{ such that } x_1 ≤ x_2 ≤ ... ≤ x_K\]</span></li>
+<li>Items are ordered: <span class="math display">\[X_n=\{x_1, x_2, ...,x_K\}, \text{ such that } x_1 \leq x_2 \leq ... \leq x_K\]</span></li>
 </ul>
 </section>
-<section id="terminology---transactions" class="slide level2">
-<h2>Terminology - transactions</h2>
+<section id="transactions" class="slide level2">
+<h2>Transactions</h2>
 <ul>
-<li>Transaction: <span class="math inline">\(T=(tid, X_{\text tid})\)</span></li>
-<li>Transactions in database: <span class="math inline">\(\{X_1, X_2, ..., X_N\}\)</span></li>
+<li>Transaction: <span class="math inline">\(T_n=(tid, X_{\text{tid}})\)</span></li>
+<li>Transactions in database: <span class="math inline">\(\{T_1, T_2, ..., X_N\}\)</span></li>
 </ul>
 <table data-quarto-disable-processing="true">
 
@@ -537,22 +537,22 @@ td {
 <tbody>
   <tr>
     <td>1</td>
-    <td>apple, bread,  honey, milk, peanuts</td>
+    <td>{apple, bread,  honey, milk, peanuts}</td>
   </tr>
   <tr>
     <td>2</td>
-    <td>bread, chips, coke, honey, milk</td>
+    <td>{bread, chips, coke, honey, milk}</td>
   </tr>
   <tr>
     <td>3</td>
-    <td>bread, chips, coke, honey, steak</td>
+    <td>{bread, chips, coke, honey, steak}</td>
   </tr>
   <tr>
     <td colspan="2">...</td>
   </tr>
   <tr>
     <td>8</td>
-    <td>apple, bread, cheese, milk, peanuts</td>
+    <td>{apple, bread, cheese, milk, peanuts}</td>
   </tr>
 </tbody>
 </table>
@@ -604,35 +604,35 @@ td {
 <tbody>
   <tr>
     <td>1</td>
-    <td>apple, bread, honey, milk, peanuts</td>
+    <td>{apple, bread, honey, milk, peanuts}</td>
   </tr>
   <tr>
     <td>2</td>
-    <td>bread, chips, coke, honey, milk</td>
+    <td>{bread, chips, coke, honey, milk}</td>
   </tr>
   <tr>
     <td>3</td>
-    <td>bread, chips, coke, honey, steak</td>
+    <td>{bread, chips, coke, honey, steak}</td>
   </tr>
   <tr>
     <td>4</td>
-    <td>apple, coke, honey, milk, peanuts</td>
+    <td>{apple, coke, honey, milk, peanuts}</td>
   </tr>
   <tr>
     <td>5</td>
-    <td>bread, chips, coke, honey, milk</td>
+    <td>{bread, chips, coke, honey, milk}</td>
   </tr>
   <tr>
     <td>6</td>
-    <td>apple, chips, coke, milk</td>
+    <td>{apple, chips, coke, milk}</td>
   </tr>
   <tr>
     <td>7</td>
-    <td>apple, bread, coke, milk, peanuts</td>
+    <td>{apple, bread, coke, milk, peanuts}</td>
   </tr>
   <tr>
     <td>8</td>
-    <td>apple, bread, cheese, milk, peanuts</td>
+    <td>{apple, bread, cheese, milk, peanuts}</td>
   </tr>
 </tbody>
 </table>
@@ -640,14 +640,14 @@ td {
 <section id="frequent-itemsets-mining-fim" class="slide level2">
 <h2>Frequent Itemsets Mining (FIM)</h2>
 <ul>
-<li><p>An itemset <span class="math inline">\(X\)</span> is frequent in DB if its support is greater or equal than a minimum support threshold <span class="math inline">\(t_s\)</span>: <span class="math display">\[s(X) \geq t_s\]</span></p></li>
+<li><p>An itemset <span class="math inline">\(X\)</span> is frequent if its support in the DB is greater or equal than a minimum support threshold <span class="math inline">\(t_s\)</span>: <span class="math display">\[s(X) \geq t_s\]</span></p></li>
 <li><p>Given:</p>
 <ul>
 <li>Set of items <span class="math inline">\(I\)</span></li>
 <li>Transaction database over <span class="math inline">\(I\)</span></li>
 <li>Minimum support threshold <span class="math inline">\(t_s\)</span></li>
 </ul></li>
-<li><p>Goal: Find all frequent itemsets in DB, i.e.: <span class="math display">\[\{X \subseteq I | s(X) \geq t_s\}\]</span></p></li>
+<li><p>Goal: Find all frequent itemsets <span class="math inline">\(\{X \subseteq I | s(X) \geq t_s\}\)</span></p></li>
 </ul>
 </section>
 <section id="fim---example" class="slide level2">
@@ -682,25 +682,25 @@ td {
 <thead>
   <tr>
     <th><math>tid</math></th>
-    <th>Items</th>
+    <th>items</th>
   </tr>
 </thead>
 <tbody>
   <tr>
     <td>2000</td>
-    <td>A,B,C</td>
+    <td>{A,B,C}</td>
   </tr>
   <tr>
     <td>1000</td>
-    <td>A,C</td>
+    <td>{A,C}</td>
   </tr>
   <tr>
     <td>4000</td>
-    <td>A,D</td>
+    <td>{A,D}</td>
   </tr>
   <tr>
     <td>5000</td>
-    <td>B,E,F</td>
+    <td>{B,E,F}</td>
   </tr>
 </tbody>
 </table>
@@ -740,7 +740,7 @@ td {
 <li>Transaction database over <span class="math inline">\(I\)</span></li>
 <li>Minimum support threshold <span class="math inline">\(t_s\)</span> and a minimum confidence threshold <span class="math inline">\(t_c\)</span></li>
 </ul></li>
-<li>Goal: Find all association rules <span class="math inline">\(X\rightarrow Y\)</span> in DB with minimum support threshold and a minimum confidence i.e.: <span class="math display">\[\{X\rightarrow Y | s(X \cup Y) \geq t_s, c(X\rightarrow Y)\geq c_s \}\]</span> These rules are called strong.</li>
+<li>Goal: Find all association rules <span class="math inline">\(X\rightarrow Y\)</span> in DB with minimum support threshold and a minimum confidence i.e.: <span class="math display">\[\{X\rightarrow Y | s(X \cup Y) \geq t_s, c(X\rightarrow Y)\geq t_c \}\]</span> These rules are called strong.</li>
 </ul>
 </section>
 <section id="arm---example" class="slide level2">
@@ -775,25 +775,25 @@ td {
 <thead>
   <tr>
     <th><math>tid</math></th>
-    <th>Items</th>
+    <th>items</th>
   </tr>
 </thead>
 <tbody>
   <tr>
     <td>2000</td>
-    <td>A,B,C</td>
+    <td>{A,B,C}</td>
   </tr>
   <tr>
     <td>1000</td>
-    <td>A,C</td>
+    <td>{A,C}</td>
   </tr>
   <tr>
     <td>4000</td>
-    <td>A,D</td>
+    <td>{A,D}</td>
   </tr>
   <tr>
     <td>5000</td>
-    <td>B,E,F</td>
+    <td>{B,E,F}</td>
   </tr>
 </tbody>
 </table>
@@ -809,7 +809,7 @@ td {
 <li><span class="math inline">\(C\rightarrow A\)</span>:</li>
 </ul>
 <div class="fragment fade-in">
-<p><span class="math inline">\(s(C\rightarrow A)=0.50, c(A\rightarrow C)=1.0\)</span></p>
+<p><span class="math inline">\(s(C\rightarrow A)=0.50, c(C\rightarrow A)=1.0\)</span></p>
 </div>
 </div>
 </div>
@@ -900,12 +900,12 @@ td {
 </div>
 </div>
 </div>
-<p>In general for <span class="math inline">\(|I|\)</span> items: <span class="math inline">\(\binom{|I|}{1} + \binom{|I|}{2} + ... + \binom{|I|}{k} = 2^{|I|}-1\)</span> itemsets</p>
+<p>In general for <span class="math inline">\(|I|\)</span> items: <span class="math inline">\(\binom{|I|}{1} + \binom{|I|}{2} + ... + \binom{|I|}{K} = 2^{|I|}-1\)</span> itemsets</p>
 </section>
 <section id="apriori-algorithm" class="slide level2 smaller">
 <h2>Apriori Algorithm</h2>
-<p>Idea: If an itemset is frequent, then all of its subsets must also be frequent. And if an itemset is infrequent, its supersets must not be tested → reduces the candidate itemsets to be tested</p>
-<p>initialise: <span class="math inline">\(k=1\)</span>. Scan DB to get frequent 1-itemsets</p>
+<p>Reduces the candidate itemsets to be tested: If an itemset is frequent, then all of its subsets must also be frequent. And if an itemset is infrequent, its supersets must not be tested.</p>
+<p>Initialise: <span class="math inline">\(k=1\)</span>. Scan DB to get frequent 1-itemsets</p>
 <p>Repeat:</p>
 <ol type="1">
 <li>Set <span class="math inline">\(k=k+1\)</span></li>
@@ -967,39 +967,39 @@ td {
 <tbody>
   <tr>
     <td>1</td>
-    <td>chips, coke, whiskey</td>
+    <td>{chips, coke, whiskey}</td>
   </tr>
   <tr>
     <td>2</td>
-    <td>beer, chips</td>
+    <td>{beer, chips}</td>
   </tr>
   <tr>
     <td>3</td>
-    <td>chips, ice</td>
+    <td>{chips, ice}</td>
   </tr>
   <tr>
     <td>4</td>
-    <td>beer, chips, coke</td>
+    <td>{beer, chips, coke}</td>
   </tr>
   <tr>
     <td>5</td>
-    <td>coke, ice</td>
+    <td>{coke, ice}</td>
   </tr>
   <tr>
     <td>6</td>
-    <td>chips, ice</td>
+    <td>{chips, ice}</td>
   </tr>
   <tr>
     <td>7</td>
-    <td>coke, ice</td>
+    <td>{coke, ice}</td>
   </tr>
   <tr>
     <td>8</td>
-    <td>chips, ice, coke, whiskey</td>
+    <td>{chips, ice, coke, whiskey}</td>
   </tr>
   <tr>
     <td>9</td>
-    <td>chips, coke, ice</td>
+    <td>{chips, coke, ice}</td>
   </tr>
 </tbody>
 </table>
@@ -1041,45 +1041,45 @@ td {
     <th colspan="2">Database</th>
     </tr>
     <tr><th>tid</th>
-    <th>Items</th>
+    <th>items</th>
   </tr>
 </thead>
 <tbody>
   <tr>
     <td>1</td>
-    <td>chips, coke, whiskey</td>
+    <td>{chips, coke, whiskey}</td>
   </tr>
   <tr>
     <td>2</td>
-    <td>beer, chips</td>
+    <td>{beer, chips}</td>
   </tr>
   <tr>
     <td>3</td>
-    <td>chips, ice</td>
+    <td>{chips, ice}</td>
   </tr>
   <tr>
     <td>4</td>
-    <td>beer, chips, coke</td>
+    <td>{beer, chips, coke}</td>
   </tr>
   <tr>
     <td>5</td>
-    <td>coke, ice</td>
+    <td>{coke, ice}</td>
   </tr>
   <tr>
     <td>6</td>
-    <td>chips, ice</td>
+    <td>{chips, ice}</td>
   </tr>
   <tr>
     <td>7</td>
-    <td>coke, ice</td>
+    <td>{coke, ice}</td>
   </tr>
   <tr>
     <td>8</td>
-    <td>chips, ice, coke, whiskey</td>
+    <td>{chips, ice, coke, whiskey}</td>
   </tr>
   <tr>
     <td>9</td>
-    <td>chips, coke, ice</td>
+    <td>{chips, coke, ice}</td>
   </tr>
 </tbody>
 </table>
@@ -1111,11 +1111,11 @@ td {
 
 <thead>
   <tr>
-    <th colspan="2"> Candidates C<sub>1</sub></th>
+    <th colspan="2"> Candidates \(C_1\)</th>
   </tr>
   <tr>
     <th>itemset</th>
-    <th>s</th>
+    <th>\(s\)</th>
   </tr>
 </thead>
 <tbody>
@@ -1169,11 +1169,11 @@ td {
 
 <thead>
   <tr>
-    <th colspan="2"> Frequent itemsets L<sub>1</sub></th>
+    <th colspan="2"> Frequent itemsets \(L_1\)</th>
   </tr>
   <tr>
     <th>itemset</th>
-    <th>s</th>
+    <th>\(s\)</th>
   </tr>
 </thead>
 <tbody>
@@ -1208,7 +1208,7 @@ td {
 <ol type="1">
 <li>Self-joining <span class="math inline">\(L_{k-1}\)</span>: <span class="math inline">\(L_{k-1} \cdot L_{k-1}\)</span>. Two <span class="math inline">\((k-1)\)</span>-itemsets are joined, if they agree in the first <span class="math inline">\((k-2)\)</span> items<br>
 </li>
-<li>Pruning all <span class="math inline">\(k\)</span>-itemsets with a <span class="math inline">\((k-1)\)</span>-subset that is not frequent, i.e.&nbsp;not in <span class="math inline">\(L_{k-1}\)</span>)</li>
+<li>Pruning all <span class="math inline">\(k\)</span>-itemsets with a <span class="math inline">\((k-1)\)</span>-subset that is not frequent, i.e.&nbsp;not in <span class="math inline">\(L_{k-1}\)</span></li>
 </ol>
 <p>Example: <span class="math inline">\(L_3=\{abc, abd, acd, ace, bcd\}\)</span></p>
 <ol type="1">
@@ -1218,7 +1218,7 @@ td {
 </section>
 <section id="example---k2" class="slide level2 smaller">
 <h2>Example - <span class="math inline">\(k=2\)</span></h2>
-<p>Generate <span class="math inline">\(C_2\)</span> by self-joining <span class="math inline">\(L_1\)</span>, determine <span class="math inline">\(s\)</span> for <span class="math inline">\(C_2\)</span> and prune by support threshold <span class="math inline">\(\rightarrow L_2\)</span></p>
+<p>Generate <span class="math inline">\(C_2\)</span> by self-joining <span class="math inline">\(L_1\)</span>, determine <span class="math inline">\(s\)</span> and prune by support threshold <span class="math inline">\(\rightarrow L_2\)</span></p>
 <div class="columns">
 <div class="column" style="width:40%;">
 <table data-quarto-disable-processing="true">
@@ -1252,45 +1252,45 @@ td {
     <th colspan="2">Database</th>
     </tr>
     <tr><th>tid</th>
-    <th>Items</th>
+    <th>items</th>
   </tr>
 </thead>
 <tbody>
   <tr>
     <td>1</td>
-    <td>chips, coke, whiskey</td>
+    <td>{chips, coke, whiskey}</td>
   </tr>
   <tr>
     <td>2</td>
-    <td>chips, beer</td>
+    <td>{chips, beer}</td>
   </tr>
   <tr>
     <td>3</td>
-    <td>chips, ice</td>
+    <td>{chips, ice}</td>
   </tr>
   <tr>
     <td>4</td>
-    <td>coke, chips, beer</td>
+    <td>{coke, chips, beer}</td>
   </tr>
   <tr>
     <td>5</td>
-    <td>coke, ice</td>
+    <td>{coke, ice}</td>
   </tr>
   <tr>
     <td>6</td>
-    <td>chips, ice</td>
+    <td>{chips, ice}</td>
   </tr>
   <tr>
     <td>7</td>
-    <td>coke, ice</td>
+    <td>{coke, ice}</td>
   </tr>
   <tr>
     <td>8</td>
-    <td>coke, chips, ice, whiskey</td>
+    <td>{coke, chips, ice, whiskey}</td>
   </tr>
   <tr>
     <td>9</td>
-    <td>coke, chips, ice</td>
+    <td>{coke, chips, ice}</td>
   </tr>
 </tbody>
 </table>
@@ -1322,11 +1322,11 @@ td {
 
 <thead>
   <tr>
-    <th colspan="2"> Candidates C<sub>2</sub></th>
+    <th colspan="2"> Candidates \(C_2\)</th>
   </tr>
   <tr>
     <th>itemset</th>
-    <th>s</th>
+    <th>\(s\)</th>
   </tr>
 </thead>
 <tbody>
@@ -1401,11 +1401,11 @@ td {
 
 <thead>
   <tr>
-    <th colspan="2"> Frequent itemsets L<sub>2</sub></th>
+    <th colspan="2"> Frequent itemsets \(L_2\)</th>
   </tr>
   <tr>
     <th>itemset</th>
-    <th>s</th>
+    <th>\(s\)</th>
   </tr>
 </thead>
 <tbody>
@@ -1440,7 +1440,7 @@ td {
 </section>
 <section id="example---k3" class="slide level2 smaller">
 <h2>Example - <span class="math inline">\(k=3\)</span></h2>
-<p>Generate <span class="math inline">\(C_3\)</span> by self-joining <span class="math inline">\(L_2\)</span>, determine <span class="math inline">\(s\)</span> for <span class="math inline">\(C_2\)</span> and prune by support threshold <span class="math inline">\(\rightarrow L_3\)</span></p>
+<p>Generate <span class="math inline">\(C_3\)</span> by self-joining <span class="math inline">\(L_2\)</span>, determine <span class="math inline">\(s\)</span> and prune by support threshold <span class="math inline">\(\rightarrow L_3\)</span></p>
 <div class="columns">
 <div class="column" style="width:10%;">
 
@@ -1472,11 +1472,11 @@ td {
 
 <thead>
   <tr>
-    <th colspan="2"> Candidates C<sub>3</sub></th>
+    <th colspan="2"> Candidates \(C_3\)</th>
   </tr>
   <tr>
     <th>itemset</th>
-    <th>s</th>
+    <th>\(s\)</th>
   </tr>
 </thead>
 <tbody>
@@ -1522,11 +1522,11 @@ td {
 
 <thead>
   <tr>
-    <th colspan="2"> Frequent itemsets L<sub>3</sub></th>
+    <th colspan="2"> Frequent itemsets \(L_3\)</th>
   </tr>
   <tr>
     <th>itemset</th>
-    <th>s</th>
+    <th>\(s\)</th>
   </tr>
 </thead>
 <tbody>
@@ -1562,22 +1562,22 @@ td {
 <h2>Example - Association Rules</h2>
 <p>From <span class="math inline">\(L_2\)</span>:</p>
 <ul>
-<li><span class="math inline">\(\text{beer} \rightarrow \text{chips}: c = \frac{s(\text{beer}, \text{chips})}{s(\text{beer})} = \frac{22\%}{22\%} = 100\%\)</span></li>
-<li><span class="math inline">\(\text{beer} \rightarrow \text{chips}: c = \frac{s(\text{beer}, \text{chips})}{s(\text{chips})} = \frac{22\%}{78\%} = 28\%\)</span><br>
+<li><span class="math inline">\(\text{\{beer\}} \rightarrow \text{\{chips\}}: c = \frac{s(\{\text{beer, chips\}})}{s(\text{\{beer\}})} = \frac{22\%}{22\%} = 100\%\)</span></li>
+<li><span class="math inline">\(\text{\{beer\}} \rightarrow \text{\{chips\}}: c = \frac{s(\text{\{beer, chips\}})}{s(\text{\{chips\}})} = \frac{22\%}{78\%} = 28\%\)</span><br>
 </li>
-<li><span class="math inline">\(\text{chips} \rightarrow \text{coke}: c = \frac{s(\text{chips}, \text{coke})}{s(\text{chips})} = \frac{44\%}{78\%} = 56\%\)</span></li>
+<li><span class="math inline">\(\text{\{chips\}} \rightarrow \text{\{coke\}}: c = \frac{s(\text{\{chips, coke\}})}{s(\text{\{chips\}})} = \frac{44\%}{78\%} = 56\%\)</span></li>
 <li>…</li>
 </ul>
 <p>From <span class="math inline">\(L_3\)</span>:</p>
 <ul>
-<li><span class="math inline">\(\text{chips, coke} \rightarrow \text{ice}: c = \frac{s(\text{chips}, \text{coke}, \text{ice})}{s(\text{chips, coke})} = \frac{22\%}{44\%} = 50\%\)</span></li>
-<li><span class="math inline">\(\text{chips, ice} \rightarrow \text{coke}: c = \frac{s(\text{chips}, \text{coke}, \text{ice})}{s(\text{chips, ice})} = \frac{22\%}{44\%} = 50\%\)</span><br>
+<li><span class="math inline">\(\text{\{chips, coke\}} \rightarrow \text{\{ice\}}: c = \frac{s(\text{\{chips, coke, ice\}})}{s(\text{\{chips, coke\}})} = \frac{22\%}{44\%} = 50\%\)</span></li>
+<li><span class="math inline">\(\text{\{chips, ice\}} \rightarrow \text{\{ccoke\}}: c = \frac{s(\text{\{chips, coke, ice\}})}{s(\text{\{chips, ice\}})} = \frac{22\%}{44\%} = 50\%\)</span><br>
 …<br>
 </li>
-<li><span class="math inline">\(\text{chips} \rightarrow \text{\{coke, ice\}}: c = \frac{s(\text{chips}, \text{coke}, \text{ice})}{s(\text{chips})} = \frac{22\%}{78\%} = 28\%\)</span><br>
+<li><span class="math inline">\(\text{chips\}} \rightarrow \text{\{coke, ice\}}: c = \frac{s(\text{\{chips, coke, ice\}})}{s(\text{\{chips\}})} = \frac{22\%}{78\%} = 28\%\)</span><br>
 …<br>
 </li>
-<li><span class="math inline">\(\text{whiskey} \rightarrow \text{\{chips, coke\}}: c = \frac{s(\text{chips}, \text{coke}, \text{whiskey})}{s(\text{whiskey})} = \frac{22\%}{22\%} = 100\%\)</span></li>
+<li><span class="math inline">\(\text{whiskey} \rightarrow \text{\{chips, coke\}}: c = \frac{s(\text{\{chips, coke, whiskey\}})}{s(\text{\{whiskey\}})} = \frac{22\%}{22\%} = 100\%\)</span></li>
 </ul>
 </section>
 <section id="the-efficient-apriori-package" class="slide level2">
