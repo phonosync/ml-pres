@@ -1,0 +1,62 @@
+---
+title: Recommender Systems
+---
+
+## Items & Users
+
+::: {.incremental}
+* Market basket/shopping cart (physical or online)
+    * Items: Products
+    * Users: Customers
+* Library
+    * Items: Books
+    * Users: Library visitors
+* News site
+    * Items: News articles
+    * Users: Readers
+:::
+
+## Recommender Systems
+
+Suggest personalised and relevant items
+
+::: {.incremental}
+* Cover the entire spectrum of the user's interests
+* Take the user's context into account
+* Avoid suggestions from what is already known
+* Expand the user's range of interests
+:::
+
+## Why Recommender Systems?
+![](pics/human_recommender.svg){fig-align="center"}
+
+## Aproaches for Recommender Systems
+
+::: {.incremental}
+- Popularity-based recommendation: [The New York Times Online](https://www.nytimes.com/trending/){preview-link="true"}
+- Frequent itemsets & association rules mining
+- Content-based recommendation
+- Collaborative filtering
+:::
+
+## Popularity-Based recommendations
+
+Example: 
+
+:::: {.columns}
+
+::: {.column width="50%"}
+Pros:
+
+- Small complexity
+- Explainable
+:::
+
+::: {.column width="50%"}
+Cons:
+
+- No personalisation
+- Item properties not taken into account
+:::
+
+::::
