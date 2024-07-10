@@ -414,74 +414,6 @@ Manuel Dömer<br>ZHAW School of Engineering
 </div>
 
 </section>
-<section id="items-users" class="slide level2">
-<h2>Items &amp; Users</h2>
-<div>
-<ul>
-<li class="fragment">Market basket/shopping cart (physical or online)
-<ul>
-<li class="fragment">Items: Products</li>
-<li class="fragment">Users: Customers</li>
-</ul></li>
-<li class="fragment">Library
-<ul>
-<li class="fragment">Items: Books</li>
-<li class="fragment">Users: Library visitors</li>
-</ul></li>
-<li class="fragment">News site
-<ul>
-<li class="fragment">Items: News articles</li>
-<li class="fragment">Users: Readers</li>
-</ul></li>
-</ul>
-</div>
-</section>
-<section id="recommender-systems" class="slide level2">
-<h2>Recommender Systems</h2>
-<p>Suggest personalised and relevant items</p>
-<div>
-<ul>
-<li class="fragment">Cover the entire spectrum of the user’s interests</li>
-<li class="fragment">Take the user’s context into account</li>
-<li class="fragment">Avoid suggestions from what is already known</li>
-<li class="fragment">Expand the user’s range of interests</li>
-</ul>
-</div>
-</section>
-<section id="why-recommender-systems" class="slide level2">
-<h2>Why Recommender Systems?</h2>
-
-<img data-src="pics/human_recommender.svg" class="quarto-figure quarto-figure-center r-stretch"></section>
-<section id="aproaches-for-recommender-systems" class="slide level2">
-<h2>Aproaches for Recommender Systems</h2>
-<div>
-<ul>
-<li class="fragment">Popularity-based recommendation</li>
-<li class="fragment">Frequent itemsets &amp; association rules mining</li>
-<li class="fragment">Content-based recommendation</li>
-<li class="fragment">Collaborative filtering</li>
-</ul>
-</div>
-</section>
-<section id="popularity-based-recommendations" class="slide level2">
-<h2>Popularity-based recommendations</h2>
-<p>Example: <a href="https://www.nytimes.com/trending/" data-preview-link="true">The New York Times Online</a></p>
-<div class="columns">
-<div class="column" style="width:50%;">
-<p>Pros:</p>
-<ul>
-<li>Small complexity</li>
-<li>Explainable</li>
-</ul>
-</div><div class="column" style="width:50%;">
-<p>Cons:</p>
-<ul>
-<li>No personalisation</li>
-<li>Item properties not taken into account</li>
-</ul>
-</div>
-</div>
-</section>
 <section id="association-rules-mining" class="slide level2">
 <h2>Association Rules Mining</h2>
 <p>Synonym: Market basket analysis</p>
@@ -1595,16 +1527,16 @@ td {
 <p>Possible improvements:</p>
 <ul>
 <li>Reduce database scans</li>
-<li>shrink number of candidate itemsets</li>
+<li>Shrink number of candidate itemsets</li>
 </ul>
 <p>Frequent Pattern Tree: Allows frequent itemsets discovery without candidates generation.</p>
 </section>
 <section id="summary-association-rules-mining" class="slide level2">
 <h2>Summary Association Rules Mining</h2>
 <ul>
-<li>identifes item combinations frequently appearing together across all transactions, not grouped by users</li>
-<li>does not take into account ratings</li>
-<li>does not allow to build a latent representation of users and/or items</li>
+<li>Identifes item combinations frequently appearing together across all transactions, not grouped by users</li>
+<li>Does not take into account ratings</li>
+<li>Does not allow to build a latent representation of users and/or items</li>
 <li>→ does not offer personalisation</li>
 </ul>
 <div class="quarto-auto-generated-content">

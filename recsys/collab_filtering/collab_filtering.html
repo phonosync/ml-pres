@@ -346,106 +346,6 @@ Manuel Dömer<br>ZHAW School of Engineering
 </div>
 
 </section>
-<section id="recommending-movies" class="slide level2">
-<h2>Recommending Movies</h2>
-<ul>
-<li><a href="https://web.archive.org/web/20150729162413/http://www.netflixprize.com/index" data-preview-link="true">The Netflix Prize</a></li>
-</ul>
-</section>
-<section id="supervised-learning-setting" class="slide level2">
-<h2>Supervised Learning Setting</h2>
-<p>Feature representation (encoding) <span class="math display">\[\Phi: \text{item}^{(m)} \rightarrow \mathbf{x}^{(m)}=\begin{pmatrix}x_1^{(m)} \\ \vdots \\ x_N^{(m)}\end{pmatrix}\]</span></p>
-</section>
-<section id="training-data" class="slide level2">
-<h2>Training Data</h2>
-<div class="columns">
-<div class="column" style="width:60%;">
-<p>Design matrix <span class="math inline">\(\mathbf{X}\)</span></p>
-<table style="border-collapse: collapse;" data-quarto-disable-processing="true">
-  <tbody><tr>
-    <th style="background-color: lightgrey; border: 1px solid black;">feature n →<br>item m ↓</th>
-    <th style="background-color: lightgrey; border: 1px solid black; text-align: center;">1</th>
-    <th style="background-color: lightgrey; border: 1px solid black; text-align: center;">2</th>
-    <th style="background-color: lightgrey; border: 1px solid black; text-align: center;" colspan="2">…</th>
-    <th style="background-color: lightgrey; border: 1px solid black; text-align: center;">\(N\)</th>
-  </tr>
-  <tr>
-    <td style="background-color: lightgrey; border: 1px solid black;">1</td>
-    <td style="border: 1px solid black; text-align: center;">\(x^{1}_1\)</td>
-    <td style="border: 1px solid black; text-align: center;">\(x^{1}_2\)</td>
-    <td style="border: 1px solid black; text-align: center;" colspan="2">&nbsp;</td>
-    <td style="border: 1px solid black; text-align: center;">\(x^{1}_N\)</td>
-  </tr>
-  <tr>
-    <td style="background-color: lightgrey; border: 1px solid black;">2</td>
-    <td style="border: 1px solid black; text-align: center;">\(x^{2}_1\)</td>
-    <td style="border: 1px solid black; text-align: center;">\(x^{2}_2\)</td>
-    <td style="border: 1px solid black; text-align: center;" colspan="2">&nbsp;</td>
-    <td style="border: 1px solid black; text-align: center;">\(x^{2}_N\)</td>
-  </tr>
-  <tr>
-    <td style="background-color: lightgrey; border: 1px solid black;">⋮</td>
-    <td style="border: 1px solid black; text-align: center;">&nbsp;</td>
-    <td style="border: 1px solid black; text-align: center;">&nbsp;</td>
-    <td style="border: 1px solid black; text-align: center;" colspan="2">&nbsp;</td>
-    <td style="border: 1px solid black; text-align: center;">&nbsp;</td>
-  </tr>
-  <tr>
-    <td style="background-color: lightgrey; border: 1px solid black;">\(M\)</td>
-    <td style="border: 1px solid black; text-align: center;">\(x^{M}_1\)</td>
-    <td style="border: 1px solid black; text-align: center;">\(x^{M}_2\)</td>
-    <td style="border: 1px solid black; text-align: center;" colspan="2">&nbsp;</td>
-    <td style="border: 1px solid black; text-align: center;">\(x^{M}_N\)</td>
-  </tr>
-</tbody></table>
-</div><div class="column" style="width:20%;">
-<p>Ratings <span class="math inline">\(\mathbf{y}\)</span></p>
-<table style="border-collapse: collapse; width: 100%;" data-quarto-disable-processing="true">
-  <tbody><tr>
-    <th style="background-color: lightgrey; border: 1px solid black;">&nbsp;<br>&nbsp;</th>
-  </tr>
-  <tr>
-    <td style="border: 1px solid black; text-align: center;">\(y^{1}\)</td>
-  </tr>
-  <tr>
-    <td style="border: 1px solid black; text-align: center;">\(y^{2}\)</td>
-  </tr>
-  <tr>
-    <td style="border: 1px solid black; text-align: center;">⋮</td>
-  </tr>
-  <tr>
-    <td style="border: 1px solid black; text-align: center;">\(y^{M}\)</td>
-  </tr>
-</tbody></table>
-</div>
-</div>
-</section>
-<section id="learning-task" class="slide level2">
-<h2>Learning Task</h2>
-<p>Learn a predictor, <span class="math inline">\(f\)</span>, that maps an <span class="math inline">\(N\)</span>-dimensional vector representation of an item (row in <span class="math inline">\(\mathbf{X}\)</span>) to an output value (element in <span class="math inline">\(\mathbf{y}\)</span>)</p>
-<p><span class="math display">\[f\left(\mathbf{x}^{(m)}\right) \rightarrow y^{(m)}\]</span></p>
-<ul>
-<li><span class="math inline">\(y^{(m)} \in \{1,2,3,4,5\} \rightarrow\)</span> classification</li>
-<li><span class="math inline">\(y^{(m)} \in \mathbb{R} \rightarrow\)</span> regression</li>
-</ul>
-</section>
-<section id="regression-problem" class="slide level2">
-<h2>Regression Problem</h2>
-<ul>
-<li><p>Hypothesis, e.g.&nbsp;linear: <span class="math inline">\(f(\mathbf{x}^{(m)})=\mathbf{\theta}^T\mathbf{x}^{(m)}\)</span></p></li>
-<li><p>Loss function: <span class="math inline">\(\mathcal{L}=\sum_{m=1}^{M}\left(y^{m}-f(\mathbf{x}^{(m)})\right)^2\)</span></p></li>
-<li><p><span class="math inline">\(+\)</span> regularisation</p></li>
-<li><p>Cost function: <span class="math display">\[J(\mathbf{\theta})=\frac{1}{2M}\sum_{m=1}^{M}\left(y^{m}-\mathbf{\theta}^T\mathbf{x}^{(m)}\right)^2+\frac{\lambda}{2}||\mathbf{\theta}||^2\]</span></p></li>
-<li><p>Minimise: Solve analytically or by gradient descent</p></li>
-</ul>
-</section>
-<section id="problems" class="slide level2">
-<h2>Problems</h2>
-<ul>
-<li>Difficult to design expressive features</li>
-<li>For personal recommendations data from other users is not leveraged</li>
-</ul>
-</section>
 <section id="rating-matrix" class="slide level2">
 <h2>Rating Matrix</h2>
 <p><span class="math inline">\(\mathbf{Y}: M \text{ users} \times N \text{ items}\)</span></p>
@@ -614,9 +514,6 @@ s_{1,2} &amp;= \frac{\mathbf{x}^{(1)} \cdot \mathbf{x}^{(2)}}{|\mathbf{x}^{(1)}|
 </section>
 <section id="summary" class="slide level2">
 <h2>Summary</h2>
-<div class="columns">
-<div class="column" style="width:50%;">
-<p>Collaborative filtering:</p>
 <ul>
 <li>No item features needed</li>
 <li>User ratings required</li>
@@ -625,17 +522,6 @@ s_{1,2} &amp;= \frac{\mathbf{x}^{(1)} \cdot \mathbf{x}^{(2)}}{|\mathbf{x}^{(1)}|
 <li>Cold start problems</li>
 <li>Users’s range of interests can be expanded</li>
 </ul>
-</div><div class="column" style="width:50%;">
-<p>Content-based:</p>
-<ul>
-<li>Item features required</li>
-<li>No ratings required</li>
-<li>No cold-start or sparsity problem</li>
-<li>new and less famous objects are also recommended</li>
-<li>Serendipity effect is not really supported</li>
-</ul>
-</div>
-</div>
 <div class="quarto-auto-generated-content">
 <div class="footer footer-default">
 

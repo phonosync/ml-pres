@@ -1,11 +1,11 @@
 ---
-title: Recommender Systems
+title: Recommender Systems Introduction
 ---
 
 ## Items & Users
 
 ::: {.incremental}
-* Market basket/shopping cart (physical or online)
+* Webshop
     * Items: Products
     * Users: Customers
 * Library
@@ -27,21 +27,25 @@ Suggest personalised and relevant items
 * Expand the user's range of interests
 :::
 
-## Why Recommender Systems?
+## Scalability of Recommender Systems
 ![](pics/human_recommender.svg){fig-align="center"}
+
+## Recommending Movies
+
+* [The Netflix Prize](https://web.archive.org/web/20150729162413/http://www.netflixprize.com/index){preview-link="true"}
 
 ## Aproaches for Recommender Systems
 
 ::: {.incremental}
-- Popularity-based recommendation: [The New York Times Online](https://www.nytimes.com/trending/){preview-link="true"}
-- Frequent itemsets & association rules mining
-- Content-based recommendation
+- Popularity-based
+- Association rules mining
+- Content-based
 - Collaborative filtering
 :::
 
 ## Popularity-Based recommendations
 
-Example: 
+Example: [The New York Times Online](https://www.nytimes.com/trending/){preview-link="true"}
 
 :::: {.columns}
 
@@ -56,7 +60,7 @@ Pros:
 Cons:
 
 - No personalisation
-- Item properties not taken into account
+- Item properties are not taken into account
 :::
 
 ::::

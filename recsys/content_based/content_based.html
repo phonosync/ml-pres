@@ -1,22 +1,22 @@
 <!DOCTYPE html>
 <html lang="en"><head>
-<script src="recsys_intro_files/libs/clipboard/clipboard.min.js"></script>
-<script src="recsys_intro_files/libs/quarto-html/tabby.min.js"></script>
-<script src="recsys_intro_files/libs/quarto-html/popper.min.js"></script>
-<script src="recsys_intro_files/libs/quarto-html/tippy.umd.min.js"></script>
-<link href="recsys_intro_files/libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="recsys_intro_files/libs/quarto-html/light-border.css" rel="stylesheet">
-<link href="recsys_intro_files/libs/quarto-html/quarto-html.min.css" rel="stylesheet" data-mode="light">
-<link href="recsys_intro_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+<script src="content_based_files/libs/clipboard/clipboard.min.js"></script>
+<script src="content_based_files/libs/quarto-html/tabby.min.js"></script>
+<script src="content_based_files/libs/quarto-html/popper.min.js"></script>
+<script src="content_based_files/libs/quarto-html/tippy.umd.min.js"></script>
+<link href="content_based_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="content_based_files/libs/quarto-html/light-border.css" rel="stylesheet">
+<link href="content_based_files/libs/quarto-html/quarto-html.min.css" rel="stylesheet" data-mode="light">
+<link href="content_based_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
   <meta name="generator" content="quarto-1.4.549">
 
   <meta name="author" content="Manuel Dömer ZHAW School of Engineering">
-  <title>Recommender Systems Introduction</title>
+  <title>Collaborative Filtering</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
-  <link rel="stylesheet" href="recsys_intro_files/libs/revealjs/dist/reset.css">
-  <link rel="stylesheet" href="recsys_intro_files/libs/revealjs/dist/reveal.css">
+  <link rel="stylesheet" href="content_based_files/libs/revealjs/dist/reset.css">
+  <link rel="stylesheet" href="content_based_files/libs/revealjs/dist/reveal.css">
   <style>
     code{white-space: pre-wrap;}
     span.smallcaps{font-variant: small-caps;}
@@ -30,12 +30,12 @@
       vertical-align: middle;
     }
   </style>
-  <link rel="stylesheet" href="recsys_intro_files/libs/revealjs/dist/theme/quarto.css">
+  <link rel="stylesheet" href="content_based_files/libs/revealjs/dist/theme/quarto.css">
   <link rel="stylesheet" href="../../quarto_css/hscroll.css">
-  <link href="recsys_intro_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
-  <link href="recsys_intro_files/libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
-  <link href="recsys_intro_files/libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
-  <link href="recsys_intro_files/libs/revealjs/plugin/quarto-support/footer.css" rel="stylesheet">
+  <link href="content_based_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
+  <link href="content_based_files/libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
+  <link href="content_based_files/libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
+  <link href="content_based_files/libs/revealjs/plugin/quarto-support/footer.css" rel="stylesheet">
   <style type="text/css">
 
   .callout {
@@ -335,7 +335,7 @@
     <div class="slides">
 
 <section id="title-slide" data-background-image="../../ressources/en-zhaw-cmyk.png" data-background-position="98% 2%" data-background-size="25%" class="quarto-title-block center">
-  <h1 class="title">Recommender Systems Introduction</h1>
+  <h1 class="title">Collaborative Filtering</h1>
 
 <div class="quarto-title-authors">
 <div class="quarto-title-author">
@@ -346,79 +346,103 @@ Manuel Dömer<br>ZHAW School of Engineering
 </div>
 
 </section>
-<section id="items-users" class="slide level2">
-<h2>Items &amp; Users</h2>
-<div>
-<ul>
-<li class="fragment">Webshop
-<ul>
-<li class="fragment">Items: Products</li>
-<li class="fragment">Users: Customers</li>
-</ul></li>
-<li class="fragment">Library
-<ul>
-<li class="fragment">Items: Books</li>
-<li class="fragment">Users: Library visitors</li>
-</ul></li>
-<li class="fragment">News site
-<ul>
-<li class="fragment">Items: News articles</li>
-<li class="fragment">Users: Readers</li>
-</ul></li>
-</ul>
-</div>
+<section id="supervised-learning-setting" class="slide level2">
+<h2>Supervised Learning Setting</h2>
+<p>Feature representation (encoding) <span class="math display">\[\Phi: \text{item}^{(m)} \rightarrow \mathbf{x}^{(m)}=\begin{pmatrix}x_1^{(m)} \\ \vdots \\ x_N^{(m)}\end{pmatrix}\]</span></p>
 </section>
-<section id="recommender-systems" class="slide level2">
-<h2>Recommender Systems</h2>
-<p>Suggest personalised and relevant items</p>
-<div>
-<ul>
-<li class="fragment">Cover the entire spectrum of the user’s interests</li>
-<li class="fragment">Take the user’s context into account</li>
-<li class="fragment">Avoid suggestions from what is already known</li>
-<li class="fragment">Expand the user’s range of interests</li>
-</ul>
-</div>
-</section>
-<section id="scalability-of-recommender-systems" class="slide level2">
-<h2>Scalability of Recommender Systems</h2>
-
-<img data-src="pics/human_recommender.svg" class="quarto-figure quarto-figure-center r-stretch"></section>
-<section id="recommending-movies" class="slide level2">
-<h2>Recommending Movies</h2>
-<ul>
-<li><a href="https://web.archive.org/web/20150729162413/http://www.netflixprize.com/index" data-preview-link="true">The Netflix Prize</a></li>
-</ul>
-</section>
-<section id="aproaches-for-recommender-systems" class="slide level2">
-<h2>Aproaches for Recommender Systems</h2>
-<div>
-<ul>
-<li class="fragment">Popularity-based</li>
-<li class="fragment">Association rules mining</li>
-<li class="fragment">Content-based</li>
-<li class="fragment">Collaborative filtering</li>
-</ul>
-</div>
-</section>
-<section id="popularity-based-recommendations" class="slide level2">
-<h2>Popularity-Based recommendations</h2>
-<p>Example: <a href="https://www.nytimes.com/trending/" data-preview-link="true">The New York Times Online</a></p>
+<section id="training-data" class="slide level2">
+<h2>Training Data</h2>
 <div class="columns">
-<div class="column" style="width:50%;">
-<p>Pros:</p>
-<ul>
-<li>Small complexity</li>
-<li>Explainable</li>
-</ul>
-</div><div class="column" style="width:50%;">
-<p>Cons:</p>
-<ul>
-<li>No personalisation</li>
-<li>Item properties are not taken into account</li>
-</ul>
+<div class="column" style="width:60%;">
+<p>Design matrix <span class="math inline">\(\mathbf{X}\)</span></p>
+<table style="border-collapse: collapse;" data-quarto-disable-processing="true">
+  <tbody><tr>
+    <th style="background-color: lightgrey; border: 1px solid black;">feature n →<br>item m ↓</th>
+    <th style="background-color: lightgrey; border: 1px solid black; text-align: center;">1</th>
+    <th style="background-color: lightgrey; border: 1px solid black; text-align: center;">2</th>
+    <th style="background-color: lightgrey; border: 1px solid black; text-align: center;" colspan="2">…</th>
+    <th style="background-color: lightgrey; border: 1px solid black; text-align: center;">\(N\)</th>
+  </tr>
+  <tr>
+    <td style="background-color: lightgrey; border: 1px solid black;">1</td>
+    <td style="border: 1px solid black; text-align: center;">\(x^{1}_1\)</td>
+    <td style="border: 1px solid black; text-align: center;">\(x^{1}_2\)</td>
+    <td style="border: 1px solid black; text-align: center;" colspan="2">&nbsp;</td>
+    <td style="border: 1px solid black; text-align: center;">\(x^{1}_N\)</td>
+  </tr>
+  <tr>
+    <td style="background-color: lightgrey; border: 1px solid black;">2</td>
+    <td style="border: 1px solid black; text-align: center;">\(x^{2}_1\)</td>
+    <td style="border: 1px solid black; text-align: center;">\(x^{2}_2\)</td>
+    <td style="border: 1px solid black; text-align: center;" colspan="2">&nbsp;</td>
+    <td style="border: 1px solid black; text-align: center;">\(x^{2}_N\)</td>
+  </tr>
+  <tr>
+    <td style="background-color: lightgrey; border: 1px solid black;">⋮</td>
+    <td style="border: 1px solid black; text-align: center;">&nbsp;</td>
+    <td style="border: 1px solid black; text-align: center;">&nbsp;</td>
+    <td style="border: 1px solid black; text-align: center;" colspan="2">&nbsp;</td>
+    <td style="border: 1px solid black; text-align: center;">&nbsp;</td>
+  </tr>
+  <tr>
+    <td style="background-color: lightgrey; border: 1px solid black;">\(M\)</td>
+    <td style="border: 1px solid black; text-align: center;">\(x^{M}_1\)</td>
+    <td style="border: 1px solid black; text-align: center;">\(x^{M}_2\)</td>
+    <td style="border: 1px solid black; text-align: center;" colspan="2">&nbsp;</td>
+    <td style="border: 1px solid black; text-align: center;">\(x^{M}_N\)</td>
+  </tr>
+</tbody></table>
+</div><div class="column" style="width:20%;">
+<p>Ratings <span class="math inline">\(\mathbf{y}\)</span></p>
+<table style="border-collapse: collapse; width: 100%;" data-quarto-disable-processing="true">
+  <tbody><tr>
+    <th style="background-color: lightgrey; border: 1px solid black;">&nbsp;<br>&nbsp;</th>
+  </tr>
+  <tr>
+    <td style="border: 1px solid black; text-align: center;">\(y^{1}\)</td>
+  </tr>
+  <tr>
+    <td style="border: 1px solid black; text-align: center;">\(y^{2}\)</td>
+  </tr>
+  <tr>
+    <td style="border: 1px solid black; text-align: center;">⋮</td>
+  </tr>
+  <tr>
+    <td style="border: 1px solid black; text-align: center;">\(y^{M}\)</td>
+  </tr>
+</tbody></table>
 </div>
 </div>
+</section>
+<section id="learning-task" class="slide level2">
+<h2>Learning Task</h2>
+<p>Learn a predictor, <span class="math inline">\(f\)</span>, that maps an <span class="math inline">\(N\)</span>-dimensional vector representation of an item (row in <span class="math inline">\(\mathbf{X}\)</span>) to an output value (element in <span class="math inline">\(\mathbf{y}\)</span>)</p>
+<p><span class="math display">\[f\left(\mathbf{x}^{(m)}\right) \rightarrow y^{(m)}\]</span></p>
+<ul>
+<li><span class="math inline">\(y^{(m)} \in \{1,2,3,4,5\} \rightarrow\)</span> classification</li>
+<li><span class="math inline">\(y^{(m)} \in \mathbb{R} \rightarrow\)</span> regression</li>
+</ul>
+</section>
+<section id="regression-problem" class="slide level2">
+<h2>Regression Problem</h2>
+<ul>
+<li><p>Hypothesis, e.g.&nbsp;linear: <span class="math inline">\(f(\mathbf{x}^{(m)})=\mathbf{\theta}^T\mathbf{x}^{(m)}\)</span></p></li>
+<li><p>Loss function: <span class="math inline">\(\mathcal{L}=\sum_{m=1}^{M}\left(y^{m}-f(\mathbf{x}^{(m)})\right)^2\)</span></p></li>
+<li><p><span class="math inline">\(+\)</span> regularisation</p></li>
+<li><p>Cost function: <span class="math display">\[J(\mathbf{\theta})=\frac{1}{2M}\sum_{m=1}^{M}\left(y^{m}-\mathbf{\theta}^T\mathbf{x}^{(m)}\right)^2+\frac{\lambda}{2}||\mathbf{\theta}||^2\]</span></p></li>
+<li><p>Minimise: Solve analytically or by gradient descent</p></li>
+</ul>
+</section>
+<section id="summary" class="slide level2">
+<h2>Summary</h2>
+<ul>
+<li>Difficult to design expressive features</li>
+<li>No ratings or other user information required</li>
+<li>For personal recommendations data from other users is not leveraged</li>
+<li>No cold-start or sparsity problem</li>
+<li>new and less famous objects are also recommended</li>
+<li>Serendipity effect is not really supported</li>
+</ul>
 <div class="quarto-auto-generated-content">
 <div class="footer footer-default">
 
@@ -429,19 +453,19 @@ Manuel Dömer<br>ZHAW School of Engineering
   </div>
 
   <script>window.backupDefine = window.define; window.define = undefined;</script>
-  <script src="recsys_intro_files/libs/revealjs/dist/reveal.js"></script>
+  <script src="content_based_files/libs/revealjs/dist/reveal.js"></script>
   <!-- reveal.js plugins -->
-  <script src="recsys_intro_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.js"></script>
-  <script src="recsys_intro_files/libs/revealjs/plugin/pdf-export/pdfexport.js"></script>
-  <script src="recsys_intro_files/libs/revealjs/plugin/reveal-menu/menu.js"></script>
-  <script src="recsys_intro_files/libs/revealjs/plugin/reveal-menu/quarto-menu.js"></script>
-  <script src="recsys_intro_files/libs/revealjs/plugin/quarto-support/support.js"></script>
+  <script src="content_based_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.js"></script>
+  <script src="content_based_files/libs/revealjs/plugin/pdf-export/pdfexport.js"></script>
+  <script src="content_based_files/libs/revealjs/plugin/reveal-menu/menu.js"></script>
+  <script src="content_based_files/libs/revealjs/plugin/reveal-menu/quarto-menu.js"></script>
+  <script src="content_based_files/libs/revealjs/plugin/quarto-support/support.js"></script>
   
 
-  <script src="recsys_intro_files/libs/revealjs/plugin/notes/notes.js"></script>
-  <script src="recsys_intro_files/libs/revealjs/plugin/search/search.js"></script>
-  <script src="recsys_intro_files/libs/revealjs/plugin/zoom/zoom.js"></script>
-  <script src="recsys_intro_files/libs/revealjs/plugin/math/math.js"></script>
+  <script src="content_based_files/libs/revealjs/plugin/notes/notes.js"></script>
+  <script src="content_based_files/libs/revealjs/plugin/search/search.js"></script>
+  <script src="content_based_files/libs/revealjs/plugin/zoom/zoom.js"></script>
+  <script src="content_based_files/libs/revealjs/plugin/math/math.js"></script>
   <script>window.define = window.backupDefine; window.backupDefine = undefined;</script>
 
   <script>
