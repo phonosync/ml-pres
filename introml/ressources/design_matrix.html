@@ -1,0 +1,162 @@
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Design Matrix</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f8f9fa;
+            padding: 20px;
+            margin: 0;
+        }
+        
+        .matrix-container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: transparent;
+            padding: 20px;
+        }
+        
+        .design-matrix {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background: white;
+        }
+        
+        .design-matrix th {
+            padding: 12px 15px;
+            text-align: center;
+            font-weight: 600;
+            font-size: 14px;
+            border: 1px solid #ddd;
+        }
+        
+        .design-matrix td {
+            padding: 12px 15px;
+            text-align: center;
+            border: 1px solid #ddd;
+            font-size: 14px;
+        }
+        
+        .sample-header {
+            text-align: center;
+            background-color: #3498db;
+            color: white;
+        }
+        
+        .sample-col {
+            text-align: center;
+            background-color: #3498db;
+            font-weight: 600;
+            color: white;
+        }
+        
+        .feature-header {
+            text-align: center !important;
+            background-color: #3498db;
+            color: white;
+        }
+        
+        .feature-col {
+            text-align: center !important;
+            background-color: #ecf0f1;
+            color: #495057;
+        }
+        
+        .output-header {
+            text-align: center !important;
+            background-color: #fdcb6e;
+            color: #2d3436;
+        }
+        
+        .output-col {
+            text-align: center !important;
+            background-color: #ffeaa7;
+            font-weight: 600;
+            color: #2d3436;
+        }
+        
+        .spacer {
+            border: none !important;
+            background: transparent !important;
+            width: 30px;
+        }
+        
+        .spacer-cell {
+            border: none !important;
+            background: transparent !important;
+        }
+        
+        .matrix-notation {
+            text-align: center;
+            margin: 20px 0;
+            font-size: 18px;
+            color: #2c3e50;
+        }
+    </style>
+</head>
+<body>
+    <div class="matrix-container">
+        <table class="design-matrix">
+            <thead>
+                <tr>
+                    <th class="sample-header"></th>
+                    <th class="feature-header">Feature 1</th>
+                    <th class="feature-header">Feature 2</th>
+                    <th class="feature-header">⋯</th>
+                    <th class="feature-header">Feature <i>N</i></th>
+                    <th class="spacer"></th>
+                    <th class="output-header">Output</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="sample-col">Sample 1</td>
+                    <td class="feature-col"><i>x</i><sub>11</sub></td>
+                    <td class="feature-col"><i>x</i><sub>12</sub></td>
+                    <td class="feature-col">⋯</td>
+                    <td class="feature-col"><i>x</i><sub>1<i>N</i></sub></td>
+                    <td class="spacer-cell"></td>
+                    <td class="output-col"><i>y</i><sub>1</sub></td>
+                </tr>
+                <tr>
+                    <td class="sample-col">Sample 2</td>
+                    <td class="feature-col"><i>x</i>₂₁</td>
+                    <td class="feature-col"><i>x</i>₂₂</td>
+                    <td class="feature-col">⋯</td>
+                    <td class="feature-col"><i>x</i>₂<sub><i>N</i></sub></td>
+                    <td class="spacer-cell"></td>
+                    <td class="output-col"><i>y</i>₂</td>
+                </tr>
+                <tr>
+                    <td class="sample-col">Sample 3</td>
+                    <td class="feature-col"><i>x</i>₃₁</td>
+                    <td class="feature-col"><i>x</i>₃₂</td>
+                    <td class="feature-col">⋯</td>
+                    <td class="feature-col"><i>x</i>₃<sub><i>N</i></sub></td>
+                    <td class="spacer-cell"></td>
+                    <td class="output-col"><i>y</i>₃</td>
+                </tr>
+                <tr>
+                    <td class="sample-col">⋮</td>
+                    <td class="feature-col">⋮</td>
+                    <td class="feature-col">⋮</td>
+                    <td class="feature-col">⋱</td>
+                    <td class="feature-col">⋮</td>
+                    <td class="spacer-cell"></td>
+                    <td class="output-col">⋮</td>
+                </tr>
+                <tr>
+                    <td class="sample-col">Sample <i>M</i></td>
+                    <td class="feature-col"><i>x<sub>M1</sub></i></td>
+                    <td class="feature-col"><i>x</i><sub><i>M2</i></sub></td>
+                    <td class="feature-col">⋯</td>
+                    <td class="feature-col"><i>x</i><sub><i>M</i></sub><sub><i>N</i></sub></td>
+                    <td class="spacer-cell"></td>
+                    <td class="output-col"><i>y</i><sub><i>M</i></sub></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
