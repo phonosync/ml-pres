@@ -15,31 +15,44 @@ format:
 ---
 
 
-## AI and Big Data
+## Big data enables machine learning
 
 ```{mermaid}
-%%| fig-height: 6
 %%| fig-align: center
-flowchart TD
-    A["Artificial Intelligence"] --> |"Simulate Human Intelligence in Reasoning, Learning, Perception"| H1((" "))
-    H1 --> B["Symbolic AI"]
-    H1 --> C["Sub-symbolic AI"]
-
-    B --> |"Information is represented in human-readable form"| D["Rule based/Expert systems"]
-
-    C --> |"Pattern recognition from data"| E["Machine Learning"]
-
-    E --> |"Neural Networks with multiple layers"| F["Deep Learning"]
-
-    G["Big Data<br>structured & unstructured"]  --> C
-
-    style H1 fill:transparent,stroke:transparent,color:transparent
+%%| fig-height: 6
+graph TD
+    AI["**Artificial Intelligence**<br><br>*Simulate human intelligence in reasoning, learning, perception*"]
+    
+    Symbolic["**Symbolic**<br><br>*Information is represented in human-readable form*"]
+    SubSymbolic["**Sub-symbolic**<br><br>*Pattern recognition from data*"]
+    
+    BigData["**Big Data**<br><br>*Volume, velocity, variety*"]
+    
+    RuleBase["**Rule based/expert systems**"]
+    
+    ML["**Machine Learning**"]
+    
+    DL["**Deep Learning**<br><br>*Neural networks with multiple layers*"]
+    
+    %% Main tree connections
+    AI --> Symbolic
+    AI --> SubSymbolic
+    Symbolic --> RuleBase
+    SubSymbolic --> ML
+    ML --> DL
+    BigData --> SubSymbolic
+    
+    %% Styling
+    classDef default fill:#f9f9f9,stroke:#333,stroke-width:0px,font-size:16px
+    classDef highlight fill:#e1f5fe,stroke:#0277bd,stroke-width:2px,font-weight:bold
+    classDef description fill:#f9f9f9,stroke:#333,stroke-width:2px,font-size:10px,font-style:italic
+    
+    %% class AI,ML,DL highlight
 ```
 
 
 
-
-## What is Machine Learning?
+## What is machine learning?
 
 > "Machine learning is a field of study that gives computers the ability to learn without being explicitly programmed."
 > 
@@ -49,7 +62,38 @@ flowchart TD
 Arthur Samuel coined this definition in 1959 while working at IBM. He was a pioneer in computer gaming and artificial intelligence, and his work on checkers-playing programs was groundbreaking.
 :::
 
-## Model and Learning
+## What is machine learning used for?
+
+* gain insights 
+* predict events 
+
+in order to
+
+* provide a quantitative basis for decisions (actionable insights)
+* influence the data generating process
+
+::: {.notes}
+Machine learning is used to discover patterns in the data and/or derive a model of the underlying data generating process to gain insights, understand a pattern... and/or to make predictions.
+* provide a quantitative basis for decisions (actionable insights). e.g. determine target segment for marketing campaign
+* influence the data generating process. E.g. adapt the features of an app to influence user behavior
+:::
+
+## {#silicon-valley-id data-menu-title="Silicon Valley"}
+
+{{< video https://youtu.be/FnigvS_uI1w?feature=shared height="100%" width="100%" >}}
+
+## Build a food classifier
+
+* The data: [https://tinyurl.com/mvvhj2n5
+](https://tinyurl.com/mvvhj2n5
+){preview-link="false" .external target="_blank"}
+* The teachable machine: [https://teachablemachine.withgoogle.com](https://teachablemachine.withgoogle.com){preview-link="false" .external target="_blank"}
+
+## Structure of the learning problem
+
+
+
+## Model and learning
 
 **Model**: A model is a mathematical, statistical, or logical representation that describes the relationship between variables and can be used to make predictions or understand patterns in data.
 
@@ -69,6 +113,7 @@ Each paradigm addresses different tasks and uses different learning strategies.
 
 - **Training Data**: Labeled samples (input features + output values)
 - **Goal**: Model to predict output values for new input features
+
 
 
 ## Data Matrix and Labels
@@ -254,22 +299,3 @@ The choice depends on:
 3. **Unsupervised Learning** discovers hidden patterns in unlabeled data
 4. **Reinforcement Learning** learns optimal actions through trial and error
 5. Each paradigm suits different types of problems and data scenarios
-
-### Next Steps:
-- Choose the right paradigm for your problem
-- Understand your data requirements
-- Start with simple algorithms and build complexity gradually
-
-
-
-## Questions?
-
-Thank you for your attention!
-
-::: {.notes}
-Encourage questions about:
-- Specific applications of each paradigm
-- How to get started with machine learning
-- Tools and resources for learning
-- Real-world implementation challenges
-:::
