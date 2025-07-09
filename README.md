@@ -5,47 +5,58 @@ relative links to all presentations (has to be updated manually)
 ## Local development environment
 
 ### Python Environment Setup and Management
-**Install** conda environment:
+**Install** uv (if not already installed):
 ```sh
-$ conda env create -f conda.yml
+$ curl -LsSf https://astral.sh/uv/install.sh | sh
 ```
-**Update** the environment with new packages/versions:
-1. modify template.yml
-2. run `conda env update`:
+
+**Install** dependencies and create virtual environment:
 ```sh
-$ conda env update --name ml_pres --file conda.yml --prune
+$ uv sync
 ```
-`prune` uninstalls dependencies which were removed from vdss.yml
+
+**Add** new packages:
+```sh
+$ uv add package_name
+```
+
+**Add** development dependencies:
+```sh
+$ uv add --dev package_name
+```
 
 **Use** environment:
-before working on the project always make sure you have the environment activated:
+uv automatically manages the virtual environment. To run commands in the environment:
 ```sh
-$ conda activate mld_pres
+$ uv run python your_script.py
+```
+
+Or activate the environment manually:
+```sh
+$ source .venv/bin/activate
 ```
 
 **Check the version** of a specific package (e.g. `html5lib`) in the environment:
 ```sh
-$ conda list html5lib
+$ uv list | grep html5lib
 ```
 
-**Export** an environment file across platforms:
-Include only the packages that were specifically installed. Dependencies will be resolved upon installation
+**Update** dependencies:
 ```sh
-$ conda env export --from-history > conda.yml
+$ uv sync --upgrade
 ```
 
-**List** all installed environments:
-From the base environment run
+**Remove** a package:
 ```sh
-$ conda info --envs
+$ uv remove package_name
 ```
 
-**Remove** environment:
+**Lock** dependencies (creates uv.lock file):
 ```sh
-$ conda env remove -n vdss
+$ uv lock
 ```
 
-See the complete documentation on [managing conda-environments](https://docs.conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html).
+See the complete documentation on [uv](https://docs.astral.sh/uv/).
 
 ### Runtime Configuration with Environment Variables
 The environment variables are specified in a .env-file, which is never commited into version control, as it may contain secrets. The repo just contains the file `.env.template` to demonstrate how environment variables are specified.
@@ -78,11 +89,11 @@ If you want to use VS code, which has very convenient editing and preview featur
 ## presentations in subfolders
 global configurations in `_quarto.yml`
 
-`conda activate ml_pres`
+Activate environment and run quarto:
 
-`quarto preview recommender_systems/assoc_rules/assoc_rules.qmd`
+`uv run quarto preview recommender_systems/assoc_rules/assoc_rules.qmd`
 
-```quarto render recommender_systems/assoc_rules/assoc_rules.qmd```produces the revealjs-presentations in html format.
+```uv run quarto render recommender_systems/assoc_rules/assoc_rules.qmd```produces the revealjs-presentations in html format.
 
 
 ## pdf converstion

@@ -1,0 +1,43 @@
+[project]
+name = "ml_pres"
+version = "0.1.0"
+description = "Machine Learning Presentations"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+    "jupyterlab>=4.2.3",
+    "matplotlib>=3.8.4",
+    "openpyxl>=3.1.4",
+    "pandas>=2.2.0",
+    "scikit-surprise>=1.1.4",
+    "seaborn>=0.13.2",
+    "tabulate>=0.9.0",
+    "python-dotenv",
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+# Since this is a presentation project without a traditional package structure,
+# we'll only include necessary files
+include = [
+    "README.md",
+    "*.py",
+    "*.qmd",
+    "*.yml",
+    "*.yaml",
+    "*.html",
+    "*.css",
+    "*.js",
+    "*.svg",
+    "*.png",
+    "*.jpg",
+    "*.jpeg",
+]
+
+[tool.uv]
+dev-dependencies = [
+    # Development dependencies if any
+]
