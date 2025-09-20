@@ -91,9 +91,9 @@ global configurations in `_quarto.yml`
 
 Activate environment and run quarto:
 
-`uv run quarto preview recommender_systems/assoc_rules/assoc_rules.qmd`
+In preview mode: `uv run quarto preview recommender_systems/assoc_rules/assoc_rules.qmd`
 
-```uv run quarto render recommender_systems/assoc_rules/assoc_rules.qmd```produces the revealjs-presentations in html format.
+Complete Render: ```uv run quarto render recommender_systems/assoc_rules/assoc_rules.qmd``` produces the revealjs-presentations in html format.
 
 
 ## pdf converstion
