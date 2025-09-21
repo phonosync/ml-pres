@@ -1,0 +1,35 @@
+.reveal .slides section {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+.reveal .slide iframe,
+.reveal .slide video,
+.reveal .slide .quarto-video {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 40vw !important;
+  max-width: 60vw;
+  height: 40vh !important;
+  max-height: 80vh;
+  min-width: 60px;
+  min-height: 40px;
+  box-sizing: border-box;
+}
+.reveal .cell-output-display figure,
+.reveal .cell-output-display img {
+  /* Center all figures and images (including mermaid PNGs) in RevealJS slides */
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}
+.hscroll {
+  /* Enable horizontal scrolling for wide content */
+  overflow: auto;
+  white-space: nowrap;
+}

@@ -32,7 +32,7 @@ format:
     
     slide-number: true
     self-contained: false
-    css: quarto_css/hscroll.css
+    css: quarto_css/quarto.css
     template-partials:
       - title-slide.html
     include-in-header: 

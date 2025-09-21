@@ -1,25 +1,16 @@
 ---
 title: "Introduction to Machine Learning"
 
-format: 
-  revealjs:
-    theme: default
-    transition: slide
-    background-transition: fade
-    highlight-style: github
-    code-line-numbers: true
-    fig-align: center
-    mermaid:
-      theme: default
-    mermaid-format: png
+lang: en
+date: "2025-09-21"
+date-format: "DD.MM.YYYY"
 ---
 
 
 ## Big data enables machine learning
 
 ```{mermaid}
-%%| fig-align: center
-%%| fig-height: 6
+%%| fig-height: 5
 graph TD
     AI["**Artificial Intelligence**<br><br>*Simulate human intelligence in reasoning, learning, perception*"]
     
@@ -80,7 +71,8 @@ Machine learning is used to discover patterns in the data and/or derive a model 
 
 ## {#silicon-valley-id data-menu-title="Silicon Valley"}
 
-{{< video https://youtu.be/FnigvS_uI1w?feature=shared height="100%" width="100%" >}}
+{{< video https://youtu.be/FnigvS_uI1w?feature=shared >}}
+
 
 ## Build a food classifier
 

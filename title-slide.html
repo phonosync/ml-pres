@@ -18,13 +18,6 @@ This template creates a title slide with:
 <style>
 /* Minimal Title Slide Styling - Let RevealJS handle the background */
 
-/* Force background image on title slide with maximum specificity */
-section#title-slide {
-  background-image: url('/ressources/0101.svg') !important;
-  background-size: 100% auto !important;
-  background-position: top left !important;
-  background-repeat: no-repeat !important;
-}
 
 /* Remove white borders and ensure full coverage */
 section#title-slide {
@@ -93,9 +86,10 @@ section#title-slide .title {
 }
 
 /* Add proper padding for content slides (non-title slides) */
-.reveal .slides section:not(#title-slide) {
+/* .reveal .slides section:not(#title-slide) {
   padding: 20px !important;
 }
+*/
 
 /* Ensure content slides have proper spacing */
 .reveal .slides section:not(#title-slide) h1,
@@ -206,7 +200,7 @@ document.addEventListener('DOMContentLoaded', function() {
         border-radius: 12px !important;
         font-weight: bold !important;
         position: fixed !important;
-        bottom: 250px !important;
+        bottom: 300px !important;
         left: 240px !important;
         box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2) !important;
         max-width: calc(100vw - 120px) !important;
@@ -330,7 +324,7 @@ document.addEventListener('DOMContentLoaded', function() {
       authorDateBox.innerHTML = authorDateContent;
       authorDateBox.style.cssText = `
         position: fixed;
-        bottom: 140px;
+        bottom: 180px;
         left: 240px;
         background-color: transparent;
         color: white;
