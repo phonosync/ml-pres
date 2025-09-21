@@ -8,12 +8,11 @@ This template creates a title slide with:
 - Author and date information positioned below title
 -->
 
-<section id="title-slide" data-background-color="#003366" data-background-image="../ressources/0101.svg" data-background-size="100% auto" data-background-position="top left" data-background-repeat="no-repeat" class="quarto-title-block center">
-
-<!-- Hidden data containers for JavaScript to access -->
-<div id="quarto-author-data" style="display: none;">$author$</div>
-<div id="quarto-date-data" style="display: none;">$date$</div>
-<div id="quarto-organisationalunit-data" style="display: none;">$organisationalunit$</div>
+<section id="title-slide" data-background-color="#003366" data-background-i      }
+      return true;
+    }
+    return false;
+  }
 
 <style>
 /* Minimal Title Slide Styling - Let RevealJS handle the background */
@@ -44,12 +43,7 @@ body:has(section#title-slide) .reveal .slides {
   padding: 0 !important;
 }
 
-/* Hide default Quarto title slide elements that we'll replace */
-section#title-slide .quarto-title,
-section#title-slide .quarto-title-meta,
-section#title-slide h1.title,
-section#title-slide .title,
-section#title-slide .subtitle,
+/* Hide default Quarto elements on title slide only */
 section#title-slide .author,
 section#title-slide .date,
 section#title-slide h1.title + p,
@@ -73,17 +67,24 @@ section#title-slide .title {
   bottom: 30px;
   left: 50%;
   transform: translateX(-50%);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+  max-width: 80%;
+  line-height: 1.2;
   z-index: 10;
-}
-
-/* Ensure text content is positioned correctly */
-section#title-slide h1.title,
-section#title-slide .title {
+  margin: 0;
   text-align: left;
-  max-width: 90vw;
-  box-sizing: border-box;
+  font-size: 3.5rem !important;
+  height: auto;
+  min-height: auto;
 }
 </style>
+
+<h1 class="title">$title$</h1>
+
+<!-- Hidden data containers for JavaScript to access -->
+<div id="quarto-author-data" style="display: none;">$author$</div>
+<div id="quarto-date-data" style="display: none;">$date$</div>
+<div id="quarto-organisationalunit-data" style="display: none;">$organisationalunit$</div>
 
 <script>
 document.addEventListener('DOMContentLoaded', function() {
@@ -128,18 +129,23 @@ document.addEventListener('DOMContentLoaded', function() {
         slides.style.margin = '0';
         slides.style.padding = '0';
       }
-
-      // Hide original title element
-      const originalTitle = titleSlide.querySelector('h1.title') || titleSlide.querySelector('.title');
+      
+      // Hide the original title and create a new one positioned correctly
+      const originalTitle = titleSlide.querySelector('h1.title, .title');
+      let titleText = 'Title not found';
+      
       if (originalTitle) {
-        originalTitle.style.display = 'none';
-        console.log('Original title found and hidden:', originalTitle.textContent);
+        titleText = originalTitle.innerHTML || originalTitle.textContent || originalTitle.innerText;
+        originalTitle.style.display = 'none'; // Hide original
+        console.log('Original title found and hidden:', titleText);
+      } else {
+        console.log('Original title not found, using fallback');
       }
-
-      // Create new custom title box with positioning
+      
+      // Create new title element positioned at bottom
       const newTitle = document.createElement('div');
       newTitle.className = 'custom-title custom-element';
-      newTitle.textContent = originalTitle ? originalTitle.textContent : 'Introduction to Machine Learning';
+      newTitle.innerHTML = titleText;
       newTitle.style.cssText = `
         background-color: #87CEEB !important;
         color: #003366 !important;
@@ -173,13 +179,13 @@ document.addEventListener('DOMContentLoaded', function() {
       }
       
       console.log('New title created at bottom:', newTitle.getBoundingClientRect());
-
+      
       // Add marker to prevent duplicate processing
       const marker = document.createElement('div');
       marker.className = 'custom-elements-added';
       marker.style.display = 'none';
       titleSlide.appendChild(marker);
-
+      
       // Add ZHAW logo (top-left) - positioned relative to viewport
       const logo = document.createElement('div');
       logo.className = 'title-logo custom-element';
@@ -194,9 +200,8 @@ document.addEventListener('DOMContentLoaded', function() {
         background-repeat: no-repeat;
         background-position: center;
         z-index: 50;
-        box-shadow: None;
+        filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
       `;
-
       document.body.appendChild(logo); // Attach to body instead of titleSlide
       customElements.push(logo); // Track this element
       console.log('Added logo to customElements, array length now:', customElements.length);
@@ -208,8 +213,8 @@ document.addEventListener('DOMContentLoaded', function() {
       } else {
         console.log('logo visible because on title slide');
       }
-
-      // Add school text (top-right)
+      
+      // Add School of Engineering text (top-right) - positioned relative to viewport
       const schoolText = document.createElement('div');
       schoolText.className = 'school-text custom-element';
       schoolText.textContent = 'School of Engineering';
@@ -270,37 +275,37 @@ document.addEventListener('DOMContentLoaded', function() {
       if (metaAuthor && metaAuthor.getAttribute('content')) {
         author = metaAuthor.getAttribute('content');
       }
-
+      
       // Add author/date box positioned below title
       const authorDateBox = document.createElement('div');
       authorDateBox.className = 'author-date-box custom-element';
       
-      // Format content with organizational unit on first line, date | author on second line
-      let authorDateContent = '';
+      // Build content with organizational unit as first line if it exists
+      let content = '';
       if (organisationalunit) {
-        authorDateContent = organisationalunit + '<br>';
+        content = organisationalunit + '<br>' + date + ' | ' + author;
+      } else {
+        content = date + ' | ' + author;
       }
-      authorDateContent += date + ' | ' + author;
+      authorDateBox.innerHTML = content;
       
-      authorDateBox.innerHTML = authorDateContent;
+      // Initially position with fixed positioning - will be repositioned after title is measured
       authorDateBox.style.cssText = `
         position: fixed;
-        bottom: 140px;
         left: 240px;
         background-color: transparent;
-        color: white;
         padding: 15px 40px;
-        border-radius: 8px;
+        color: white;
         font-size: 1.5rem;
-        font-weight: 500;
-        z-index: 20;
-        text-align: left;
-        box-shadow: none;
-        max-width: calc(100vw - 280px);
         line-height: 1.4;
-        text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7);
+        text-align: left;
+        z-index: 20;
+        width: auto;
+        box-sizing: border-box;
+        height: auto;
+        min-height: auto;
       `;
-
+      
       document.body.appendChild(authorDateBox); // Attach to body
       customElements.push(authorDateBox); // Track this element
       console.log('Added authorDateBox to customElements, array length now:', customElements.length);
@@ -312,27 +317,41 @@ document.addEventListener('DOMContentLoaded', function() {
       } else {
         console.log('authorDateBox visible because on title slide');
       }
-
+      
+      // Set width to match title and position below title box after a short delay
+      setTimeout(() => {
+        const titleElement = document.querySelector('.custom-title');
+        if (titleElement) {
+          const titleRect = titleElement.getBoundingClientRect();
+          
+          if (titleRect.width > 0) {
+            console.log('Custom title width measured:', titleRect.width);
+            console.log('Custom title bottom position:', titleRect.bottom);
+            
+            // Set width and left position to match title
+            authorDateBox.style.width = titleRect.width + 'px';
+            authorDateBox.style.left = '240px'; // Same as title
+            
+            // Position below title box with 20px gap
+            const authorBoxTop = titleRect.bottom + 20;
+            authorDateBox.style.top = authorBoxTop + 'px';
+            authorDateBox.style.bottom = 'auto'; // Remove bottom positioning
+          }
+        }
+      }, 500); // Increased delay to ensure custom title is created
+      
       console.log('Custom title slide elements added');
-    } else if (titleSlide && titleSlide.querySelector('.custom-elements-added')) {
-      console.log('Title slide already has custom elements, skipping...');
-    } else {
-      console.log('Title slide not found or not ready yet');
     }
   }
-
-  // Function to remove background when leaving title slide
+  
+  // Function to clean up when leaving title slide
   function removeBackground() {
-    const titleSlide = document.querySelector('section#title-slide');
-    if (titleSlide) {
-      // Remove any applied background styles when leaving title slide
-      titleSlide.style.backgroundImage = '';
-      titleSlide.style.backgroundColor = '';
-    }
+    // Remove any custom elements attached to body
+    const elementsToRemove = document.querySelectorAll('.custom-element');
+    elementsToRemove.forEach(el => el.remove());
     
-    // Clean up any duplicate markers
-    const markers = document.querySelectorAll('.custom-elements-added');
-    const marker = markers[markers.length - 1]; // Keep only the last one
+    // Remove the marker so elements can be recreated when returning to title slide
+    const marker = document.querySelector('.custom-elements-added');
     if (marker) {
       marker.remove();
     }
@@ -363,7 +382,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
     console.log('Hiding title slide elements');
   }
-
+  
   // Setup title slide immediately
   setupTitleSlide();
   
@@ -453,6 +472,7 @@ document.addEventListener('DOMContentLoaded', function() {
   // Also try to setup when the page is fully loaded
   window.addEventListener('load', function() {
     setTimeout(setupTitleSlide, 100);
+    setTimeout(setupTitleSlide, 500);
   });
 });
 </script>
