@@ -8,7 +8,7 @@ This template creates a title slide with:
 - Author and date information positioned below title
 -->
 
-<section id="title-slide" data-background-color="#003366" data-background-image="../ressources/0101.svg" data-background-size="100% auto" data-background-position="top left" data-background-repeat="no-repeat" class="quarto-title-block center">
+<section id="title-slide" data-background-color="#003366" class="quarto-title-block center">
 
 <!-- Hidden data containers for JavaScript to access -->
 <div id="quarto-author-data" style="display: none;">$author$</div>
@@ -17,6 +17,14 @@ This template creates a title slide with:
 
 <style>
 /* Minimal Title Slide Styling - Let RevealJS handle the background */
+
+/* Force background image on title slide with maximum specificity */
+section#title-slide {
+  background-image: url('/ressources/0101.svg') !important;
+  background-size: 100% auto !important;
+  background-position: top left !important;
+  background-repeat: no-repeat !important;
+}
 
 /* Remove white borders and ensure full coverage */
 section#title-slide {
@@ -83,22 +91,74 @@ section#title-slide .title {
   max-width: 90vw;
   box-sizing: border-box;
 }
+
+/* Add proper padding for content slides (non-title slides) */
+.reveal .slides section:not(#title-slide) {
+  padding: 20px !important;
+}
+
+/* Ensure content slides have proper spacing */
+.reveal .slides section:not(#title-slide) h1,
+.reveal .slides section:not(#title-slide) h2,
+.reveal .slides section:not(#title-slide) h3 {
+  margin-top: 0.5em !important;
+  margin-bottom: 0.5em !important;
+}
+
+.reveal .slides section:not(#title-slide) p,
+.reveal .slides section:not(#title-slide) ul,
+.reveal .slides section:not(#title-slide) ol {
+  margin-bottom: 1em !important;
+}
 </style>
 
 <script>
 document.addEventListener('DOMContentLoaded', function() {
   let customElements = []; // Array to track our custom elements
-  
-  // Function to customize title slide - simplified approach
-  function setupTitleSlide() {
-    let titleSlide = document.querySelector('section#title-slide');
+    function setupTitleSlide() {
+      let titleSlide = document.querySelector('section#title-slide');
     
-    console.log('Looking for title slide:', titleSlide);
-    
-    if (titleSlide && !titleSlide.querySelector('.custom-elements-added')) {
-      console.log('Title slide found, adding custom elements');
-      console.log('Title slide dimensions:', titleSlide.getBoundingClientRect());
-      console.log('Viewport dimensions:', window.innerWidth, 'x', window.innerHeight);
+      if (titleSlide && !titleSlide.querySelector('.custom-elements-added')) {
+      
+
+  // Always use absolute path for resources
+  const resourcePath = '/ressources/';
+      
+
+
+      // Set background image directly on RevealJS background layer for the title slide
+      function setRevealBackground() {
+        const backgrounds = document.querySelectorAll('.reveal .backgrounds .slide-background');
+        const currentSlide = document.querySelector('section.present');
+        if (!backgrounds || !currentSlide) return;
+        const isTitleSlide = currentSlide.id === 'title-slide';
+        backgrounds.forEach(bg => {
+          if (bg.classList.contains('present')) {
+            if (isTitleSlide) {
+              bg.style.backgroundImage = "url('/ressources/0101.svg')";
+              bg.style.backgroundSize = '100% auto';
+              bg.style.backgroundPosition = 'top left';
+              bg.style.backgroundRepeat = 'no-repeat';
+              bg.style.backgroundColor = '#003366';
+            } else {
+              bg.style.backgroundImage = '';
+              bg.style.backgroundSize = '';
+              bg.style.backgroundPosition = '';
+              bg.style.backgroundRepeat = '';
+              bg.style.backgroundColor = '';
+            }
+          }
+        });
+      }
+      setTimeout(setRevealBackground, 300);
+      if (window.Reveal && typeof Reveal.addEventListener === 'function') {
+        Reveal.addEventListener('slidechanged', function(event) {
+          setTimeout(setRevealBackground, 100);
+        });
+      }
+
+  // Show debug overlay for troubleshooting
+  // (debug overlay removed)
       
       // Check if we're currently on the title slide
       const currentSlide = document.querySelector('section.present');
@@ -132,8 +192,7 @@ document.addEventListener('DOMContentLoaded', function() {
       // Hide original title element
       const originalTitle = titleSlide.querySelector('h1.title') || titleSlide.querySelector('.title');
       if (originalTitle) {
-        originalTitle.style.display = 'none';
-        console.log('Original title found and hidden:', originalTitle.textContent);
+  originalTitle.style.display = 'none';
       }
 
       // Create new custom title box with positioning
@@ -162,17 +221,11 @@ document.addEventListener('DOMContentLoaded', function() {
       
       document.body.appendChild(newTitle);
       customElements.push(newTitle); // Track this element
-      console.log('Added newTitle to customElements, array length now:', customElements.length);
       
       // Hide if not on title slide
       if (!isOnTitleSlide) {
         newTitle.style.display = 'none';
-        console.log('newTitle hidden because not on title slide');
-      } else {
-        console.log('newTitle visible because on title slide');
       }
-      
-      console.log('New title created at bottom:', newTitle.getBoundingClientRect());
 
       // Add marker to prevent duplicate processing
       const marker = document.createElement('div');
@@ -189,7 +242,7 @@ document.addEventListener('DOMContentLoaded', function() {
         left: 30px;
         width: 180px;
         height: 135px;
-        background-image: url('../ressources/zhaw_rgb_logo_nacht.png');
+        background-image: url('/ressources/zhaw_rgb_logo_nacht.png');
         background-size: contain;
         background-repeat: no-repeat;
         background-position: center;
@@ -198,15 +251,11 @@ document.addEventListener('DOMContentLoaded', function() {
       `;
 
       document.body.appendChild(logo); // Attach to body instead of titleSlide
-      customElements.push(logo); // Track this element
-      console.log('Added logo to customElements, array length now:', customElements.length);
+  customElements.push(logo); // Track this element
       
       // Hide if not on title slide
       if (!isOnTitleSlide) {
         logo.style.display = 'none';
-        console.log('logo hidden because not on title slide');
-      } else {
-        console.log('logo visible because on title slide');
       }
 
       // Add school text (top-right)
@@ -229,15 +278,11 @@ document.addEventListener('DOMContentLoaded', function() {
         box-shadow: None;
       `;
       document.body.appendChild(schoolText); // Attach to body instead of titleSlide
-      customElements.push(schoolText); // Track this element
-      console.log('Added schoolText to customElements, array length now:', customElements.length);
+  customElements.push(schoolText); // Track this element
       
       // Hide if not on title slide
       if (!isOnTitleSlide) {
         schoolText.style.display = 'none';
-        console.log('schoolText hidden because not on title slide');
-      } else {
-        console.log('schoolText visible because on title slide');
       }
       
       // Get author, date, and organizational unit information from hidden data containers
@@ -302,22 +347,13 @@ document.addEventListener('DOMContentLoaded', function() {
       `;
 
       document.body.appendChild(authorDateBox); // Attach to body
-      customElements.push(authorDateBox); // Track this element
-      console.log('Added authorDateBox to customElements, array length now:', customElements.length);
+  customElements.push(authorDateBox); // Track this element
       
       // Hide if not on title slide
       if (!isOnTitleSlide) {
         authorDateBox.style.display = 'none';
-        console.log('authorDateBox hidden because not on title slide');
-      } else {
-        console.log('authorDateBox visible because on title slide');
       }
 
-      console.log('Custom title slide elements added');
-    } else if (titleSlide && titleSlide.querySelector('.custom-elements-added')) {
-      console.log('Title slide already has custom elements, skipping...');
-    } else {
-      console.log('Title slide not found or not ready yet');
     }
   }
 
@@ -340,28 +376,22 @@ document.addEventListener('DOMContentLoaded', function() {
   
   // Function to show custom title slide elements
   function showTitleSlideElements() {
-    console.log('showTitleSlideElements called, customElements array length:', customElements.length);
     customElements.forEach((element, index) => {
       if (element && element.style) {
         element.style.display = 'block';
         element.style.visibility = 'visible';
-        console.log('Showing element', index, element.className);
       }
     });
-    console.log('Showing title slide elements');
   }
   
   // Function to hide custom title slide elements
   function hideTitleSlideElements() {
-    console.log('hideTitleSlideElements called, customElements array length:', customElements.length);
     customElements.forEach((element, index) => {
       if (element && element.style) {
         element.style.display = 'none';
         element.style.visibility = 'hidden';
-        console.log('Hiding element', index, element.className);
       }
     });
-    console.log('Hiding title slide elements');
   }
 
   // Setup title slide immediately
@@ -370,19 +400,13 @@ document.addEventListener('DOMContentLoaded', function() {
   // Function to setup Reveal event listeners
   function setupRevealListeners() {
     if (window.Reveal && typeof Reveal.addEventListener === 'function') {
-      console.log('Setting up Reveal event listeners');
       Reveal.addEventListener('ready', function() {
-        console.log('Reveal ready, setting up slide detection');
         setupTitleSlide();
       });
       Reveal.addEventListener('slidechanged', function(event) {
-        console.log('Slide changed to:', event.currentSlide ? event.currentSlide.id : 'unknown');
-        console.log('Current slide element:', event.currentSlide);
         if (event.currentSlide && event.currentSlide.id === 'title-slide') {
-          console.log('Switched to title slide, showing elements');
           showTitleSlideElements();
         } else {
-          console.log('Left title slide, hiding elements');
           hideTitleSlideElements();
           removeBackground();
         }
@@ -408,7 +432,6 @@ document.addEventListener('DOMContentLoaded', function() {
       });
       
       if (anyHidden) {
-        console.log('Title slide detected but elements hidden - showing them');
         showTitleSlideElements();
       }
     } else {
@@ -422,7 +445,6 @@ document.addEventListener('DOMContentLoaded', function() {
       });
       
       if (anyVisible) {
-        console.log('Not on title slide but elements visible - hiding them');
         hideTitleSlideElements();
       }
     }
@@ -438,7 +460,6 @@ document.addEventListener('DOMContentLoaded', function() {
       if (setupRevealListeners() || attempts >= maxAttempts) {
         clearInterval(revealInterval);
         if (attempts >= maxAttempts) {
-          console.log('Could not setup Reveal listeners after', maxAttempts, 'attempts');
         }
       }
     }, 200);
@@ -446,7 +467,6 @@ document.addEventListener('DOMContentLoaded', function() {
   
   // Start backup state checking after a delay to allow everything to initialize
   setTimeout(function() {
-    console.log('Starting backup title slide state checking');
     setInterval(checkTitleSlideState, 1000); // Check every second
   }, 2000);
   
