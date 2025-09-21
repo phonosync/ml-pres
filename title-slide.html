@@ -1,0 +1,381 @@
+<!--
+Custom Title Slide Template for Company Policy Compliance
+This template creates a title slide with:
+- ZHAW logo (top-left)
+- School of Engineering text (top-right) 
+- Custom background image with dark blue bottom section
+- Centered title with light blue background
+- Author and date information positioned below title
+-->
+
+<section id="title-slide" data-background-color="#003366" data-background-image="../ressources/0101.svg" data-background-size="100% auto" data-background-position="top left" data-background-repeat="no-repeat" class="quarto-title-block center">
+
+<style>
+/* Minimal Title Slide Styling - Let RevealJS handle the background */
+
+/* Remove white borders and ensure full coverage */
+section#title-slide {
+  border: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+/* Remove borders from reveal containers when on title slide */
+body:has(section#title-slide) .reveal {
+  border: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+body:has(section#title-slide) .reveal .slides {
+  border: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+/* Hide default Quarto elements on title slide only */
+section#title-slide .author,
+section#title-slide .date,
+section#title-slide h1.title + p,
+section#title-slide .title + p,
+section#title-slide .quarto-title-authors,
+section#title-slide .quarto-title-author {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+}
+
+/* Title styling with light blue background - title slide only */
+section#title-slide h1.title,
+section#title-slide .title {
+  background-color: #87CEEB; /* Light blue */
+  color: #003366; /* Dark blue text */
+  padding: 25px 40px;
+  border-radius: 12px;
+  font-weight: bold;
+  position: fixed;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+  max-width: 80%;
+  line-height: 1.2;
+  z-index: 10;
+  margin: 0;
+  text-align: left;
+  font-size: 3.5rem !important;
+  height: auto;
+  min-height: auto;
+}
+</style>
+
+<h1 class="title">$title$</h1>
+
+<!-- Hidden data containers for JavaScript to access -->
+<div id="quarto-author-data" style="display: none;">$author$</div>
+<div id="quarto-date-data" style="display: none;">$date$</div>
+<div id="quarto-organisationalunit-data" style="display: none;">$organisationalunit$</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  // Function to customize title slide - simplified approach
+  function setupTitleSlide() {
+    let titleSlide = document.querySelector('section#title-slide');
+    
+    console.log('Looking for title slide:', titleSlide);
+    
+    if (titleSlide && !titleSlide.querySelector('.custom-elements-added')) {
+      console.log('Title slide found, adding custom elements');
+      console.log('Title slide dimensions:', titleSlide.getBoundingClientRect());
+      console.log('Viewport dimensions:', window.innerWidth, 'x', window.innerHeight);
+      
+      // Force remove borders and margins that might affect positioning
+      document.body.style.margin = '0';
+      document.body.style.padding = '0';
+      document.body.style.border = 'none';
+      document.body.style.outline = 'none';
+      
+      const reveal = document.querySelector('.reveal');
+      const slides = document.querySelector('.reveal .slides');
+      
+      if (reveal) {
+        reveal.style.border = 'none';
+        reveal.style.outline = 'none';
+        reveal.style.boxShadow = 'none';
+        reveal.style.margin = '0';
+        reveal.style.padding = '0';
+      }
+      
+      if (slides) {
+        slides.style.border = 'none';
+        slides.style.outline = 'none';
+        slides.style.boxShadow = 'none';
+        slides.style.margin = '0';
+        slides.style.padding = '0';
+      }
+      
+      // Hide the original title and create a new one positioned correctly
+      const originalTitle = titleSlide.querySelector('h1.title, .title');
+      let titleText = 'Title not found';
+      
+      if (originalTitle) {
+        titleText = originalTitle.innerHTML || originalTitle.textContent || originalTitle.innerText;
+        originalTitle.style.display = 'none'; // Hide original
+        console.log('Original title found and hidden:', titleText);
+      } else {
+        console.log('Original title not found, using fallback');
+      }
+      
+      // Create new title element positioned at bottom
+      const newTitle = document.createElement('div');
+      newTitle.className = 'custom-title custom-element';
+      newTitle.innerHTML = titleText;
+      newTitle.style.cssText = `
+        background-color: #87CEEB !important;
+        color: #003366 !important;
+        padding: 25px 40px !important;
+        border-radius: 12px !important;
+        font-weight: bold !important;
+        position: fixed !important;
+        bottom: 250px !important;
+        left: 240px !important;
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2) !important;
+        max-width: calc(100vw - 120px) !important;
+        line-height: 1.2 !important;
+        z-index: 15 !important;
+        margin: 0 !important;
+        text-align: left !important;
+        font-size: 3.5rem !important;
+        height: auto !important;
+        min-height: auto !important;
+      `;
+      
+      document.body.appendChild(newTitle);
+      console.log('New title created at bottom:', newTitle.getBoundingClientRect());
+      
+      // Add marker to prevent duplicate processing
+      const marker = document.createElement('div');
+      marker.className = 'custom-elements-added';
+      marker.style.display = 'none';
+      titleSlide.appendChild(marker);
+      
+      // Add ZHAW logo (top-left) - positioned relative to viewport
+      const logo = document.createElement('div');
+      logo.className = 'title-logo custom-element';
+      logo.style.cssText = `
+        position: fixed;
+        top: 30px;
+        left: 30px;
+        width: 180px;
+        height: 135px;
+        background-image: url('../ressources/zhaw_rgb_logo_nacht.png');
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: center;
+        z-index: 50;
+        filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+      `;
+      document.body.appendChild(logo); // Attach to body instead of titleSlide
+      
+      // Add School of Engineering text (top-right) - positioned relative to viewport
+      const schoolText = document.createElement('div');
+      schoolText.className = 'school-text custom-element';
+      schoolText.textContent = 'School of Engineering';
+      schoolText.style.cssText = `
+        position: fixed;
+        top: 60px;
+        right: 30px;
+        text-align: right;
+        background-color: transparent;
+        padding: 0px 0px;
+        border-radius: 8px;
+        font-size: 1.5rem;
+        font-weight: 600;
+        color: #003366;
+        z-index: 50;
+        white-space: nowrap;
+        box-shadow: None;
+      `;
+      document.body.appendChild(schoolText); // Attach to body instead of titleSlide
+      
+      // Get author, date, and organizational unit information from hidden data containers
+      let date = '01.12.2025'; // fallback
+      let author = 'Manuel Dömer'; // fallback
+      let organisationalunit = ''; // fallback
+      
+      // Get from hidden data containers first
+      const authorData = document.getElementById('quarto-author-data');
+      const dateData = document.getElementById('quarto-date-data');
+      const orgUnitData = document.getElementById('quarto-organisationalunit-data');
+      
+      if (authorData && authorData.textContent.trim()) {
+        author = authorData.textContent.trim();
+      }
+      if (dateData && dateData.textContent.trim()) {
+        date = dateData.textContent.trim();
+      }
+      if (orgUnitData && orgUnitData.textContent.trim()) {
+        organisationalunit = orgUnitData.textContent.trim();
+      }
+      
+      // Try to get from meta tags as backup
+      const metaDate = document.querySelector('meta[name="date"]');
+      const metaAuthor = document.querySelector('meta[name="author"]');
+      
+      if (metaDate && metaDate.getAttribute('content')) {
+        date = metaDate.getAttribute('content');
+      }
+      if (metaAuthor && metaAuthor.getAttribute('content')) {
+        author = metaAuthor.getAttribute('content');
+      }
+      
+      // Format date according to document language
+      if (date.indexOf('-') > 0 && date.length === 10) {
+        const parts = date.split('-');
+        if (parts.length === 3) {
+          const year = parts[0];
+          const month = parts[1];
+          const day = parts[2];
+          
+          // Get document language from html tag or meta tag
+          const htmlLang = document.documentElement.lang || 
+                          document.querySelector('meta[name="lang"]')?.getAttribute('content') || 
+                          'en';
+          
+          // Format date according to language
+          if (htmlLang.startsWith('de')) {
+            // German format: DD.MM.YYYY
+            const dayNum = Number(day);
+            const monthNum = Number(month);
+            date = dayNum + '.' + monthNum + '.' + year;
+          } else {
+            // English format: MM/DD/YYYY or use Date.toLocaleDateString
+            const dateObj = new Date(year, month - 1, day);
+            date = dateObj.toLocaleDateString('en-US');
+          }
+        }
+      }
+      
+      console.log('Using date:', date);
+      console.log('Using author:', author);
+      console.log('Using organisationalunit:', organisationalunit);
+      
+      // Add author/date box positioned below title
+      const authorDateBox = document.createElement('div');
+      authorDateBox.className = 'author-date-box custom-element';
+      
+      // Build content with organizational unit as first line if it exists
+      let content = '';
+      if (organisationalunit) {
+        content = organisationalunit + '<br>' + date + ' | ' + author;
+      } else {
+        content = date + ' | ' + author;
+      }
+      authorDateBox.innerHTML = content;
+      
+      // Initially position with fixed positioning - will be repositioned after title is measured
+      authorDateBox.style.cssText = `
+        position: fixed;
+        left: 240px;
+        background-color: transparent;
+        padding: 15px 40px;
+        color: white;
+        font-size: 1.5rem;
+        line-height: 1.4;
+        text-align: left;
+        z-index: 20;
+        width: auto;
+        box-sizing: border-box;
+        height: auto;
+        min-height: auto;
+      `;
+      
+      document.body.appendChild(authorDateBox); // Attach to body
+      
+      // Set width to match title and position below title box after a short delay
+      setTimeout(() => {
+        const titleElement = document.querySelector('.custom-title');
+        if (titleElement) {
+          const titleRect = titleElement.getBoundingClientRect();
+          
+          if (titleRect.width > 0) {
+            console.log('Custom title width measured:', titleRect.width);
+            console.log('Custom title bottom position:', titleRect.bottom);
+            
+            // Set width and left position to match title
+            authorDateBox.style.width = titleRect.width + 'px';
+            authorDateBox.style.left = '240px'; // Same as title
+            
+            // Position below title box with 20px gap
+            const authorBoxTop = titleRect.bottom + 20;
+            authorDateBox.style.top = authorBoxTop + 'px';
+            authorDateBox.style.bottom = 'auto'; // Remove bottom positioning
+          }
+        }
+      }, 500); // Increased delay to ensure custom title is created
+      
+      console.log('Custom title slide elements added');
+    }
+  }
+  
+  // Function to clean up when leaving title slide
+  function removeBackground() {
+    // Remove any custom elements attached to body
+    const elementsToRemove = document.querySelectorAll('.custom-element');
+    elementsToRemove.forEach(el => el.remove());
+    
+    // Remove the marker so elements can be recreated when returning to title slide
+    const marker = document.querySelector('.custom-elements-added');
+    if (marker) {
+      marker.remove();
+    }
+  }
+  
+  // Setup title slide immediately and with delays to ensure it works
+  setupTitleSlide();
+  setTimeout(setupTitleSlide, 500);
+  setTimeout(setupTitleSlide, 1000);
+  setTimeout(setupTitleSlide, 2000);
+  
+  // Setup when Reveal.js is ready if available
+  if (window.Reveal) {
+    Reveal.addEventListener('ready', setupTitleSlide);
+    Reveal.addEventListener('slidechanged', function(event) {
+      console.log('Slide changed to:', event.currentSlide ? event.currentSlide.id : 'unknown');
+      if (event.currentSlide && event.currentSlide.id === 'title-slide') {
+        console.log('Switched to title slide, applying styling');
+        setTimeout(setupTitleSlide, 100);
+      } else {
+        console.log('Left title slide, removing elements');
+        removeBackground();
+      }
+    });
+  }
+  
+  // Also listen for hash changes as backup
+  window.addEventListener('hashchange', function() {
+    const currentSlide = document.querySelector('section.present');
+    if (currentSlide && currentSlide.id === 'title-slide') {
+      console.log('Hash change: back to title slide');
+      setTimeout(setupTitleSlide, 100);
+    } else if (currentSlide && currentSlide.id !== 'title-slide') {
+      console.log('Hash change: left title slide');
+      removeBackground();
+    }
+  });
+  
+  // Also try to setup when the page is fully loaded
+  window.addEventListener('load', function() {
+    setTimeout(setupTitleSlide, 100);
+    setTimeout(setupTitleSlide, 500);
+  });
+});
+</script>
+
+</section>

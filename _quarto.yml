@@ -20,11 +20,9 @@ format:
     slide-number: true
     self-contained: false
     css: quarto_css/hscroll.css
-    author: "Manuel Dömer<br>ZHAW School of Engineering"
-    title-slide-attributes: 
-      data-background-image: ressources/en-zhaw-cmyk.png
-      data-background-size: 25%
-      data-background-position: 98% 2%
+    author: "Manuel Dömer"
+    template-partials:
+      - title-slide.html
     include-in-header: 
       text: |
         <style>

@@ -1,0 +1,304 @@
+---
+title: "Introduction to Machine Learning"
+lang: de
+author: "doem"
+date: 2008-02-29
+organisationalunit: "Abteilung Angewandte Mathematik, Physik und Operations"
+format: 
+  revealjs:
+    theme: default
+    transition: slide
+    background-transition: fade
+    highlight-style: github
+    code-line-numbers: true
+    fig-align: center
+    mermaid:
+      theme: default
+    mermaid-format: png
+---
+
+
+## Big data enables machine learning
+
+```{mermaid}
+%%| fig-align: center
+%%| fig-height: 6
+graph TD
+    AI["**Artificial Intelligence**<br><br>*Simulate human intelligence in reasoning, learning, perception*"]
+    
+    Symbolic["**Symbolic**<br><br>*Information is represented in human-readable form*"]
+    SubSymbolic["**Sub-symbolic**<br><br>*Pattern recognition from data*"]
+    
+    BigData["**Big Data**<br><br>*Volume, velocity, variety*"]
+    
+    RuleBase["**Rule based/expert systems**"]
+    
+    ML["**Machine Learning**"]
+    
+    DL["**Deep Learning**<br><br>*Neural networks with multiple layers*"]
+    
+    %% Main tree connections
+    AI --> Symbolic
+    AI --> SubSymbolic
+    Symbolic --> RuleBase
+    SubSymbolic --> ML
+    ML --> DL
+    BigData --> SubSymbolic
+    
+    %% Styling
+    classDef default fill:#f9f9f9,stroke:#333,stroke-width:0px,font-size:16px
+    classDef highlight fill:#e1f5fe,stroke:#0277bd,stroke-width:2px,font-weight:bold
+    classDef description fill:#f9f9f9,stroke:#333,stroke-width:2px,font-size:10px,font-style:italic
+    
+    %% class AI,ML,DL highlight
+```
+
+
+
+## What is machine learning?
+
+> "Machine learning is a field of study that gives computers the ability to learn without being explicitly programmed."
+> 
+> — Arthur Samuel (1959)
+
+::: {.notes}
+Arthur Samuel coined this definition in 1959 while working at IBM. He was a pioneer in computer gaming and artificial intelligence, and his work on checkers-playing programs was groundbreaking.
+:::
+
+## What is machine learning used for?
+
+* gain insights 
+* predict events 
+
+in order to
+
+* provide a quantitative basis for decisions (actionable insights)
+* influence the data generating process
+
+::: {.notes}
+Machine learning is used to discover patterns in the data and/or derive a model of the underlying data generating process to gain insights, understand a pattern... and/or to make predictions.
+* provide a quantitative basis for decisions (actionable insights). e.g. determine target segment for marketing campaign
+* influence the data generating process. E.g. adapt the features of an app to influence user behavior
+:::
+
+## {#silicon-valley-id data-menu-title="Silicon Valley"}
+
+{{< video https://youtu.be/FnigvS_uI1w?feature=shared height="100%" width="100%" >}}
+
+## Build a food classifier
+
+* The data: [https://tinyurl.com/mvvhj2n5
+](https://tinyurl.com/mvvhj2n5
+){preview-link="false" .external target="_blank"}
+* The teachable machine: [https://teachablemachine.withgoogle.com](https://teachablemachine.withgoogle.com){preview-link="false" .external target="_blank"}
+
+## Structure of the learning problem
+
+
+
+## Model and learning
+
+**Model**: A model is a mathematical, statistical, or logical representation that describes the relationship between variables and can be used to make predictions or understand patterns in data.
+
+**Learning/Training**: Machine Learning employs adaptive models, which are configured and parameterised automatically based on the training data.
+
+## Three Main Paradigms
+
+1. **Supervised Learning**
+2. **Unsupervised Learning**
+3. **Reinforcement Learning**
+
+Each paradigm addresses different tasks and uses different learning strategies.
+
+
+
+## Supervised Learning
+
+- **Training Data**: Labeled samples (input features + output values)
+- **Goal**: Model to predict output values for new input features
+
+
+
+## Data Matrix and Labels
+
+```{=html}
+{{< include ../introml/ressources/design_matrix.html >}}
+```
+* Dimension of $X$: $M\text{ (samples)} \times N \text{ (features)}$  
+* Dimensions of $y$: $M$  
+
+
+## Supervised Learning
+- **Training Data**: Labeled samples (input features + output values)
+- **Goal**: Model to predict output values for new input features
+
+$𝑓(𝑿_{m,:};\mathbf{\theta})\rightarrow 𝑦_{m}$
+
+- **Process**: Algorithm adapts parameters $\mathbf{\theta}$ of a model $f$ to predict the correct outputs for the known training samples 
+
+
+## Classification vs. Regression
+
+<table style="width: 100%; border-collapse: collapse;">
+  <thead>
+    <tr>
+      <th style="vertical-align: middle;">Task</th>
+      <th style="vertical-align: middle;">Output Variable Type</th>
+      <th style="vertical-align: middle;">Applications</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="vertical-align: middle;"><strong>Classification</strong></td>
+      <td style="vertical-align: middle;">Categorical</td>
+      <td style="vertical-align: middle;">
+        <ul>
+          <li>Spam detection</li>
+          <li>Credit approval</li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: middle;"><strong>Regression</strong></td>
+      <td style="vertical-align: middle;">Numerical continuous</td>
+      <td style="vertical-align: middle;">
+        <ul>
+          <li>Predict prices</li>
+          <li>Probability of default</li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+
+
+## Supervised Learning Example
+
+```python
+# Simple example: Predicting house prices
+from sklearn.linear_model import LinearRegression
+import numpy as np
+
+# Training data (house size in sq ft, price in $1000s)
+X_train = np.array([[1500], [2000], [2500], [3000]])
+y_train = np.array([300, 400, 500, 600])
+
+# Create and train model
+model = LinearRegression()
+model.fit(X_train, y_train)
+
+# Predict price for new house
+new_house_size = [[2200]]
+predicted_price = model.predict(new_house_size)
+print(f"Predicted price: ${predicted_price[0]:.0f}k")
+```
+
+
+
+## Unsupervised Learning
+
+### Learning without a Teacher
+
+- **Input**: Unlabeled data (features only, no target)
+- **Goal**: Discover hidden patterns or structures
+- **Process**: Algorithm finds patterns without knowing "correct" answers
+
+### Common Applications:
+- **Clustering**: Grouping similar items
+- **Dimensionality Reduction**: Simplifying complex data
+- **Anomaly Detection**: Finding unusual patterns
+
+### Examples:
+- Customer segmentation
+- Data compression
+- Fraud detection
+- Gene analysis
+
+
+
+## Unsupervised Learning Example
+
+```python
+# Customer segmentation using K-means clustering
+from sklearn.cluster import KMeans
+import numpy as np
+
+# Customer data: [age, income]
+customers = np.array([
+    [25, 40000], [30, 60000], [35, 80000],
+    [45, 90000], [50, 100000], [55, 120000],
+    [22, 35000], [28, 50000], [40, 85000]
+])
+
+# Cluster customers into 3 groups
+kmeans = KMeans(n_clusters=3, random_state=42)
+clusters = kmeans.fit_predict(customers)
+
+print("Customer segments:", clusters)
+# Output: Different customers assigned to different segments
+```
+
+
+
+## Reinforcement Learning
+
+### Learning through Trial and Error
+
+- **Input**: Environment with states, actions, and rewards
+- **Goal**: Learn optimal actions to maximize cumulative reward
+- **Process**: Agent explores environment, receives feedback, improves strategy
+
+### Key Components:
+- **Agent**: The learner/decision maker
+- **Environment**: The world the agent interacts with
+- **Actions**: What the agent can do
+- **Rewards**: Feedback from the environment
+
+
+
+## Reinforcement Learning Applications
+
+### Real-world Examples:
+
+- **Game Playing**: Chess, Go, video games
+- **Robotics**: Robot navigation, manipulation
+- **Autonomous Vehicles**: Self-driving cars
+- **Trading**: Algorithmic trading strategies
+- **Recommendation Systems**: Personalized content
+- **Resource Management**: Cloud computing optimization
+
+### Famous Success Stories:
+- AlphaGo (Google DeepMind)
+- OpenAI Five (Dota 2)
+- Autonomous drone racing
+
+
+
+## Choosing the Right Paradigm
+
+| Paradigm | When to Use | Data Requirements |
+|----------|-------------|-------------------|
+| **Supervised** | You have labeled examples and want to predict outcomes | Large labeled dataset |
+| **Unsupervised** | You want to discover patterns or structure in data | Unlabeled data |
+| **Reinforcement** | You need to learn optimal actions through interaction | Environment for trial-and-error |
+
+::: {.notes}
+The choice depends on:
+- What type of problem you're solving
+- What kind of data you have available
+- Whether you need interpretable results
+- How much computational resources you have
+:::
+
+
+
+## Summary
+
+### Key Takeaways:
+
+1. **Machine Learning** enables computers to learn from data without explicit programming
+2. **Supervised Learning** uses labeled data to make predictions
+3. **Unsupervised Learning** discovers hidden patterns in unlabeled data
+4. **Reinforcement Learning** learns optimal actions through trial and error
+5. Each paradigm suits different types of problems and data scenarios

@@ -201,16 +201,261 @@
   <div class="reveal">
     <div class="slides">
 
-<section id="title-slide" data-background-image="../ressources/en-zhaw-cmyk.png" data-background-position="98% 2%" data-background-size="25%" class="quarto-title-block center">
-  <h1 class="title">Introduction to Machine Learning</h1>
+<!--
+Custom Title Slide Template for Company Policy Compliance
+This template creates a title slide with:
+- ZHAW logo (top-left)
+- School of Engineering text (top-right) 
+- Custom background image with dark blue bottom section
+- Centered title with light blue background
+- Author and date information positioned below title
+-->
 
-<div class="quarto-title-authors">
-<div class="quarto-title-author">
-<div class="quarto-title-author-name">
-Manuel Dömer<br>ZHAW School of Engineering 
-</div>
-</div>
-</div>
+<section id="title-slide" data-background-color="#003366" data-background-image="ressources/0101.svg" data-background-size="100% 60%" data-background-position="0 0" data-background-repeat="no-repeat" class="quarto-title-block center">
+
+<style>
+/* Company Policy Title Slide Styling - ISOLATED TO THIS TEMPLATE */
+
+/* Remove white borders and ensure full coverage for title slide */
+#title-slide {
+  margin: 0 !important;
+  padding: 0 !important;
+  width: 100vw !important;
+  height: 100vh !important;
+  left: 0 !important;
+  top: 0 !important;
+  position: fixed !important;
+  border: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+/* Remove borders from reveal containers only when title slide is shown */
+body:has(#title-slide) .reveal {
+  width: 100vw !important;
+  height: 100vh !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  left: 0 !important;
+  top: 0 !important;
+  transform: none !important;
+  border: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+body:has(#title-slide) .reveal .slides {
+  width: 100vw !important;
+  height: 100vh !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  left: 0 !important;
+  top: 0 !important;
+  transform: none !important;
+  border: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+body:has(#title-slide) {
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+/* Hide default Quarto elements */
+#title-slide .author,
+#title-slide .date,
+#title-slide h1.title + p,
+#title-slide .title + p,
+#title-slide .quarto-title-authors,
+#title-slide .quarto-title-author {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+}
+
+/* Title styling with light blue background */
+#title-slide h1.title,
+#title-slide .title {
+  background-color: #87CEEB; /* Light blue */
+  color: #003366; /* Dark blue text */
+  padding: 25px 40px;
+  border-radius: 12px;
+  font-weight: bold;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+  max-width: 80%;
+  line-height: 1.2;
+  z-index: 10;
+  margin: 0;
+  text-align: left;
+  font-size: 3rem !important;
+}
+</style>
+
+<h1 class="title">Introduction to Machine Learning</h1>
+
+<!-- Hidden data containers for JavaScript to access -->
+<div id="quarto-author-data" style="display: none;">Manuel Dömer<br>ZHAW School of Engineering</div>
+<div id="quarto-date-data" style="display: none;"></div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  // Function to customize title slide
+  function setupTitleSlide() {
+    let titleSlide = document.querySelector('#title-slide');
+    
+    if (titleSlide && !titleSlide.querySelector('.custom-elements-added')) {
+      console.log('Title slide found, adding custom elements');
+      
+      // Add marker to prevent duplicate processing
+      const marker = document.createElement('div');
+      marker.className = 'custom-elements-added';
+      marker.style.display = 'none';
+      titleSlide.appendChild(marker);
+      
+      // Add ZHAW logo (top-left)
+      const logo = document.createElement('div');
+      logo.className = 'title-logo custom-element';
+      logo.style.cssText = `
+        position: absolute;
+        top: 20px;
+        left: 20px;
+        width: 120px;
+        height: 90px;
+        background-image: url('ressources/zhaw.svg');
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: center;
+        z-index: 20;
+      `;
+      titleSlide.appendChild(logo);
+      
+      // Add School of Engineering text (top-right)
+      const schoolText = document.createElement('div');
+      schoolText.className = 'school-text custom-element';
+      schoolText.textContent = 'School of Engineering';
+      schoolText.style.cssText = `
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        background-color: transparent;
+        padding: 8px 16px;
+        border-radius: 6px;
+        font-size: 1.5rem;
+        font-weight: 600;
+        color: #003366;
+        z-index: 20;
+      `;
+      titleSlide.appendChild(schoolText);
+      
+      // Get author and date information from hidden data containers
+      let date = '01.12.2025'; // fallback
+      let author = 'Manuel Dömer'; // fallback
+      
+      // Get from hidden data containers first
+      const authorData = document.getElementById('quarto-author-data');
+      const dateData = document.getElementById('quarto-date-data');
+      
+      if (authorData && authorData.textContent.trim()) {
+        author = authorData.textContent.trim();
+      }
+      if (dateData && dateData.textContent.trim()) {
+        date = dateData.textContent.trim();
+      }
+      
+      // Try to get from meta tags as backup
+      const metaDate = document.querySelector('meta[name="date"]');
+      const metaAuthor = document.querySelector('meta[name="author"]');
+      
+      if (metaDate && metaDate.getAttribute('content')) {
+        date = metaDate.getAttribute('content');
+      }
+      if (metaAuthor && metaAuthor.getAttribute('content')) {
+        author = metaAuthor.getAttribute('content');
+      }
+      
+      // Format date to German format if needed (YYYY-MM-DD to DD.MM.YYYY)
+      if (date.indexOf('-') > 0 && date.length === 10) {
+        const parts = date.split('-');
+        if (parts.length === 3) {
+          const year = parts[0];
+          const month = parts[1];
+          const day = parts[2];
+          // Convert to DD.MM.YYYY format
+          const dayNum = Number(day);
+          const monthNum = Number(month);
+          date = dayNum + '.' + monthNum + '.' + year;
+        }
+      }
+      
+      console.log('Using date:', date);
+      console.log('Using author:', author);
+      
+      // Add author/date box positioned below title
+      const authorDateBox = document.createElement('div');
+      authorDateBox.className = 'author-date-box custom-element';
+      authorDateBox.innerHTML = date + ' | ' + author;
+      
+      // Initially position with default settings
+      authorDateBox.style.cssText = `
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        background-color: transparent;
+        padding: 15px 20px;
+        color: white;
+        font-size: 1.5rem;
+        text-align: left;
+        z-index: 20;
+        width: 500px;
+        box-sizing: border-box;
+      `;
+      
+      titleSlide.appendChild(authorDateBox);
+      
+      // Position box below title after measurement
+      setTimeout(() => {
+        const titleElement = titleSlide.querySelector('h1.title, .title');
+        if (titleElement) {
+          const titleRect = titleElement.getBoundingClientRect();
+          const slideRect = titleSlide.getBoundingClientRect();
+          
+          if (titleRect.width > 0) {
+            console.log('Title width measured:', titleRect.width);
+            
+            // Set width to match title
+            authorDateBox.style.width = titleRect.width + 'px';
+            
+            // Position below title with spacing
+            const titleBottomRelativeToSlide = titleRect.bottom - slideRect.top;
+            const boxTopPosition = titleBottomRelativeToSlide + 40; // 40px gap below title
+            
+            authorDateBox.style.top = boxTopPosition + 'px';
+            authorDateBox.style.bottom = 'auto';
+          }
+        }
+      }, 300);
+      
+      console.log('Custom title slide elements added');
+    }
+  }
+  
+  // Setup title slide immediately and with delays to ensure it works
+  setupTitleSlide();
+  setTimeout(setupTitleSlide, 500);
+  setTimeout(setupTitleSlide, 1000);
+  setTimeout(setupTitleSlide, 2000);
+  
+  // Setup when Reveal.js is ready if available
+  if (window.Reveal) {
+    Reveal.addEventListener('ready', setupTitleSlide);
+  }
+});
+</script>
 
 </section>
 <section id="big-data-enables-machine-learning" class="slide level2">
