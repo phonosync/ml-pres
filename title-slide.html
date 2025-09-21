@@ -228,43 +228,12 @@ document.addEventListener('DOMContentLoaded', function() {
       const metaDate = document.querySelector('meta[name="date"]');
       const metaAuthor = document.querySelector('meta[name="author"]');
       
-      if (metaDate && metaDate.getAttribute('content')) {
-        date = metaDate.getAttribute('content');
+      if (metaDate && metaDate.getAttribute('content') && (!dateData || !dateData.textContent.trim())) {
+        date = String(metaDate.getAttribute('content'));
       }
       if (metaAuthor && metaAuthor.getAttribute('content')) {
         author = metaAuthor.getAttribute('content');
       }
-      
-      // Format date according to document language
-      if (date.indexOf('-') > 0 && date.length === 10) {
-        const parts = date.split('-');
-        if (parts.length === 3) {
-          const year = parts[0];
-          const month = parts[1];
-          const day = parts[2];
-          
-          // Get document language from html tag or meta tag
-          const htmlLang = document.documentElement.lang || 
-                          document.querySelector('meta[name="lang"]')?.getAttribute('content') || 
-                          'en';
-          
-          // Format date according to language
-          if (htmlLang.startsWith('de')) {
-            // German format: DD.MM.YYYY
-            const dayNum = Number(day);
-            const monthNum = Number(month);
-            date = dayNum + '.' + monthNum + '.' + year;
-          } else {
-            // English format: MM/DD/YYYY or use Date.toLocaleDateString
-            const dateObj = new Date(year, month - 1, day);
-            date = dateObj.toLocaleDateString('en-US');
-          }
-        }
-      }
-      
-      console.log('Using date:', date);
-      console.log('Using author:', author);
-      console.log('Using organisationalunit:', organisationalunit);
       
       // Add author/date box positioned below title
       const authorDateBox = document.createElement('div');

@@ -1,20 +1,8 @@
 ---
 title: "Introduction to Machine Learning"
-lang: de
-author: "doem"
-date: 2008-02-29
-organisationalunit: "Abteilung Angewandte Mathematik, Physik und Operations"
-format: 
-  revealjs:
-    theme: default
-    transition: slide
-    background-transition: fade
-    highlight-style: github
-    code-line-numbers: true
-    fig-align: center
-    mermaid:
-      theme: default
-    mermaid-format: png
+lang: en
+date: "2025-09-21"
+date-format: "DD.MM.YYYY"
 ---
 
 

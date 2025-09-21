@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="de"><head>
+<html lang="en"><head>
 <script src="bilder-klassifizieren-dl_files/libs/clipboard/clipboard.min.js"></script>
 <script src="bilder-klassifizieren-dl_files/libs/quarto-html/tabby.min.js"></script>
 <script src="bilder-klassifizieren-dl_files/libs/quarto-html/popper.min.js"></script>
@@ -9,8 +9,7 @@
 <link href="bilder-klassifizieren-dl_files/libs/quarto-html/quarto-syntax-highlighting-234273d1456647dabc34a594ac50e507.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
   <meta name="generator" content="quarto-1.7.32">
 
-  <meta name="author" content="doem">
-  <meta name="dcterms.date" content="2008-02-29">
+  <meta name="author" content="Manuel Dömer">
   <title>Introduction to Machine Learning</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -282,8 +281,8 @@ section#title-slide .title {
 <h1 class="title">Introduction to Machine Learning</h1>
 
 <!-- Hidden data containers for JavaScript to access -->
-<div id="quarto-author-data" style="display: none;">doem</div>
-<div id="quarto-date-data" style="display: none;">2008-02-29</div>
+<div id="quarto-author-data" style="display: none;">Manuel Dömer</div>
+<div id="quarto-date-data" style="display: none;">21.09.2025</div>
 <div id="quarto-organisationalunit-data" style="display: none;">Abteilung Angewandte Mathematik, Physik und Operations</div>
 
 <script>
@@ -432,43 +431,12 @@ document.addEventListener('DOMContentLoaded', function() {
       const metaDate = document.querySelector('meta[name="date"]');
       const metaAuthor = document.querySelector('meta[name="author"]');
       
-      if (metaDate && metaDate.getAttribute('content')) {
-        date = metaDate.getAttribute('content');
+      if (metaDate && metaDate.getAttribute('content') && (!dateData || !dateData.textContent.trim())) {
+        date = String(metaDate.getAttribute('content'));
       }
       if (metaAuthor && metaAuthor.getAttribute('content')) {
         author = metaAuthor.getAttribute('content');
       }
-      
-      // Format date according to document language
-      if (date.indexOf('-') > 0 && date.length === 10) {
-        const parts = date.split('-');
-        if (parts.length === 3) {
-          const year = parts[0];
-          const month = parts[1];
-          const day = parts[2];
-          
-          // Get document language from html tag or meta tag
-          const htmlLang = document.documentElement.lang || 
-                          document.querySelector('meta[name="lang"]')?.getAttribute('content') || 
-                          'en';
-          
-          // Format date according to language
-          if (htmlLang.startsWith('de')) {
-            // German format: DD.MM.YYYY
-            const dayNum = Number(day);
-            const monthNum = Number(month);
-            date = dayNum + '.' + monthNum + '.' + year;
-          } else {
-            // English format: MM/DD/YYYY or use Date.toLocaleDateString
-            const dateObj = new Date(year, month - 1, day);
-            date = dateObj.toLocaleDateString('en-US');
-          }
-        }
-      }
-      
-      console.log('Using date:', date);
-      console.log('Using author:', author);
-      console.log('Using organisationalunit:', organisationalunit);
       
       // Add author/date box positioned below title
       const authorDateBox = document.createElement('div');
@@ -933,7 +901,7 @@ Probability of default
 <span id="cb1-13"><a href=""></a><span class="co"># Predict price for new house</span></span>
 <span id="cb1-14"><a href=""></a>new_house_size <span class="op">=</span> [[<span class="dv">2200</span>]]</span>
 <span id="cb1-15"><a href=""></a>predicted_price <span class="op">=</span> model.predict(new_house_size)</span>
-<span id="cb1-16"><a href=""></a><span class="bu">print</span>(<span class="ss">f"Predicted price: $</span><span class="sc">{</span>predicted_price[<span class="dv">0</span>]<span class="sc">:.0f}</span><span class="ss">k"</span>)</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-16"><a href=""></a><span class="bu">print</span>(<span class="ss">f"Predicted price: $</span><span class="sc">{</span>predicted_price[<span class="dv">0</span>]<span class="sc">:.0f}</span><span class="ss">k"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="unsupervised-learning" class="slide level2">
 <h2>Unsupervised Learning</h2>
@@ -975,7 +943,7 @@ Probability of default
 <span id="cb2-14"><a href=""></a>clusters <span class="op">=</span> kmeans.fit_predict(customers)</span>
 <span id="cb2-15"><a href=""></a></span>
 <span id="cb2-16"><a href=""></a><span class="bu">print</span>(<span class="st">"Customer segments:"</span>, clusters)</span>
-<span id="cb2-17"><a href=""></a><span class="co"># Output: Different customers assigned to different segments</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb2-17"><a href=""></a><span class="co"># Output: Different customers assigned to different segments</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="reinforcement-learning" class="slide level2">
 <h2>Reinforcement Learning</h2>
@@ -1307,12 +1275,12 @@ Probability of default
           // flash "checked"
           button.classList.add('code-copy-button-checked');
           var currentTitle = button.getAttribute("title");
-          button.setAttribute("title", "Kopiert");
+          button.setAttribute("title", "Copied!");
           let tooltip;
           if (window.bootstrap) {
             button.setAttribute("data-bs-toggle", "tooltip");
             button.setAttribute("data-bs-placement", "left");
-            button.setAttribute("data-bs-title", "Kopiert");
+            button.setAttribute("data-bs-title", "Copied!");
             tooltip = new bootstrap.Tooltip(button, 
               { trigger: "manual", 
                 customClass: "code-copy-button-tooltip",

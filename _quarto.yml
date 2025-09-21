@@ -1,5 +1,9 @@
 project:
-  title: "ML"
+  title: "ml-pres"
+
+author: "Manuel Dömer"
+organisationalunit: "Abteilung Angewandte Mathematik, Physik und Operations"
+
 
 jupyter: python3
 toc: true
@@ -11,6 +15,15 @@ editor:
 format: 
   revealjs:
     theme: default
+    transition: slide
+    background-transition: fade
+    highlight-style: github
+    code-line-numbers: true
+    fig-align: center
+    mermaid:
+      theme: default
+    mermaid-format: png
+
     toc: false
     code-fold: true
     controls: false
@@ -20,7 +33,6 @@ format:
     slide-number: true
     self-contained: false
     css: quarto_css/hscroll.css
-    author: "Manuel Dömer"
     template-partials:
       - title-slide.html
     include-in-header: 
