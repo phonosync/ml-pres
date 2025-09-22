@@ -58,28 +58,6 @@ $ uv lock
 
 See the complete documentation on [uv](https://docs.astral.sh/uv/).
 
-### Runtime Configuration with Environment Variables
-The environment variables are specified in a .env-file, which is never commited into version control, as it may contain secrets. The repo just contains the file `.env.template` to demonstrate how environment variables are specified.
-
-You have to create a local copy of `.env.template` in the project root folder and the easiest is to just name it `.env`.
-
-The content of the .env-file is then read by the pypi-dependency: `python-dotenv`. Usage:
-```python
-import os
-from dotenv import load_dotenv
-```
-
-`load_dotenv` reads the .env-file and sets the environment variables:
-
-```python
-load_dotenv()
-```
-which can then be accessed:
-
-```python
-os.environ['SAMPLE_VAR']
-```
-
 ### Quarto
 [https://quarto.org/docs/download/](https://quarto.org/docs/download/)
 
@@ -89,16 +67,16 @@ If you want to use VS code, which has very convenient editing and preview featur
 ## presentations in subfolders
 global configurations in `_quarto.yml`
 
-Activate environment and run quarto:
+Activate Python environment and run quarto:
 
-In preview mode: `uv run quarto preview recommender_systems/assoc_rules/assoc_rules.qmd`
+In preview mode: `preview recommender_systems/assoc_rules/assoc_rules.qmd`
 
-Complete Render: ```uv run quarto render recommender_systems/assoc_rules/assoc_rules.qmd``` produces the revealjs-presentations in html format.
+Complete Render: ```quarto render recommender_systems/assoc_rules/assoc_rules.qmd``` produces the revealjs-presentations in html format.
 
 
-## pdf converstion
-### Installation Decktape
-
+## Pdf conversion
+### Decktape
+#### Installation
 Instructions: https://docs.npmjs.com/downloading-and-installing-node-js-and-npm
 
 1. install nvm: https://github.com/nvm-sh/nvm
@@ -106,7 +84,16 @@ Instructions: https://docs.npmjs.com/downloading-and-installing-node-js-and-npm
 2. install node: `nvm install node`
 3. `npm install -g decktape`
 
-### Usage Decktape
+#### Usage
 `decktape <input>.html <output>.pdf`
 
 Step through fragments: `decktape generic --key=ArrowRight <input>.html <output>.pdf`
+
+### Alternative: revealjs pdf export
+
+* Open presentation in browser
+* Press `E` for export mode
+* Open Browser print dialog (cmd+p/ctrl+p) -> print to pdf
+* take a screenshot of the title slide
+* open screenshot in preview and export as pdf, A4 in landscape mode
+* replace the title slide in the presentation export pdf in Preview 
