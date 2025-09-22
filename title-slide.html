@@ -62,19 +62,75 @@ section#title-slide .quarto-title-author {
   opacity: 0 !important;
 }
 
-/* Title styling with light blue background - title slide only */
-section#title-slide h1.title,
-section#title-slide .title {
+/* Logo styling for custom title slide logo (JS-injected) */
+.title-logo {
+  position: fixed;
+  top: 3vh;
+  left: 2vw;
+  width: 18vw;
+  height: 13.5vh;
+  background-image: url('/ressources/zhaw_rgb_logo_nacht.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: left center;
+  z-index: 10;
+  box-shadow: none;
+}
+
+/* School text styling for custom school text (JS-injected) */
+.school-text {
+  position: fixed;
+  top: 6vh;
+  right: 2vw;
+  text-align: right;
+  background-color: transparent;
+  padding: 0px 0px;
+  border-radius: 8px;
+  font-size: 1.8vw;
+  font-weight: 600;
+  color: #003366;
+  z-index: 10;
+  white-space: nowrap;
+  box-shadow: none;
+}
+
+/* Title styling for custom title box (JS-injected) */
+.custom-title {
   background-color: #87CEEB; /* Light blue */
   color: #003366; /* Dark blue text */
-  padding: 25px 40px;
-  border-radius: 12px;
+  padding: 2.5vh 4vw;
+  border-radius: 8px;
   font-weight: bold;
   position: fixed;
-  bottom: 30px;
+  bottom: 25vh;
   left: 50%;
   transform: translateX(-50%);
-  z-index: 10;
+  z-index: 50;
+  text-align: left;
+  max-width: 90vw;
+  box-sizing: border-box;
+  font-size: 5vw;
+  min-height: auto;
+}
+
+/* Author/date box styling for custom author/date text (JS-injected) */
+.author-date-box {
+  position: fixed;
+  bottom: 5vh;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: transparent;
+  color: white;
+  padding: 2.5vh 4vw;
+  border-radius: 8px;
+  font-size: 2vw;
+  font-weight: normal;
+  z-index: 20;
+  text-align: left;
+  box-shadow: none;
+  max-width: 90vw;
+  line-height: 1.4;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7);
 }
 
 /* Ensure text content is positioned correctly */
@@ -189,30 +245,10 @@ document.addEventListener('DOMContentLoaded', function() {
   originalTitle.style.display = 'none';
       }
 
-      // Create new custom title box with positioning
+      // Create new custom title box with class only
       const newTitle = document.createElement('div');
       newTitle.className = 'custom-title custom-element';
       newTitle.textContent = originalTitle ? originalTitle.textContent : 'Introduction to Machine Learning';
-      newTitle.style.cssText = `
-        background-color: #87CEEB !important;
-        color: #003366 !important;
-        padding: 25px 40px !important;
-        border-radius: 12px !important;
-        font-weight: bold !important;
-        position: fixed !important;
-        bottom: 300px !important;
-        left: 240px !important;
-        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2) !important;
-        max-width: calc(100vw - 120px) !important;
-        line-height: 1.2 !important;
-        z-index: 15 !important;
-        margin: 0 !important;
-        text-align: left !important;
-        font-size: 3.5rem !important;
-        height: auto !important;
-        min-height: auto !important;
-      `;
-      
       document.body.appendChild(newTitle);
       customElements.push(newTitle); // Track this element
       
@@ -230,19 +266,6 @@ document.addEventListener('DOMContentLoaded', function() {
       // Add ZHAW logo (top-left) - positioned relative to viewport
       const logo = document.createElement('div');
       logo.className = 'title-logo custom-element';
-      logo.style.cssText = `
-        position: fixed;
-        top: 30px;
-        left: 30px;
-        width: 180px;
-        height: 135px;
-        background-image: url('/ressources/zhaw_rgb_logo_nacht.png');
-        background-size: contain;
-        background-repeat: no-repeat;
-        background-position: center;
-        z-index: 50;
-        box-shadow: None;
-      `;
 
       document.body.appendChild(logo); // Attach to body instead of titleSlide
   customElements.push(logo); // Track this element
@@ -256,21 +279,6 @@ document.addEventListener('DOMContentLoaded', function() {
       const schoolText = document.createElement('div');
       schoolText.className = 'school-text custom-element';
       schoolText.textContent = 'School of Engineering';
-      schoolText.style.cssText = `
-        position: fixed;
-        top: 60px;
-        right: 30px;
-        text-align: right;
-        background-color: transparent;
-        padding: 0px 0px;
-        border-radius: 8px;
-        font-size: 1.5rem;
-        font-weight: 600;
-        color: #003366;
-        z-index: 50;
-        white-space: nowrap;
-        box-shadow: None;
-      `;
       document.body.appendChild(schoolText); // Attach to body instead of titleSlide
   customElements.push(schoolText); // Track this element
       
@@ -322,23 +330,6 @@ document.addEventListener('DOMContentLoaded', function() {
       authorDateContent += date + ' | ' + author;
       
       authorDateBox.innerHTML = authorDateContent;
-      authorDateBox.style.cssText = `
-        position: fixed;
-        bottom: 180px;
-        left: 240px;
-        background-color: transparent;
-        color: white;
-        padding: 15px 40px;
-        border-radius: 8px;
-        font-size: 1.5rem;
-        font-weight: 500;
-        z-index: 20;
-        text-align: left;
-        box-shadow: none;
-        max-width: calc(100vw - 280px);
-        line-height: 1.4;
-        text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7);
-      `;
 
       document.body.appendChild(authorDateBox); // Attach to body
   customElements.push(authorDateBox); // Track this element
