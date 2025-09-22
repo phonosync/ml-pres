@@ -266,11 +266,32 @@ print("Customer segments:", clusters)
 
 ## Choosing the Right Paradigm
 
-| Paradigm | When to Use | Data Requirements |
-|----------|-------------|-------------------|
-| **Supervised** | You have labeled examples and want to predict outcomes | Large labeled dataset |
-| **Unsupervised** | You want to discover patterns or structure in data | Unlabeled data |
-| **Reinforcement** | You need to learn optimal actions through interaction | Environment for trial-and-error |
+<table style="width: 100%; border-collapse: collapse;">
+  <thead>
+    <tr>
+      <th style="vertical-align: middle;">Learning Paradigm</th>
+      <th style="vertical-align: middle;">When to Use</th>
+      <th style="vertical-align: middle;">Data Requirements</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="vertical-align: middle;"><strong>Supervised</strong></td>
+      <td style="vertical-align: middle;">Predict values based on labeled examples</td>
+      <td style="vertical-align: middle;">Labeled dataset</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: middle;"><strong>Unsupervised</strong></td>
+      <td style="vertical-align: middle;">Discover patterns or structure in data</td>
+      <td style="vertical-align: middle;">Unlabeled data</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: middle;"><strong>Reinforcement</strong></td>
+      <td style="vertical-align: middle;">Learn optimal actions through interaction</td>
+      <td style="vertical-align: middle;">Agent-Environment interaction</td>
+    </tr>
+  </tbody>
+</table>
 
 ::: {.notes}
 The choice depends on:
@@ -283,8 +304,6 @@ The choice depends on:
 
 
 ## Summary
-
-### Key Takeaways:
 
 1. **Machine Learning** enables computers to learn from data without explicit programming
 2. **Supervised Learning** uses labeled data to make predictions
