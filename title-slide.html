@@ -8,7 +8,9 @@ This template creates a title slide with:
 - Author and date information positioned below title
 -->
 
-<section id="title-slide" data-background-color="#003366" class="quarto-title-block center">
+<section id="title-slide" data-background-color="#003366" 
+data-menu-title="$if(title-slide-attributes.data-menu-title)$$title-slide-attributes.data-menu-title$$else$Title$endif$" 
+class="quarto-title-block center">
 
 <!-- Hidden data containers for JavaScript to access -->
 <div id="quarto-author-data" style="display: none;">$author$</div>
