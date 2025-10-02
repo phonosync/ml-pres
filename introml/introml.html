@@ -211,9 +211,10 @@ This template creates a title slide with:
 - Author and date information positioned below title
 -->
 
-<section id="title-slide" data-background-color="#003366" data-menu-title="Title" class="quarto-title-block center">
+<section id="title-slide" data-background-color="#003366" data-menu-title="Introduction" class="quarto-title-block center">
 
 <!-- Hidden data containers for JavaScript to access -->
+<div id="quarto-title-data" style="display: none;">Introduction to Machine Learning</div>
 <div id="quarto-author-data" style="display: none;">Manuel Dömer</div>
 <div id="quarto-date-data" style="display: none;">21.09.2025</div>
 <div id="quarto-organisationalunit-data" style="display: none;">Abteilung Angewandte Mathematik, Physik und Operations</div>
@@ -291,6 +292,7 @@ section#title-slide .quarto-title-author {
   border-radius: 8px;
   font-size: 1.8vw;
   font-weight: 600;
+  font-family: "Source Sans Pro", Helvetica, sans-serif;
   color: #003366;
   z-index: 10;
   white-space: nowrap;
@@ -304,6 +306,7 @@ section#title-slide .quarto-title-author {
   padding: 2.5vh 4vw;
   border-radius: 8px;
   font-weight: bold;
+  font-family: "Source Sans Pro", Helvetica, sans-serif;
   position: fixed;
   bottom: 25vh;
   left: 50%;
@@ -328,6 +331,7 @@ section#title-slide .quarto-title-author {
   border-radius: 8px;
   font-size: 2vw;
   font-weight: normal;
+  font-family: "Source Sans Pro", Helvetica, sans-serif;
   z-index: 20;
   text-align: left;
   box-shadow: none;
@@ -442,16 +446,55 @@ document.addEventListener('DOMContentLoaded', function() {
         slides.style.padding = '0';
       }
 
-      // Hide original title element
-      const originalTitle = titleSlide.querySelector('h1.title') || titleSlide.querySelector('.title');
-      if (originalTitle) {
-  originalTitle.style.display = 'none';
+      // Get title, author, date, and organizational unit information from hidden data containers
+      let title = 'Title'; // fallback
+      let date = '01.12.2025'; // fallback
+      let author = 'Manuel Dömer'; // fallback
+      let organisationalunit = ''; // fallback
+      
+      // Get from hidden data containers first
+      const titleData = document.getElementById('quarto-title-data');
+      const authorData = document.getElementById('quarto-author-data');
+      const dateData = document.getElementById('quarto-date-data');
+      const orgUnitData = document.getElementById('quarto-organisationalunit-data');
+      
+      if (titleData && titleData.textContent.trim()) {
+        title = titleData.textContent.trim();
+      }
+      if (authorData && authorData.textContent.trim()) {
+        author = authorData.textContent.trim();
+      }
+      if (dateData && dateData.textContent.trim()) {
+        date = dateData.textContent.trim();
+      }
+      if (orgUnitData && orgUnitData.textContent.trim()) {
+        organisationalunit = orgUnitData.textContent.trim();
+      }
+      
+      // Try to get from meta tags as backup
+      const metaTitle = document.querySelector('meta[property="og:title"]') || document.querySelector('title');
+      const metaDate = document.querySelector('meta[name="date"]');
+      const metaAuthor = document.querySelector('meta[name="author"]');
+      
+      if (metaTitle && metaTitle.textContent && (!titleData || !titleData.textContent.trim())) {
+        title = metaTitle.textContent.trim();
+      }
+      if (metaDate && metaDate.getAttribute('content') && (!dateData || !dateData.textContent.trim())) {
+        date = String(metaDate.getAttribute('content'));
+      }
+      if (metaAuthor && metaAuthor.getAttribute('content')) {
+        author = metaAuthor.getAttribute('content');
       }
 
-      // Create new custom title box with class only
+      console.log('Title:', title);
+      console.log('Author:', author);
+      console.log('Date:', date);
+      console.log('Org Unit:', organisationalunit);
+
+      // Create new custom title box with the actual title content
       const newTitle = document.createElement('div');
       newTitle.className = 'custom-title custom-element';
-      newTitle.textContent = originalTitle ? originalTitle.textContent : 'Introduction to Machine Learning';
+      newTitle.textContent = title; // Use the extracted title
       document.body.appendChild(newTitle);
       customElements.push(newTitle); // Track this element
       
@@ -488,37 +531,6 @@ document.addEventListener('DOMContentLoaded', function() {
       // Hide if not on title slide
       if (!isOnTitleSlide) {
         schoolText.style.display = 'none';
-      }
-      
-      // Get author, date, and organizational unit information from hidden data containers
-      let date = '01.12.2025'; // fallback
-      let author = 'Manuel Dömer'; // fallback
-      let organisationalunit = ''; // fallback
-      
-      // Get from hidden data containers first
-      const authorData = document.getElementById('quarto-author-data');
-      const dateData = document.getElementById('quarto-date-data');
-      const orgUnitData = document.getElementById('quarto-organisationalunit-data');
-      
-      if (authorData && authorData.textContent.trim()) {
-        author = authorData.textContent.trim();
-      }
-      if (dateData && dateData.textContent.trim()) {
-        date = dateData.textContent.trim();
-      }
-      if (orgUnitData && orgUnitData.textContent.trim()) {
-        organisationalunit = orgUnitData.textContent.trim();
-      }
-      
-      // Try to get from meta tags as backup
-      const metaDate = document.querySelector('meta[name="date"]');
-      const metaAuthor = document.querySelector('meta[name="author"]');
-      
-      if (metaDate && metaDate.getAttribute('content') && (!dateData || !dateData.textContent.trim())) {
-        date = String(metaDate.getAttribute('content'));
-      }
-      if (metaAuthor && metaAuthor.getAttribute('content')) {
-        author = metaAuthor.getAttribute('content');
       }
 
       // Add author/date box positioned below title

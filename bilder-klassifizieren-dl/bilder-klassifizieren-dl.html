@@ -10,7 +10,7 @@
   <meta name="generator" content="quarto-1.7.32">
 
   <meta name="author" content="Manuel Dömer">
-  <title>Introduction to Machine Learning</title>
+  <title>Bildverarbeitung mit Deep Learning</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
@@ -28,75 +28,9 @@
       margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
       vertical-align: middle;
     }
-    /* CSS for syntax highlighting */
-    html { -webkit-text-size-adjust: 100%; }
-    pre > code.sourceCode { white-space: pre; position: relative; }
-    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-    pre > code.sourceCode > span:empty { height: 1.2em; }
-    .sourceCode { overflow: visible; }
-    code.sourceCode > span { color: inherit; text-decoration: inherit; }
-    div.sourceCode { margin: 1em 0; }
-    pre.sourceCode { margin: 0; }
-    @media screen {
-    div.sourceCode { overflow: auto; }
-    }
-    @media print {
-    pre > code.sourceCode { white-space: pre-wrap; }
-    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-    }
-    pre.numberSource code
-      { counter-reset: source-line 0; }
-    pre.numberSource code > span
-      { position: relative; left: -4em; counter-increment: source-line; }
-    pre.numberSource code > span > a:first-child::before
-      { content: counter(source-line);
-        position: relative; left: -1em; text-align: right; vertical-align: baseline;
-        border: none; display: inline-block;
-        -webkit-touch-callout: none; -webkit-user-select: none;
-        -khtml-user-select: none; -moz-user-select: none;
-        -ms-user-select: none; user-select: none;
-        padding: 0 4px; width: 4em;
-      }
-    pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-    div.sourceCode
-      { color: #24292e;  }
-    @media screen {
-    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-    }
-    code span { color: #24292e; } /* Normal */
-    code span.al { color: #ff5555; font-weight: bold; } /* Alert */
-    code span.an { color: #6a737d; } /* Annotation */
-    code span.at { color: #d73a49; } /* Attribute */
-    code span.bn { color: #005cc5; } /* BaseN */
-    code span.bu { color: #d73a49; } /* BuiltIn */
-    code span.cf { color: #d73a49; } /* ControlFlow */
-    code span.ch { color: #032f62; } /* Char */
-    code span.cn { color: #005cc5; } /* Constant */
-    code span.co { color: #6a737d; } /* Comment */
-    code span.cv { color: #6a737d; } /* CommentVar */
-    code span.do { color: #6a737d; } /* Documentation */
-    code span.dt { color: #d73a49; } /* DataType */
-    code span.dv { color: #005cc5; } /* DecVal */
-    code span.er { color: #ff5555; text-decoration: underline; } /* Error */
-    code span.ex { color: #d73a49; font-weight: bold; } /* Extension */
-    code span.fl { color: #005cc5; } /* Float */
-    code span.fu { color: #6f42c1; } /* Function */
-    code span.im { color: #032f62; } /* Import */
-    code span.in { color: #6a737d; } /* Information */
-    code span.kw { color: #d73a49; } /* Keyword */
-    code span.op { color: #24292e; } /* Operator */
-    code span.ot { color: #6f42c1; } /* Other */
-    code span.pp { color: #d73a49; } /* Preprocessor */
-    code span.re { color: #6a737d; } /* RegionMarker */
-    code span.sc { color: #005cc5; } /* SpecialChar */
-    code span.ss { color: #032f62; } /* SpecialString */
-    code span.st { color: #032f62; } /* String */
-    code span.va { color: #e36209; } /* Variable */
-    code span.vs { color: #032f62; } /* VerbatimString */
-    code span.wa { color: #ff5555; } /* Warning */
   </style>
   <link rel="stylesheet" href="bilder-klassifizieren-dl_files/libs/revealjs/dist/theme/quarto-f563837468303362081e247dddd440d0.css">
-  <link rel="stylesheet" href="../quarto_css/hscroll.css">
+  <link rel="stylesheet" href="../quarto_css/quarto.css">
   <link href="bilder-klassifizieren-dl_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
   <link href="bilder-klassifizieren-dl_files/libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
   <link href="bilder-klassifizieren-dl_files/libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
@@ -211,23 +145,17 @@ This template creates a title slide with:
 - Author and date information positioned below title
 -->
 
-<section id="title-slide" data-background-color="#003366" class="quarto-title-block center">
+<section id="title-slide" data-background-color="#003366" data-menu-title="Titel" class="quarto-title-block center">
 
 <!-- Hidden data containers for JavaScript to access -->
+<div id="quarto-title-data" style="display: none;">Bildverarbeitung mit Deep Learning</div>
 <div id="quarto-author-data" style="display: none;">Manuel Dömer</div>
-<div id="quarto-date-data" style="display: none;">21. September 2025</div>
+<div id="quarto-date-data" style="display: none;">02.10.2025</div>
 <div id="quarto-organisationalunit-data" style="display: none;">Abteilung Angewandte Mathematik, Physik und Operations</div>
 
 <style>
 /* Minimal Title Slide Styling - Let RevealJS handle the background */
 
-/* Force background image on title slide with maximum specificity */
-section#title-slide {
-  background-image: url('/ressources/0101.svg') !important;
-  background-size: 100% auto !important;
-  background-position: top left !important;
-  background-repeat: no-repeat !important;
-}
 
 /* Remove white borders and ensure full coverage */
 section#title-slide {
@@ -272,19 +200,78 @@ section#title-slide .quarto-title-author {
   opacity: 0 !important;
 }
 
-/* Title styling with light blue background - title slide only */
-section#title-slide h1.title,
-section#title-slide .title {
+/* Logo styling for custom title slide logo (JS-injected) */
+.title-logo {
+  position: fixed;
+  top: 3vh;
+  left: 2vw;
+  width: 18vw;
+  height: 13.5vh;
+  background-image: url('/ressources/zhaw_rgb_logo_nacht.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: left center;
+  z-index: 10;
+  box-shadow: none;
+}
+
+/* School text styling for custom school text (JS-injected) */
+.school-text {
+  position: fixed;
+  top: 6vh;
+  right: 2vw;
+  text-align: right;
+  background-color: transparent;
+  padding: 0px 0px;
+  border-radius: 8px;
+  font-size: 1.8vw;
+  font-weight: 600;
+  font-family: "Source Sans Pro", Helvetica, sans-serif;
+  color: #003366;
+  z-index: 10;
+  white-space: nowrap;
+  box-shadow: none;
+}
+
+/* Title styling for custom title box (JS-injected) */
+.custom-title {
   background-color: #87CEEB; /* Light blue */
   color: #003366; /* Dark blue text */
-  padding: 25px 40px;
-  border-radius: 12px;
+  padding: 2.5vh 4vw;
+  border-radius: 8px;
   font-weight: bold;
+  font-family: "Source Sans Pro", Helvetica, sans-serif;
   position: fixed;
-  bottom: 30px;
+  bottom: 25vh;
   left: 50%;
   transform: translateX(-50%);
-  z-index: 10;
+  z-index: 50;
+  text-align: left;
+  max-width: 90vw;
+  box-sizing: border-box;
+  font-size: 5vw;
+  min-height: auto;
+}
+
+/* Author/date box styling for custom author/date text (JS-injected) */
+.author-date-box {
+  position: fixed;
+  bottom: 5vh;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: transparent;
+  color: white;
+  padding: 2.5vh 4vw;
+  border-radius: 8px;
+  font-size: 2vw;
+  font-weight: normal;
+  font-family: "Source Sans Pro", Helvetica, sans-serif;
+  z-index: 20;
+  text-align: left;
+  box-shadow: none;
+  max-width: 90vw;
+  line-height: 1.4;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7);
 }
 
 /* Ensure text content is positioned correctly */
@@ -296,9 +283,10 @@ section#title-slide .title {
 }
 
 /* Add proper padding for content slides (non-title slides) */
-.reveal .slides section:not(#title-slide) {
+/* .reveal .slides section:not(#title-slide) {
   padding: 20px !important;
 }
+*/
 
 /* Ensure content slides have proper spacing */
 .reveal .slides section:not(#title-slide) h1,
@@ -392,36 +380,55 @@ document.addEventListener('DOMContentLoaded', function() {
         slides.style.padding = '0';
       }
 
-      // Hide original title element
-      const originalTitle = titleSlide.querySelector('h1.title') || titleSlide.querySelector('.title');
-      if (originalTitle) {
-  originalTitle.style.display = 'none';
+      // Get title, author, date, and organizational unit information from hidden data containers
+      let title = 'Title'; // fallback
+      let date = '01.12.2025'; // fallback
+      let author = 'Manuel Dömer'; // fallback
+      let organisationalunit = ''; // fallback
+      
+      // Get from hidden data containers first
+      const titleData = document.getElementById('quarto-title-data');
+      const authorData = document.getElementById('quarto-author-data');
+      const dateData = document.getElementById('quarto-date-data');
+      const orgUnitData = document.getElementById('quarto-organisationalunit-data');
+      
+      if (titleData && titleData.textContent.trim()) {
+        title = titleData.textContent.trim();
+      }
+      if (authorData && authorData.textContent.trim()) {
+        author = authorData.textContent.trim();
+      }
+      if (dateData && dateData.textContent.trim()) {
+        date = dateData.textContent.trim();
+      }
+      if (orgUnitData && orgUnitData.textContent.trim()) {
+        organisationalunit = orgUnitData.textContent.trim();
+      }
+      
+      // Try to get from meta tags as backup
+      const metaTitle = document.querySelector('meta[property="og:title"]') || document.querySelector('title');
+      const metaDate = document.querySelector('meta[name="date"]');
+      const metaAuthor = document.querySelector('meta[name="author"]');
+      
+      if (metaTitle && metaTitle.textContent && (!titleData || !titleData.textContent.trim())) {
+        title = metaTitle.textContent.trim();
+      }
+      if (metaDate && metaDate.getAttribute('content') && (!dateData || !dateData.textContent.trim())) {
+        date = String(metaDate.getAttribute('content'));
+      }
+      if (metaAuthor && metaAuthor.getAttribute('content')) {
+        author = metaAuthor.getAttribute('content');
       }
 
-      // Create new custom title box with positioning
+      console.log('Title:', title);
+      console.log('Author:', author);
+      console.log('Date:', date);
+      console.log('Org Unit:', organisationalunit);
+
+      // Create new custom title box with the actual title content
       const newTitle = document.createElement('div');
       newTitle.className = 'custom-title custom-element';
-      newTitle.textContent = originalTitle ? originalTitle.textContent : 'Introduction to Machine Learning';
-      newTitle.style.cssText = `
-        background-color: #87CEEB !important;
-        color: #003366 !important;
-        padding: 25px 40px !important;
-        border-radius: 12px !important;
-        font-weight: bold !important;
-        position: fixed !important;
-        bottom: 250px !important;
-        left: 240px !important;
-        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2) !important;
-        max-width: calc(100vw - 120px) !important;
-        line-height: 1.2 !important;
-        z-index: 15 !important;
-        margin: 0 !important;
-        text-align: left !important;
-        font-size: 3.5rem !important;
-        height: auto !important;
-        min-height: auto !important;
-      `;
-      
+      newTitle.textContent = title; // Use the extracted title
       document.body.appendChild(newTitle);
       customElements.push(newTitle); // Track this element
       
@@ -439,19 +446,6 @@ document.addEventListener('DOMContentLoaded', function() {
       // Add ZHAW logo (top-left) - positioned relative to viewport
       const logo = document.createElement('div');
       logo.className = 'title-logo custom-element';
-      logo.style.cssText = `
-        position: fixed;
-        top: 30px;
-        left: 30px;
-        width: 180px;
-        height: 135px;
-        background-image: url('/ressources/zhaw_rgb_logo_nacht.png');
-        background-size: contain;
-        background-repeat: no-repeat;
-        background-position: center;
-        z-index: 50;
-        box-shadow: None;
-      `;
 
       document.body.appendChild(logo); // Attach to body instead of titleSlide
   customElements.push(logo); // Track this element
@@ -465,58 +459,12 @@ document.addEventListener('DOMContentLoaded', function() {
       const schoolText = document.createElement('div');
       schoolText.className = 'school-text custom-element';
       schoolText.textContent = 'School of Engineering';
-      schoolText.style.cssText = `
-        position: fixed;
-        top: 60px;
-        right: 30px;
-        text-align: right;
-        background-color: transparent;
-        padding: 0px 0px;
-        border-radius: 8px;
-        font-size: 1.5rem;
-        font-weight: 600;
-        color: #003366;
-        z-index: 50;
-        white-space: nowrap;
-        box-shadow: None;
-      `;
       document.body.appendChild(schoolText); // Attach to body instead of titleSlide
   customElements.push(schoolText); // Track this element
       
       // Hide if not on title slide
       if (!isOnTitleSlide) {
         schoolText.style.display = 'none';
-      }
-      
-      // Get author, date, and organizational unit information from hidden data containers
-      let date = '01.12.2025'; // fallback
-      let author = 'Manuel Dömer'; // fallback
-      let organisationalunit = ''; // fallback
-      
-      // Get from hidden data containers first
-      const authorData = document.getElementById('quarto-author-data');
-      const dateData = document.getElementById('quarto-date-data');
-      const orgUnitData = document.getElementById('quarto-organisationalunit-data');
-      
-      if (authorData && authorData.textContent.trim()) {
-        author = authorData.textContent.trim();
-      }
-      if (dateData && dateData.textContent.trim()) {
-        date = dateData.textContent.trim();
-      }
-      if (orgUnitData && orgUnitData.textContent.trim()) {
-        organisationalunit = orgUnitData.textContent.trim();
-      }
-      
-      // Try to get from meta tags as backup
-      const metaDate = document.querySelector('meta[name="date"]');
-      const metaAuthor = document.querySelector('meta[name="author"]');
-      
-      if (metaDate && metaDate.getAttribute('content') && (!dateData || !dateData.textContent.trim())) {
-        date = String(metaDate.getAttribute('content'));
-      }
-      if (metaAuthor && metaAuthor.getAttribute('content')) {
-        author = metaAuthor.getAttribute('content');
       }
 
       // Add author/date box positioned below title
@@ -531,23 +479,6 @@ document.addEventListener('DOMContentLoaded', function() {
       authorDateContent += date + ' | ' + author;
       
       authorDateBox.innerHTML = authorDateContent;
-      authorDateBox.style.cssText = `
-        position: fixed;
-        bottom: 140px;
-        left: 240px;
-        background-color: transparent;
-        color: white;
-        padding: 15px 40px;
-        border-radius: 8px;
-        font-size: 1.5rem;
-        font-weight: 500;
-        z-index: 20;
-        text-align: left;
-        box-shadow: none;
-        max-width: calc(100vw - 280px);
-        line-height: 1.4;
-        text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7);
-      `;
 
       document.body.appendChild(authorDateBox); // Attach to body
   customElements.push(authorDateBox); // Track this element
@@ -681,491 +612,34 @@ document.addEventListener('DOMContentLoaded', function() {
 </script>
 
 </section>
-<section id="big-data-enables-machine-learning" class="slide level2">
-<h2>Big data enables machine learning</h2>
-<div class="cell" data-layout-align="center">
-<div class="cell-output-display">
-<div>
-<p></p><figure class=""><p></p>
-<div>
-<p><img data-src="bilder-klassifizieren-dl_files/figure-revealjs/mermaid-figure-1.png" style="width:5.49in;height:6in"></p>
-</div>
-<p></p></figure><p></p>
-</div>
-</div>
-</div>
+<section id="willkommen" class="slide level2">
+<h2>Willkommen!</h2>
+<div class="columns">
+<div class="column" style="width:40%;">
+<p><img data-src="pics/jart.png" style="width:100.0%"></p>
+</div><div class="column center" style="width:60%;">
+<p>Thomas Järmann<br> Leiter Bildung<br>
+ZHAW School of Engineering</p>
+</div></div>
 </section>
-<section id="what-is-machine-learning" class="slide level2">
-<h2>What is machine learning?</h2>
-<blockquote>
-<p>“Machine learning is a field of study that gives computers the ability to learn without being explicitly programmed.”</p>
-<p>— Arthur Samuel (1959)</p>
-</blockquote>
-<aside class="notes">
-<p>Arthur Samuel coined this definition in 1959 while working at IBM. He was a pioneer in computer gaming and artificial intelligence, and his work on checkers-playing programs was groundbreaking.</p>
-<style type="text/css">
-        span.MJX_Assistive_MathML {
-          position:absolute!important;
-          clip: rect(1px, 1px, 1px, 1px);
-          padding: 1px 0 0 0!important;
-          border: 0!important;
-          height: 1px!important;
-          width: 1px!important;
-          overflow: hidden!important;
-          display:block!important;
-      }</style></aside>
-</section>
-<section id="what-is-machine-learning-used-for" class="slide level2">
-<h2>What is machine learning used for?</h2>
+<section id="programm" class="slide level2">
+<h2>Programm</h2>
 <ul>
-<li>gain insights</li>
-<li>predict events</li>
-</ul>
-<p>in order to</p>
-<ul>
-<li>provide a quantitative basis for decisions (actionable insights)</li>
-<li>influence the data generating process</li>
-</ul>
-<aside class="notes">
-<p>Machine learning is used to discover patterns in the data and/or derive a model of the underlying data generating process to gain insights, understand a pattern… and/or to make predictions. * provide a quantitative basis for decisions (actionable insights). e.g.&nbsp;determine target segment for marketing campaign * influence the data generating process. E.g. adapt the features of an app to influence user behavior</p>
-<style type="text/css">
-        span.MJX_Assistive_MathML {
-          position:absolute!important;
-          clip: rect(1px, 1px, 1px, 1px);
-          padding: 1px 0 0 0!important;
-          border: 0!important;
-          height: 1px!important;
-          width: 1px!important;
-          overflow: hidden!important;
-          display:block!important;
-      }</style></aside>
-</section>
-<section id="silicon-valley-id" class="slide level2" data-menu-title="Silicon Valley">
-<h2></h2>
-<iframe data-external="1" src="https://www.youtube.com/embed/FnigvS_uI1w?feature=shared" width="100%" height="100%" title="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe>
-</section>
-<section id="build-a-food-classifier" class="slide level2">
-<h2>Build a food classifier</h2>
-<ul>
-<li>The data: <a href="https://tinyurl.com/mvvhj2n5" class="external" data-preview-link="false" target="_blank">https://tinyurl.com/mvvhj2n5</a></li>
-<li>The teachable machine: <a href="https://teachablemachine.withgoogle.com" class="external" data-preview-link="false" target="_blank">https://teachablemachine.withgoogle.com</a></li>
+<li>Data Science und AI</li>
+<li>Anwendungsbeispiele</li>
+<li>Einführung Klassifikation</li>
+<li>Teachable Machine</li>
+<li>Neuronale Netze und Deep Learning</li>
 </ul>
 </section>
-<section id="structure-of-the-learning-problem" class="slide level2">
-<h2>Structure of the learning problem</h2>
-</section>
-<section id="model-and-learning" class="slide level2">
-<h2>Model and learning</h2>
-<p><strong>Model</strong>: A model is a mathematical, statistical, or logical representation that describes the relationship between variables and can be used to make predictions or understand patterns in data.</p>
-<p><strong>Learning/Training</strong>: Machine Learning employs adaptive models, which are configured and parameterised automatically based on the training data.</p>
-</section>
-<section id="three-main-paradigms" class="slide level2">
-<h2>Three Main Paradigms</h2>
-<ol type="1">
-<li><strong>Supervised Learning</strong></li>
-<li><strong>Unsupervised Learning</strong></li>
-<li><strong>Reinforcement Learning</strong></li>
-</ol>
-<p>Each paradigm addresses different tasks and uses different learning strategies.</p>
-</section>
-<section id="supervised-learning" class="slide level2">
-<h2>Supervised Learning</h2>
+<section id="ziele" class="slide level2">
+<h2>Ziele</h2>
+<p>Sie…</p>
 <ul>
-<li><strong>Training Data</strong>: Labeled samples (input features + output values)</li>
-<li><strong>Goal</strong>: Model to predict output values for new input features</li>
+<li>haben ein grundlegendes Verständnis für die Lösung von Klassifikationsproblemen</li>
+<li>kennen Grundbegriffe des Deep Learnings</li>
+<li>können die Teachable Machine für eigene Anwendungen benutzen</li>
 </ul>
-</section>
-<section id="data-matrix-and-labels" class="slide level2">
-<h2>Data Matrix and Labels</h2>
-
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Design Matrix</title>
-    <style>
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #f8f9fa;
-            padding: 20px;
-            margin: 0;
-        }
-        
-        .matrix-container {
-            max-width: 900px;
-            margin: 0 auto;
-            background: transparent;
-            padding: 20px;
-        }
-        
-        .design-matrix {
-            width: 100%;
-            border-collapse: collapse;
-            margin: 20px 0;
-            background: white;
-        }
-        
-        .design-matrix th {
-            padding: 12px 15px;
-            text-align: center;
-            font-weight: 600;
-            font-size: 14px;
-            border: 1px solid #ddd;
-        }
-        
-        .design-matrix td {
-            padding: 12px 15px;
-            text-align: center;
-            border: 1px solid #ddd;
-            font-size: 14px;
-        }
-        
-        .sample-header {
-            text-align: center;
-            background-color: #3498db;
-            color: white;
-        }
-        
-        .sample-col {
-            text-align: center;
-            background-color: #3498db;
-            font-weight: 600;
-            color: white;
-        }
-        
-        .feature-header {
-            text-align: center !important;
-            background-color: #3498db;
-            color: white;
-        }
-        
-        .feature-col {
-            text-align: center !important;
-            background-color: #ecf0f1;
-            color: #495057;
-        }
-        
-        .output-header {
-            text-align: center !important;
-            background-color: #fdcb6e;
-            color: #2d3436;
-        }
-        
-        .output-col {
-            text-align: center !important;
-            background-color: #ffeaa7;
-            font-weight: 600;
-            color: #2d3436;
-        }
-        
-        .spacer {
-            border: none !important;
-            background: transparent !important;
-            width: 30px;
-        }
-        
-        .spacer-cell {
-            border: none !important;
-            background: transparent !important;
-        }
-        
-        .matrix-notation {
-            text-align: center;
-            margin: 20px 0;
-            font-size: 18px;
-            color: #2c3e50;
-        }
-    </style>
-
-
-    <div class="matrix-container">
-        
-<table class="design-matrix caption-top" data-quarto-postprocess="true">
-<thead>
-<tr class="header">
-<th class="sample-header" data-quarto-table-cell-role="th"></th>
-<th class="feature-header" data-quarto-table-cell-role="th">Feature 1</th>
-<th class="feature-header" data-quarto-table-cell-role="th">Feature 2</th>
-<th class="feature-header" data-quarto-table-cell-role="th">⋯</th>
-<th class="feature-header" data-quarto-table-cell-role="th">Feature <em>N</em></th>
-<th class="spacer" data-quarto-table-cell-role="th"></th>
-<th class="output-header" data-quarto-table-cell-role="th">Output</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td class="sample-col">Sample 1</td>
-<td class="feature-col"><em>x</em><sub>11</sub></td>
-<td class="feature-col"><em>x</em><sub>12</sub></td>
-<td class="feature-col">⋯</td>
-<td class="feature-col"><em>x</em><sub>1<em>N</em></sub></td>
-<td class="spacer-cell"></td>
-<td class="output-col"><em>y</em><sub>1</sub></td>
-</tr>
-<tr class="even">
-<td class="sample-col">Sample 2</td>
-<td class="feature-col"><em>x</em>₂₁</td>
-<td class="feature-col"><em>x</em>₂₂</td>
-<td class="feature-col">⋯</td>
-<td class="feature-col"><em>x</em>₂<sub><em>N</em></sub></td>
-<td class="spacer-cell"></td>
-<td class="output-col"><em>y</em>₂</td>
-</tr>
-<tr class="odd">
-<td class="sample-col">Sample 3</td>
-<td class="feature-col"><em>x</em>₃₁</td>
-<td class="feature-col"><em>x</em>₃₂</td>
-<td class="feature-col">⋯</td>
-<td class="feature-col"><em>x</em>₃<sub><em>N</em></sub></td>
-<td class="spacer-cell"></td>
-<td class="output-col"><em>y</em>₃</td>
-</tr>
-<tr class="even">
-<td class="sample-col">⋮</td>
-<td class="feature-col">⋮</td>
-<td class="feature-col">⋮</td>
-<td class="feature-col">⋱</td>
-<td class="feature-col">⋮</td>
-<td class="spacer-cell"></td>
-<td class="output-col">⋮</td>
-</tr>
-<tr class="odd">
-<td class="sample-col">Sample <em>M</em></td>
-<td class="feature-col"><em>x<sub>M1</sub></em></td>
-<td class="feature-col"><em>x</em><sub><em>M2</em></sub></td>
-<td class="feature-col">⋯</td>
-<td class="feature-col"><em>x</em><sub><em>M</em><em>N</em></sub></td>
-<td class="spacer-cell"></td>
-<td class="output-col"><em>y</em><sub><em>M</em></sub></td>
-</tr>
-</tbody>
-</table>
-
-    </div>
-
-<ul>
-<li>Dimension of <span class="math inline">\(X\)</span>: <span class="math inline">\(M\text{ (samples)} \times N \text{ (features)}\)</span><br>
-</li>
-<li>Dimensions of <span class="math inline">\(y\)</span>: <span class="math inline">\(M\)</span></li>
-</ul>
-</section>
-<section id="supervised-learning-1" class="slide level2">
-<h2>Supervised Learning</h2>
-<ul>
-<li><strong>Training Data</strong>: Labeled samples (input features + output values)</li>
-<li><strong>Goal</strong>: Model to predict output values for new input features</li>
-</ul>
-<p><span class="math inline">\(𝑓(𝑿_{m,:};\mathbf{\theta})\rightarrow 𝑦_{m}\)</span></p>
-<ul>
-<li><strong>Process</strong>: Algorithm adapts parameters <span class="math inline">\(\mathbf{\theta}\)</span> of a model <span class="math inline">\(f\)</span> to predict the correct outputs for the known training samples</li>
-</ul>
-</section>
-<section id="classification-vs.-regression" class="slide level2">
-<h2>Classification vs.&nbsp;Regression</h2>
-<table style="width: 100%; border-collapse: collapse;">
-<thead>
-<tr>
-<th style="vertical-align: middle;">
-Task
-</th>
-<th style="vertical-align: middle;">
-Output Variable Type
-</th>
-<th style="vertical-align: middle;">
-Applications
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="vertical-align: middle;">
-<strong>Classification</strong>
-</td>
-<td style="vertical-align: middle;">
-Categorical
-</td>
-<td style="vertical-align: middle;">
-<ul>
-<li>
-Spam detection
-</li>
-<li>
-Credit approval
-</li>
-</ul>
-</td>
-</tr>
-<tr>
-<td style="vertical-align: middle;">
-<strong>Regression</strong>
-</td>
-<td style="vertical-align: middle;">
-Numerical continuous
-</td>
-<td style="vertical-align: middle;">
-<ul>
-<li>
-Predict prices
-</li>
-<li>
-Probability of default
-</li>
-</ul>
-</td>
-</tr>
-</tbody>
-</table>
-</section>
-<section id="supervised-learning-example" class="slide level2">
-<h2>Supervised Learning Example</h2>
-<div class="sourceCode" id="cb1"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href=""></a><span class="co"># Simple example: Predicting house prices</span></span>
-<span id="cb1-2"><a href=""></a><span class="im">from</span> sklearn.linear_model <span class="im">import</span> LinearRegression</span>
-<span id="cb1-3"><a href=""></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb1-4"><a href=""></a></span>
-<span id="cb1-5"><a href=""></a><span class="co"># Training data (house size in sq ft, price in $1000s)</span></span>
-<span id="cb1-6"><a href=""></a>X_train <span class="op">=</span> np.array([[<span class="dv">1500</span>], [<span class="dv">2000</span>], [<span class="dv">2500</span>], [<span class="dv">3000</span>]])</span>
-<span id="cb1-7"><a href=""></a>y_train <span class="op">=</span> np.array([<span class="dv">300</span>, <span class="dv">400</span>, <span class="dv">500</span>, <span class="dv">600</span>])</span>
-<span id="cb1-8"><a href=""></a></span>
-<span id="cb1-9"><a href=""></a><span class="co"># Create and train model</span></span>
-<span id="cb1-10"><a href=""></a>model <span class="op">=</span> LinearRegression()</span>
-<span id="cb1-11"><a href=""></a>model.fit(X_train, y_train)</span>
-<span id="cb1-12"><a href=""></a></span>
-<span id="cb1-13"><a href=""></a><span class="co"># Predict price for new house</span></span>
-<span id="cb1-14"><a href=""></a>new_house_size <span class="op">=</span> [[<span class="dv">2200</span>]]</span>
-<span id="cb1-15"><a href=""></a>predicted_price <span class="op">=</span> model.predict(new_house_size)</span>
-<span id="cb1-16"><a href=""></a><span class="bu">print</span>(<span class="ss">f"Predicted price: $</span><span class="sc">{</span>predicted_price[<span class="dv">0</span>]<span class="sc">:.0f}</span><span class="ss">k"</span>)</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section>
-<section id="unsupervised-learning" class="slide level2">
-<h2>Unsupervised Learning</h2>
-<h3 id="learning-without-a-teacher">Learning without a Teacher</h3>
-<ul>
-<li><strong>Input</strong>: Unlabeled data (features only, no target)</li>
-<li><strong>Goal</strong>: Discover hidden patterns or structures</li>
-<li><strong>Process</strong>: Algorithm finds patterns without knowing “correct” answers</li>
-</ul>
-<h3 id="common-applications">Common Applications:</h3>
-<ul>
-<li><strong>Clustering</strong>: Grouping similar items</li>
-<li><strong>Dimensionality Reduction</strong>: Simplifying complex data</li>
-<li><strong>Anomaly Detection</strong>: Finding unusual patterns</li>
-</ul>
-<h3 id="examples">Examples:</h3>
-<ul>
-<li>Customer segmentation</li>
-<li>Data compression</li>
-<li>Fraud detection</li>
-<li>Gene analysis</li>
-</ul>
-</section>
-<section id="unsupervised-learning-example" class="slide level2">
-<h2>Unsupervised Learning Example</h2>
-<div class="sourceCode" id="cb2"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href=""></a><span class="co"># Customer segmentation using K-means clustering</span></span>
-<span id="cb2-2"><a href=""></a><span class="im">from</span> sklearn.cluster <span class="im">import</span> KMeans</span>
-<span id="cb2-3"><a href=""></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb2-4"><a href=""></a></span>
-<span id="cb2-5"><a href=""></a><span class="co"># Customer data: [age, income]</span></span>
-<span id="cb2-6"><a href=""></a>customers <span class="op">=</span> np.array([</span>
-<span id="cb2-7"><a href=""></a>    [<span class="dv">25</span>, <span class="dv">40000</span>], [<span class="dv">30</span>, <span class="dv">60000</span>], [<span class="dv">35</span>, <span class="dv">80000</span>],</span>
-<span id="cb2-8"><a href=""></a>    [<span class="dv">45</span>, <span class="dv">90000</span>], [<span class="dv">50</span>, <span class="dv">100000</span>], [<span class="dv">55</span>, <span class="dv">120000</span>],</span>
-<span id="cb2-9"><a href=""></a>    [<span class="dv">22</span>, <span class="dv">35000</span>], [<span class="dv">28</span>, <span class="dv">50000</span>], [<span class="dv">40</span>, <span class="dv">85000</span>]</span>
-<span id="cb2-10"><a href=""></a>])</span>
-<span id="cb2-11"><a href=""></a></span>
-<span id="cb2-12"><a href=""></a><span class="co"># Cluster customers into 3 groups</span></span>
-<span id="cb2-13"><a href=""></a>kmeans <span class="op">=</span> KMeans(n_clusters<span class="op">=</span><span class="dv">3</span>, random_state<span class="op">=</span><span class="dv">42</span>)</span>
-<span id="cb2-14"><a href=""></a>clusters <span class="op">=</span> kmeans.fit_predict(customers)</span>
-<span id="cb2-15"><a href=""></a></span>
-<span id="cb2-16"><a href=""></a><span class="bu">print</span>(<span class="st">"Customer segments:"</span>, clusters)</span>
-<span id="cb2-17"><a href=""></a><span class="co"># Output: Different customers assigned to different segments</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section>
-<section id="reinforcement-learning" class="slide level2">
-<h2>Reinforcement Learning</h2>
-<h3 id="learning-through-trial-and-error">Learning through Trial and Error</h3>
-<ul>
-<li><strong>Input</strong>: Environment with states, actions, and rewards</li>
-<li><strong>Goal</strong>: Learn optimal actions to maximize cumulative reward</li>
-<li><strong>Process</strong>: Agent explores environment, receives feedback, improves strategy</li>
-</ul>
-<h3 id="key-components">Key Components:</h3>
-<ul>
-<li><strong>Agent</strong>: The learner/decision maker</li>
-<li><strong>Environment</strong>: The world the agent interacts with</li>
-<li><strong>Actions</strong>: What the agent can do</li>
-<li><strong>Rewards</strong>: Feedback from the environment</li>
-</ul>
-</section>
-<section id="reinforcement-learning-applications" class="slide level2">
-<h2>Reinforcement Learning Applications</h2>
-<h3 id="real-world-examples">Real-world Examples:</h3>
-<ul>
-<li><strong>Game Playing</strong>: Chess, Go, video games</li>
-<li><strong>Robotics</strong>: Robot navigation, manipulation</li>
-<li><strong>Autonomous Vehicles</strong>: Self-driving cars</li>
-<li><strong>Trading</strong>: Algorithmic trading strategies</li>
-<li><strong>Recommendation Systems</strong>: Personalized content</li>
-<li><strong>Resource Management</strong>: Cloud computing optimization</li>
-</ul>
-<h3 id="famous-success-stories">Famous Success Stories:</h3>
-<ul>
-<li>AlphaGo (Google DeepMind)</li>
-<li>OpenAI Five (Dota 2)</li>
-<li>Autonomous drone racing</li>
-</ul>
-</section>
-<section id="choosing-the-right-paradigm" class="slide level2">
-<h2>Choosing the Right Paradigm</h2>
-<table class="caption-top">
-<colgroup>
-<col style="width: 23%">
-<col style="width: 30%">
-<col style="width: 45%">
-</colgroup>
-<thead>
-<tr class="header">
-<th>Paradigm</th>
-<th>When to Use</th>
-<th>Data Requirements</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><strong>Supervised</strong></td>
-<td>You have labeled examples and want to predict outcomes</td>
-<td>Large labeled dataset</td>
-</tr>
-<tr class="even">
-<td><strong>Unsupervised</strong></td>
-<td>You want to discover patterns or structure in data</td>
-<td>Unlabeled data</td>
-</tr>
-<tr class="odd">
-<td><strong>Reinforcement</strong></td>
-<td>You need to learn optimal actions through interaction</td>
-<td>Environment for trial-and-error</td>
-</tr>
-</tbody>
-</table>
-<aside class="notes">
-<p>The choice depends on: - What type of problem you’re solving - What kind of data you have available - Whether you need interpretable results - How much computational resources you have</p>
-<style type="text/css">
-        span.MJX_Assistive_MathML {
-          position:absolute!important;
-          clip: rect(1px, 1px, 1px, 1px);
-          padding: 1px 0 0 0!important;
-          border: 0!important;
-          height: 1px!important;
-          width: 1px!important;
-          overflow: hidden!important;
-          display:block!important;
-      }</style></aside>
-</section>
-<section id="summary" class="slide level2">
-<h2>Summary</h2>
-<h3 id="key-takeaways">Key Takeaways:</h3>
-<ol type="1">
-<li><strong>Machine Learning</strong> enables computers to learn from data without explicit programming</li>
-<li><strong>Supervised Learning</strong> uses labeled data to make predictions</li>
-<li><strong>Unsupervised Learning</strong> discovers hidden patterns in unlabeled data</li>
-<li><strong>Reinforcement Learning</strong> learns optimal actions through trial and error</li>
-<li>Each paradigm suits different types of problems and data scenarios</li>
-</ol>
 
 </section>
     </div>
@@ -1354,7 +828,7 @@ Probability of default
         height: 700,
 
         // Factor of the display size that should remain empty around the content
-        margin: 0.1,
+        margin: 1.0e-2,
 
         math: {
           mathjax: 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/MathJax.js',
