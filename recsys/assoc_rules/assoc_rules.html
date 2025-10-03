@@ -6,11 +6,10 @@
 <script src="assoc_rules_files/libs/quarto-html/tippy.umd.min.js"></script>
 <link href="assoc_rules_files/libs/quarto-html/tippy.css" rel="stylesheet">
 <link href="assoc_rules_files/libs/quarto-html/light-border.css" rel="stylesheet">
-<link href="assoc_rules_files/libs/quarto-html/quarto-html.min.css" rel="stylesheet" data-mode="light">
-<link href="assoc_rules_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
-  <meta name="generator" content="quarto-1.4.549">
+<link href="assoc_rules_files/libs/quarto-html/quarto-syntax-highlighting-234273d1456647dabc34a594ac50e507.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+  <meta name="generator" content="quarto-1.7.32">
 
-  <meta name="author" content="Manuel Dömer ZHAW School of Engineering">
+  <meta name="author" content="Manuel Dömer">
   <title>Association Rules Mining</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -30,8 +29,9 @@
       vertical-align: middle;
     }
     /* CSS for syntax highlighting */
+    html { -webkit-text-size-adjust: 100%; }
     pre > code.sourceCode { white-space: pre; position: relative; }
-    pre > code.sourceCode > span { line-height: 1.25; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
     pre > code.sourceCode > span:empty { height: 1.2em; }
     .sourceCode { overflow: visible; }
     code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -56,249 +56,51 @@
         -khtml-user-select: none; -moz-user-select: none;
         -ms-user-select: none; user-select: none;
         padding: 0 4px; width: 4em;
-        color: #aaaaaa;
       }
-    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    pre.numberSource { margin-left: 3em;  padding-left: 4px; }
     div.sourceCode
-      { color: #003b4f; background-color: #f1f3f5; }
+      { color: #24292e;  }
     @media screen {
     pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
     }
-    code span { color: #003b4f; } /* Normal */
-    code span.al { color: #ad0000; } /* Alert */
-    code span.an { color: #5e5e5e; } /* Annotation */
-    code span.at { color: #657422; } /* Attribute */
-    code span.bn { color: #ad0000; } /* BaseN */
-    code span.bu { } /* BuiltIn */
-    code span.cf { color: #003b4f; } /* ControlFlow */
-    code span.ch { color: #20794d; } /* Char */
-    code span.cn { color: #8f5902; } /* Constant */
-    code span.co { color: #5e5e5e; } /* Comment */
-    code span.cv { color: #5e5e5e; font-style: italic; } /* CommentVar */
-    code span.do { color: #5e5e5e; font-style: italic; } /* Documentation */
-    code span.dt { color: #ad0000; } /* DataType */
-    code span.dv { color: #ad0000; } /* DecVal */
-    code span.er { color: #ad0000; } /* Error */
-    code span.ex { } /* Extension */
-    code span.fl { color: #ad0000; } /* Float */
-    code span.fu { color: #4758ab; } /* Function */
-    code span.im { color: #00769e; } /* Import */
-    code span.in { color: #5e5e5e; } /* Information */
-    code span.kw { color: #003b4f; } /* Keyword */
-    code span.op { color: #5e5e5e; } /* Operator */
-    code span.ot { color: #003b4f; } /* Other */
-    code span.pp { color: #ad0000; } /* Preprocessor */
-    code span.sc { color: #5e5e5e; } /* SpecialChar */
-    code span.ss { color: #20794d; } /* SpecialString */
-    code span.st { color: #20794d; } /* String */
-    code span.va { color: #111111; } /* Variable */
-    code span.vs { color: #20794d; } /* VerbatimString */
-    code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
+    code span { color: #24292e; } /* Normal */
+    code span.al { color: #ff5555; font-weight: bold; } /* Alert */
+    code span.an { color: #6a737d; } /* Annotation */
+    code span.at { color: #d73a49; } /* Attribute */
+    code span.bn { color: #005cc5; } /* BaseN */
+    code span.bu { color: #d73a49; } /* BuiltIn */
+    code span.cf { color: #d73a49; } /* ControlFlow */
+    code span.ch { color: #032f62; } /* Char */
+    code span.cn { color: #005cc5; } /* Constant */
+    code span.co { color: #6a737d; } /* Comment */
+    code span.cv { color: #6a737d; } /* CommentVar */
+    code span.do { color: #6a737d; } /* Documentation */
+    code span.dt { color: #d73a49; } /* DataType */
+    code span.dv { color: #005cc5; } /* DecVal */
+    code span.er { color: #ff5555; text-decoration: underline; } /* Error */
+    code span.ex { color: #d73a49; font-weight: bold; } /* Extension */
+    code span.fl { color: #005cc5; } /* Float */
+    code span.fu { color: #6f42c1; } /* Function */
+    code span.im { color: #032f62; } /* Import */
+    code span.in { color: #6a737d; } /* Information */
+    code span.kw { color: #d73a49; } /* Keyword */
+    code span.op { color: #24292e; } /* Operator */
+    code span.ot { color: #6f42c1; } /* Other */
+    code span.pp { color: #d73a49; } /* Preprocessor */
+    code span.re { color: #6a737d; } /* RegionMarker */
+    code span.sc { color: #005cc5; } /* SpecialChar */
+    code span.ss { color: #032f62; } /* SpecialString */
+    code span.st { color: #032f62; } /* String */
+    code span.va { color: #e36209; } /* Variable */
+    code span.vs { color: #032f62; } /* VerbatimString */
+    code span.wa { color: #ff5555; } /* Warning */
   </style>
-  <link rel="stylesheet" href="assoc_rules_files/libs/revealjs/dist/theme/quarto.css">
-  <link rel="stylesheet" href="../../quarto_css/hscroll.css">
+  <link rel="stylesheet" href="assoc_rules_files/libs/revealjs/dist/theme/quarto-44af273a06e96f0f883c3fdf7fb3de30.css">
+  <link rel="stylesheet" href="../../quarto_css/quarto.css">
   <link href="assoc_rules_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
   <link href="assoc_rules_files/libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
   <link href="assoc_rules_files/libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
   <link href="assoc_rules_files/libs/revealjs/plugin/quarto-support/footer.css" rel="stylesheet">
-  <style type="text/css">
-
-  .callout {
-    margin-top: 1em;
-    margin-bottom: 1em;  
-    border-radius: .25rem;
-  }
-
-  .callout.callout-style-simple { 
-    padding: 0em 0.5em;
-    border-left: solid #acacac .3rem;
-    border-right: solid 1px silver;
-    border-top: solid 1px silver;
-    border-bottom: solid 1px silver;
-    display: flex;
-  }
-
-  .callout.callout-style-default {
-    border-left: solid #acacac .3rem;
-    border-right: solid 1px silver;
-    border-top: solid 1px silver;
-    border-bottom: solid 1px silver;
-  }
-
-  .callout .callout-body-container {
-    flex-grow: 1;
-  }
-
-  .callout.callout-style-simple .callout-body {
-    font-size: 1rem;
-    font-weight: 400;
-  }
-
-  .callout.callout-style-default .callout-body {
-    font-size: 0.9rem;
-    font-weight: 400;
-  }
-
-  .callout.callout-titled.callout-style-simple .callout-body {
-    margin-top: 0.2em;
-  }
-
-  .callout:not(.callout-titled) .callout-body {
-      display: flex;
-  }
-
-  .callout:not(.no-icon).callout-titled.callout-style-simple .callout-content {
-    padding-left: 1.6em;
-  }
-
-  .callout.callout-titled .callout-header {
-    padding-top: 0.2em;
-    margin-bottom: -0.2em;
-  }
-
-  .callout.callout-titled .callout-title  p {
-    margin-top: 0.5em;
-    margin-bottom: 0.5em;
-  }
-    
-  .callout.callout-titled.callout-style-simple .callout-content  p {
-    margin-top: 0;
-  }
-
-  .callout.callout-titled.callout-style-default .callout-content  p {
-    margin-top: 0.7em;
-  }
-
-  .callout.callout-style-simple div.callout-title {
-    border-bottom: none;
-    font-size: .9rem;
-    font-weight: 600;
-    opacity: 75%;
-  }
-
-  .callout.callout-style-default  div.callout-title {
-    border-bottom: none;
-    font-weight: 600;
-    opacity: 85%;
-    font-size: 0.9rem;
-    padding-left: 0.5em;
-    padding-right: 0.5em;
-  }
-
-  .callout.callout-style-default div.callout-content {
-    padding-left: 0.5em;
-    padding-right: 0.5em;
-  }
-
-  .callout.callout-style-simple .callout-icon::before {
-    height: 1rem;
-    width: 1rem;
-    display: inline-block;
-    content: "";
-    background-repeat: no-repeat;
-    background-size: 1rem 1rem;
-  }
-
-  .callout.callout-style-default .callout-icon::before {
-    height: 0.9rem;
-    width: 0.9rem;
-    display: inline-block;
-    content: "";
-    background-repeat: no-repeat;
-    background-size: 0.9rem 0.9rem;
-  }
-
-  .callout-title {
-    display: flex
-  }
-    
-  .callout-icon::before {
-    margin-top: 1rem;
-    padding-right: .5rem;
-  }
-
-  .callout.no-icon::before {
-    display: none !important;
-  }
-
-  .callout.callout-titled .callout-body > .callout-content > :last-child {
-    padding-bottom: 0.5rem;
-    margin-bottom: 0;
-  }
-
-  .callout.callout-titled .callout-icon::before {
-    margin-top: .5rem;
-    padding-right: .5rem;
-  }
-
-  .callout:not(.callout-titled) .callout-icon::before {
-    margin-top: 1rem;
-    padding-right: .5rem;
-  }
-
-  /* Callout Types */
-
-  div.callout-note {
-    border-left-color: #4582ec !important;
-  }
-
-  div.callout-note .callout-icon::before {
-    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAIKADAAQAAAABAAAAIAAAAACshmLzAAAEU0lEQVRYCcVXTWhcVRQ+586kSUMMxkyaElstCto2SIhitS5Ek8xUKV2poatCcVHtUlFQk8mbaaziwpWgglJwVaquitBOfhQXFlqlzSJpFSpIYyXNjBNiTCck7x2/8/LeNDOZxDuEkgOXe++553zfefee+/OYLOXFk3+1LLrRdiO81yNqZ6K9cG0P3MeFaMIQjXssE8Z1JzLO9ls20MBZX7oG8w9GxB0goaPrW5aNMp1yOZIa7Wv6o2ykpLtmAPs/vrG14Z+6d4jpbSKuhdcSyq9wGMPXjonwmESXrriLzFGOdDBLB8Y6MNYBu0dRokSygMA/mrun8MGFN3behm6VVAwg4WR3i6FvYK1T7MHo9BK7ydH+1uurECoouk5MPRyVSBrBHMYwVobG2aOXM07sWrn5qgB60rc6mcwIDJtQrnrEr44kmy+UO9r0u9O5/YbkS9juQckLed3DyW2XV/qWBBB3ptvI8EUY3I9p/67OW+g967TNr3Sotn3IuVlfMLVnsBwH4fsnebJvyGm5GeIUA3jljERmrv49SizPYuq+z7c2H/jlGC+Ghhupn/hcapqmcudB9jwJ/3jvnvu6vu5lVzF1fXyZuZZ7U8nRmVzytvT+H3kilYvH09mLWrQdwFSsFEsxFVs5fK7A0g8gMZjbif4ACpKbjv7gNGaD8bUrlk8x+KRflttr22JEMRUbTUwwDQScyzPgedQHZT0xnx7ujw2jfVfExwYHwOsDTjLdJ2ebmeQIlJ7neo41s/DrsL3kl+W2lWvAga0tR3zueGr6GL78M3ifH0rGXrBC2aAR8uYcIA5gwV8zIE8onoh8u0Fca/ciF7j1uOzEnqcIm59sEXoGc0+z6+H45V1CvAvHcD7THztu669cnp+L0okAeIc6zjbM/24LgGM1gZk7jnRu1aQWoU9sfUOuhrmtaPIO3YY1KLLWZaEO5TKUbMY5zx8W9UJ6elpLwKXbsaZ4EFl7B4bMtDv0iRipKoDQT2sNQI9b1utXFdYisi+wzZ/ri/1m7QfDgEuvgUUEIJPq3DhX/5DWNqIXDOweC2wvIR90Oq3lDpdMIgD2r0dXvGdsEW5H6x6HLRJYU7C69VefO1x8Gde1ZFSJLfWS1jbCnhtOPxmpfv2LXOA2Xk2tvnwKKPFuZ/oRmwBwqRQDcKNeVQkYcOjtWVBuM/JuYw5b6isojIkYxyYAFn5K7ZBF10fea52y8QltAg6jnMqNHFBmGkQ1j+U43HMi2xMar1Nv0zGsf1s8nUsmUtPOOrbFIR8bHFDMB5zL13Gmr/kGlCkUzedTzzmzsaJXhYawnA3UmARpiYj5ooJZiUoxFRtK3X6pgNPv+IZVPcnwbOl6f+aBaO1CNvPW9n9LmCp01nuSaTRF2YxHqZ8DYQT6WsXT+RD6eUztwYLZ8rM+rcPxamv1VQzFUkzFXvkiVrySGQgJNvXHJAxiU3/NwiC03rSf05VBaPtu/Z7/B8Yn/w7eguloAAAAAElFTkSuQmCC');
-  }
-
-  div.callout-note.callout-style-default .callout-title {
-    background-color: #dae6fb
-  }
-
-  div.callout-important {
-    border-left-color: #d9534f !important;
-  }
-
-  div.callout-important .callout-icon::before {
-    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAIKADAAQAAAABAAAAIAAAAACshmLzAAAEKklEQVRYCcVXTWhcVRS+575MJym48A+hSRFr00ySRQhURRfd2HYjk2SSTokuBCkU2o0LoSKKraKIBTcuFCoidGFD08nkBzdREbpQ1EDNIv8qSGMFUboImMSZd4/f9zJv8ibJMC8xJQfO3HPPPef7zrvvvnvviIkpC9nsw0UttFunbUhpFzFtarSd6WJkStVMw5xyVqYTvkwfzuf/5FgtkVoB0729j1rjXwThS7Vio+Mo6DNnvLfahoZ+i/o32lULuJ3NNiz7q6+pyAUkJaFF6JwaM2lUJlV0MlnQn5aTRbEu0SEqHUa0A4AdiGuB1kFXRfVyg5d87+Dg4DL6m2TLAub60ilj7A1Ec4odSAc8X95sHh7+ZRPCFo6Fnp7HfU/fBng/hi10CjCnWnJjsxvDNxWw0NfV6Rv5GgP3I3jGWXumdTD/3cbEOP2ZbOZp69yniG3FQ9z1jD7bnBu9Fc2tKGC2q+uAJOQHBDRiZX1x36o7fWBs7J9ownbtO+n0/qWkvW7UPIfc37WgT6ZGR++EOJyeQDSb9UB+DZ1G6DdLDzyS+b/kBCYGsYgJbSQHuThGKRcw5xdeQf8YdNHsc6ePXrlSYMBuSIAFTGAtQo+VuALo4BX83N190NWZWbynBjhOHsmNfFWLeL6v+ynsA58zDvvAC8j5PkbOcXCMg2PZFk3q8MjI7WAG/Dp9AwP7jdGBOOQkAvlFUB+irtm16I1Zw9YBcpGTGXYmk3kQIC/Cds55l+iMI3jqhjAuaoe+am2Jw5GT3Nbz3CkE12NavmzN5+erJW7046n/CH1RO/RVa8lBLozXk9uqykkGAyRXLWlLv5jyp4RFsG5vGVzpDLnIjTWgnRy2Rr+tDKvRc7Y8AyZq10jj8DqXdnIRNtFZb+t/ZRtXcDiVnzpqx8mPcDWxgARUqx0W1QB9MeUZiNrV4qP+Ehc+BpNgATsTX8ozYKL2NtFYAHc84fG7ndxUPr+AR/iQSns7uSUufAymwDOb2+NjK27lEFocm/EE2WpyIy/Hi66MWuMKJn8RvxIcj87IM5Vh9663ziW36kR0HNenXuxmfaD8JC7tfKbrhFr7LiZCrMjrzTeGx+PmkosrkNzW94ObzwocJ7A1HokLolY+AvkTiD/q1H0cN48c5EL8Crkttsa/AXQVDmutfyku0E7jShx49XqV3MFK8IryDhYVbj7Sj2P2eBxwcXoe8T8idsKKPRcnZw1b+slFTubwUwhktrfnAt7J++jwQtLZcm3sr9LQrjRzz6cfMv9aLvgmnAGvpoaGLxM4mAEaLV7iAzQ3oU0IvD5x9ix3yF2RAAuYAOO2f7PEFWCXZ4C9Pb2UsgDeVnFSpbFK7/IWu7TPTvBqzbGdCHOJQSxiEjt6IyZmxQyEJHv6xyQsYk//moVFsN2zP6fRImjfq7/n/wFDguUQFNEwugAAAABJRU5ErkJggg==');
-  }
-
-  div.callout-important.callout-style-default .callout-title {
-    background-color: #f7dddc
-  }
-
-  div.callout-warning {
-    border-left-color: #f0ad4e !important;
-  }
-
-  div.callout-warning .callout-icon::before {
-    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAIKADAAQAAAABAAAAIAAAAACshmLzAAAETklEQVRYCeVWW2gcVRg+58yaTUnizqbipZeX4uWhBEniBaoUX1Ioze52t7sRq6APio9V9MEaoWlVsFasRq0gltaAPuxms8lu0gcviE/FFOstVbSIxgcv6SU7EZqmdc7v9+9mJtNks51NTUH84ed889/PP+cmxP+d5FIbMJmNbpREu4WUkiTtCicKny0l1pIKmBzovF2S+hIJHX8iEu3hZJ5lNZGqyRrGSIQpq15AzF28jgpeY6yk6GVdrfFqdrD6Iw+QlB8g0YS2g7dyQmXM/IDhBhT0UCiRf59lfqmmDvzRt6kByV/m4JjtzuaujMUM2c5Z2d6JdKrRb3K2q6mA+oYVz8JnDdKPmmNthzkAk/lN63sYPgevrguc72aZX/L9C6x09GYyxBgCX4NlvyGUHOKELlm5rXeR1kchuChJt4SSwyddZRXgvwMGvYo4QSlk3/zkHD8UHxwVJA6zjZZqP8v8kK8OWLnIZtLyCAJagYC4rTGW/9Pqj92N/c+LUaAj27movwbi19tk/whRCIE7Q9vyI6yvRpftAKVTdUjOW40X3h5OXsKCdmFcx0xlLJoSuQngnrJe7Kcjm4OMq9FlC7CMmScQANuNvjfP3PjGXDBaUQmbp296S5L4DrpbrHN1T87ZVEZVCzg1FF0Ft+dKrlLukI+/c9ENo+TvlTDbYFvuKPtQ9+l052rXrgKoWkDAFnvh0wTOmYn8R5f4k/jN/fZiCM1tQx9jQQ4ANhqG4hiL0qIFTGViG9DKB7GYzgubnpofgYRwO+DFjh0Zin2m4b/97EDkXkc+f6xYAPX0KK2I/7fUQuwzuwo/L3AkcjugPNixC8cHf0FyPjWlItmLxWw4Ou9YsQCr5fijMGoD/zpdRy95HRysyXA74MWOnscpO4j2y3HAVisw85hX5+AFBRSHt4ShfLFkIMXTqyKFc46xdzQM6XbAi702a7sy04J0+feReMFKp5q9esYLCqAZYw/k14E/xcLLsFElaornTuJB0svMuJINy8xkIYuL+xPAlWRceH6+HX7THJ0djLUom46zREu7tTkxwmf/FdOZ/sh6Q8qvEAiHpm4PJ4a/doJe0gH1t+aHRgCzOvBvJedEK5OFE5jpm4AGP2a8Dxe3gGJ/pAutug9Gp6he92CsSsWBaEcxGx0FHytmIpuqGkOpldqNYQK8cSoXvd+xLxXADw0kf6UkJNFtdo5MOgaLjiQOQHcn+A6h5NuL2s0qsC2LOM75PcF3yr5STuBSAcGG+meA14K/CI21HcS4LBT6tv0QAh8Dr5l93AhZzG5ZJ4VxAqdZUEl9z7WJ4aN+svMvwHHL21UKTd1mqvChH7/Za5xzXBBKrUcB0TQ+Ulgkfbi/H/YT5EptrGzsEK7tR1B7ln9BBwckYfMiuSqklSznIuoIIOM42MQO+QnduCoFCI0bpkzjCjddHPN/F+2Yu+sd9bKNpVwHhbS3LluK/0zgfwD0xYI5dXuzlQAAAABJRU5ErkJggg==');
-  }
-
-  div.callout-warning.callout-style-default .callout-title {
-    background-color: #fcefdc
-  }
-
-  div.callout-tip {
-    border-left-color: #02b875 !important;
-  }
-
-  div.callout-tip .callout-icon::before {
-    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAIKADAAQAAAABAAAAIAAAAACshmLzAAADr0lEQVRYCe1XTWgTQRj9ZjZV8a9SPIkKgj8I1bMHsUWrqYLVg4Ue6v9BwZOxSYsIerFao7UiUryIqJcqgtpimhbBXoSCVxUFe9CTiogUrUp2Pt+3aUI2u5vdNh4dmMzOzHvvezuz8xNFM0mjnbXaNu1MvFWRXkXEyE6aYOYJpdW4IXuA4r0fo8qqSMDBU0v1HJUgVieAXxzCsdE/YJTdFcVIZQNMyhruOMJKXYFoLfIfIvVIMWdsrd+Rpd86ZmyzzjJmLStqRn0v8lzkb4rVIXvnpScOJuAn2ACC65FkPzEdEy4TPWRLJ2h7z4cArXzzaOdKlbOvKKX25Wl00jSnrwVxAg3o4dRxhO13RBSdNvH0xSARv3adTXbBdTf64IWO2vH0LT+cv4GR1DJt+DUItaQogeBX/chhbTBxEiZ6gftlDNXTrvT7co4ub5A6gp9HIcHvzTa46OS5fBeP87Qm0fQkr4FsYgVQ7Qg+ZayaDg9jhg1GkWj8RG6lkeSacrrHgDaxdoBiZPg+NXV/KifMuB6//JmYH4CntVEHy/keA6x4h4CU5oFy8GzrBS18cLJMXcljAKB6INjWsRcuZBWVaS3GDrqB7rdapVIeA+isQ57Eev9eCqzqOa81CY05VLd6SamW2wA2H3SiTbnbSxmzfp7WtKZkqy4mdyAlGx7ennghYf8voqp9cLSgKdqNfa6RdRsAAkPwRuJZNbpByn+RrJi1RXTwdi8RQF6ymDwGMAtZ6TVE+4uoKh+MYkcLsT0Hk8eAienbiGdjJHZTpmNjlbFJNKDVAp2fJlYju6IreQxQ08UJDNYdoLSl6AadO+fFuCQqVMB1NJwPm69T04Wv5WhfcWyfXQB+wXRs1pt+nCknRa0LVzSA/2B+a9+zQJadb7IyyV24YAxKp2Jqs3emZTuNnKxsah+uabKbMk7CbTgJx/zIgQYErIeTKRQ9yD9wxVof5YolPHqaWo7TD6tJlh7jQnK5z2n3+fGdggIOx2kaa2YI9QWarc5Ce1ipNWMKeSG4DysFF52KBmTNMmn5HqCFkwy34rDg05gDwgH3bBi+sgFhN/e8QvRn8kbamCOhgrZ9GJhFDgfcMHzFb6BAtjKpFhzTjwv1KCVuxHvCbsSiEz4CANnj84cwHdFXAbAOJ4LTSAawGWFn5tDhLMYz6nWeU2wJfIhmIJBefcd/A5FWQWGgrWzyORZ3Q6HuV+Jf0Bj+BTX69fm1zWgK7By1YTXchFDORywnfQ7GpzOo6S+qECrsx2ifVQAAAABJRU5ErkJggg==');
-  }
-
-  div.callout-tip.callout-style-default .callout-title {
-    background-color: #ccf1e3
-  }
-
-  div.callout-caution {
-    border-left-color: #fd7e14 !important;
-  }
-
-  div.callout-caution .callout-icon::before {
-    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAIKADAAQAAAABAAAAIAAAAACshmLzAAACV0lEQVRYCdVWzWoUQRCuqp2ICBLJXgITZL1EfQDBW/bkzUMUD7klD+ATSHBEfAIfQO+iXsWDxJsHL96EHAwhgzlkg8nBg25XWb0zIb0zs9muYYWkoKeru+vn664fBqElyZNuyh167NXJ8Ut8McjbmEraKHkd7uAnAFku+VWdb3reSmRV8PKSLfZ0Gjn3a6Xlcq9YGb6tADjn+lUfTXtVmaZ1KwBIvFI11rRXlWlatwIAAv2asaa9mlB9wwygiDX26qaw1yYPzFXg2N1GgG0FMF8Oj+VIx7E/03lHx8UhvYyNZLN7BwSPgekXXLribw7w5/c8EF+DBK5idvDVYtEEwMeYefjjLAdEyQ3M9nfOkgnPTEkYU+sxMq0BxNR6jExrAI31H1rzvLEfRIdgcv1XEdj6QTQAS2wtstEALLG1yEZ3QhH6oDX7ExBSFEkFINXH98NTrme5IOaaA7kIfiu2L8A3qhH9zRbukdCqdsA98TdElyeMe5BI8Rs2xHRIsoTSSVFfCFCWGPn9XHb4cdobRIWABNf0add9jakDjQJpJ1bTXOJXnnRXHRf+dNL1ZV1MBRCXhMbaHqGI1JkKIL7+i8uffuP6wVQAzO7+qVEbF6NbS0LJureYcWXUUhH66nLR5rYmva+2tjRFtojkM2aD76HEGAD3tPtKM309FJg5j/K682ywcWJ3PASCcycH/22u+Bh7Aa0ehM2Fu4z0SAE81HF9RkB21c5bEn4Dzw+/qNOyXr3DCTQDMBOdhi4nAgiFDGCinIa2owCEChUwD8qzd03PG+qdW/4fDzjUMcE1ZpIAAAAASUVORK5CYII=');
-  }
-
-  div.callout-caution.callout-style-default .callout-title {
-    background-color: #ffe5d0
-  }
-
-  </style>
   <style type="text/css">
     .reveal div.sourceCode {
       margin: 0;
@@ -386,9 +188,6 @@
       margin-right: 0; 
     }
   </style>
-  <script src="assoc_rules_files/libs/quarto-diagram/mermaid.min.js"></script>
-  <script src="assoc_rules_files/libs/quarto-diagram/mermaid-init.js"></script>
-  <link href="assoc_rules_files/libs/quarto-diagram/mermaid.css" rel="stylesheet">
   <style>
   .v-center-container {
     display: flex;
@@ -402,23 +201,488 @@
   <div class="reveal">
     <div class="slides">
 
-<section id="title-slide" data-background-image="../../ressources/en-zhaw-cmyk.png" data-background-position="98% 2%" data-background-size="25%" class="quarto-title-block center">
-  <h1 class="title">Association Rules Mining</h1>
+<!--
+Custom Title Slide Template for Company Policy Compliance
+This template creates a title slide with:
+- ZHAW logo (top-left)
+- School of Engineering text (top-right) 
+- Custom background image with dark blue bottom section
+- Centered title with light blue background
+- Author and date information positioned below title
+-->
 
-<div class="quarto-title-authors">
-<div class="quarto-title-author">
-<div class="quarto-title-author-name">
-Manuel Dömer<br>ZHAW School of Engineering 
-</div>
-</div>
-</div>
+<section id="title-slide" data-background-color="#003366" data-menu-title="title" class="quarto-title-block center">
+
+<!-- Hidden data containers for JavaScript to access -->
+<div id="quarto-title-data" style="display: none;">Association Rules Mining</div>
+<div id="quarto-author-data" style="display: none;">Manuel Dömer</div>
+<div id="quarto-date-data" style="display: none;"></div>
+<div id="quarto-organisationalunit-data" style="display: none;">Abteilung Angewandte Mathematik, Physik und Operations</div>
+
+<style>
+/* Minimal Title Slide Styling - Let RevealJS handle the background */
+
+
+/* Remove white borders and ensure full coverage */
+section#title-slide {
+  border: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+/* Remove borders from reveal containers when on title slide */
+body:has(section#title-slide) .reveal {
+  border: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+body:has(section#title-slide) .reveal .slides {
+  border: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+/* Hide default Quarto title slide elements that we'll replace */
+section#title-slide .quarto-title,
+section#title-slide .quarto-title-meta,
+section#title-slide h1.title,
+section#title-slide .title,
+section#title-slide .subtitle,
+section#title-slide .author,
+section#title-slide .date,
+section#title-slide h1.title + p,
+section#title-slide .title + p,
+section#title-slide .quarto-title-authors,
+section#title-slide .quarto-title-author {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+}
+
+/* Logo styling for custom title slide logo (JS-injected) */
+.title-logo {
+  position: fixed;
+  top: 3vh;
+  left: 2vw;
+  width: 18vw;
+  height: 13.5vh;
+  background-image: url('/ressources/zhaw_rgb_logo_nacht.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: left center;
+  z-index: 10;
+  box-shadow: none;
+}
+
+/* School text styling for custom school text (JS-injected) */
+.school-text {
+  position: fixed;
+  top: 6vh;
+  right: 2vw;
+  text-align: right;
+  background-color: transparent;
+  padding: 0px 0px;
+  border-radius: 8px;
+  font-size: 1.8vw;
+  font-weight: 600;
+  font-family: "Source Sans Pro", Helvetica, sans-serif;
+  color: #003366;
+  z-index: 10;
+  white-space: nowrap;
+  box-shadow: none;
+}
+
+/* Title styling for custom title box (JS-injected) */
+.custom-title {
+  background-color: #87CEEB; /* Light blue */
+  color: #003366; /* Dark blue text */
+  padding: 2.5vh 4vw;
+  border-radius: 8px;
+  font-weight: bold;
+  font-family: "Source Sans Pro", Helvetica, sans-serif;
+  position: fixed;
+  bottom: 25vh;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 50;
+  text-align: left;
+  max-width: 90vw;
+  box-sizing: border-box;
+  font-size: 5vw;
+  min-height: auto;
+}
+
+/* Author/date box styling for custom author/date text (JS-injected) */
+.author-date-box {
+  position: fixed;
+  bottom: 5vh;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: transparent;
+  color: white;
+  padding: 2.5vh 4vw;
+  border-radius: 8px;
+  font-size: 2vw;
+  font-weight: normal;
+  font-family: "Source Sans Pro", Helvetica, sans-serif;
+  z-index: 20;
+  text-align: left;
+  box-shadow: none;
+  max-width: 90vw;
+  line-height: 1.4;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7);
+}
+
+/* Ensure text content is positioned correctly */
+section#title-slide h1.title,
+section#title-slide .title {
+  text-align: left;
+  max-width: 90vw;
+  box-sizing: border-box;
+}
+
+/* Add proper padding for content slides (non-title slides) */
+/* .reveal .slides section:not(#title-slide) {
+  padding: 20px !important;
+}
+*/
+
+/* Ensure content slides have proper spacing */
+.reveal .slides section:not(#title-slide) h1,
+.reveal .slides section:not(#title-slide) h2,
+.reveal .slides section:not(#title-slide) h3 {
+  margin-top: 0.5em !important;
+  margin-bottom: 0.5em !important;
+}
+
+.reveal .slides section:not(#title-slide) p,
+.reveal .slides section:not(#title-slide) ul,
+.reveal .slides section:not(#title-slide) ol {
+  margin-bottom: 1em !important;
+}
+</style>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  let customElements = []; // Array to track our custom elements
+    function setupTitleSlide() {
+      let titleSlide = document.querySelector('section#title-slide');
+    
+      if (titleSlide && !titleSlide.querySelector('.custom-elements-added')) {
+      
+
+  // Always use absolute path for resources
+  const resourcePath = '/ressources/';
+      
+
+
+      // Set background image directly on RevealJS background layer for the title slide
+      function setRevealBackground() {
+        const backgrounds = document.querySelectorAll('.reveal .backgrounds .slide-background');
+        const currentSlide = document.querySelector('section.present');
+        if (!backgrounds || !currentSlide) return;
+        const isTitleSlide = currentSlide.id === 'title-slide';
+        backgrounds.forEach(bg => {
+          if (bg.classList.contains('present')) {
+            if (isTitleSlide) {
+              bg.style.backgroundImage = "url('/ressources/0101.svg')";
+              bg.style.backgroundSize = '100% auto';
+              bg.style.backgroundPosition = 'top left';
+              bg.style.backgroundRepeat = 'no-repeat';
+              bg.style.backgroundColor = '#003366';
+            } else {
+              bg.style.backgroundImage = '';
+              bg.style.backgroundSize = '';
+              bg.style.backgroundPosition = '';
+              bg.style.backgroundRepeat = '';
+              bg.style.backgroundColor = '';
+            }
+          }
+        });
+      }
+      setTimeout(setRevealBackground, 300);
+      if (window.Reveal && typeof Reveal.addEventListener === 'function') {
+        Reveal.addEventListener('slidechanged', function(event) {
+          setTimeout(setRevealBackground, 100);
+        });
+      }
+
+  // Show debug overlay for troubleshooting
+  // (debug overlay removed)
+      
+      // Check if we're currently on the title slide
+      const currentSlide = document.querySelector('section.present');
+      const isOnTitleSlide = currentSlide && currentSlide.id === 'title-slide';
+      
+      // Force remove borders and margins that might affect positioning
+      document.body.style.margin = '0';
+      document.body.style.padding = '0';
+      document.body.style.border = 'none';
+      document.body.style.outline = 'none';
+      
+      const reveal = document.querySelector('.reveal');
+      const slides = document.querySelector('.reveal .slides');
+      
+      if (reveal) {
+        reveal.style.border = 'none';
+        reveal.style.outline = 'none';
+        reveal.style.boxShadow = 'none';
+        reveal.style.margin = '0';
+        reveal.style.padding = '0';
+      }
+      
+      if (slides) {
+        slides.style.border = 'none';
+        slides.style.outline = 'none';
+        slides.style.boxShadow = 'none';
+        slides.style.margin = '0';
+        slides.style.padding = '0';
+      }
+
+      // Get title, author, date, and organizational unit information from hidden data containers
+      let title = 'Title'; // fallback
+      let date = '01.12.2025'; // fallback
+      let author = 'Manuel Dömer'; // fallback
+      let organisationalunit = ''; // fallback
+      
+      // Get from hidden data containers first
+      const titleData = document.getElementById('quarto-title-data');
+      const authorData = document.getElementById('quarto-author-data');
+      const dateData = document.getElementById('quarto-date-data');
+      const orgUnitData = document.getElementById('quarto-organisationalunit-data');
+      
+      if (titleData && titleData.textContent.trim()) {
+        title = titleData.textContent.trim();
+      }
+      if (authorData && authorData.textContent.trim()) {
+        author = authorData.textContent.trim();
+      }
+      if (dateData && dateData.textContent.trim()) {
+        date = dateData.textContent.trim();
+      }
+      if (orgUnitData && orgUnitData.textContent.trim()) {
+        organisationalunit = orgUnitData.textContent.trim();
+      }
+      
+      // Try to get from meta tags as backup
+      const metaTitle = document.querySelector('meta[property="og:title"]') || document.querySelector('title');
+      const metaDate = document.querySelector('meta[name="date"]');
+      const metaAuthor = document.querySelector('meta[name="author"]');
+      
+      if (metaTitle && metaTitle.textContent && (!titleData || !titleData.textContent.trim())) {
+        title = metaTitle.textContent.trim();
+      }
+      if (metaDate && metaDate.getAttribute('content') && (!dateData || !dateData.textContent.trim())) {
+        date = String(metaDate.getAttribute('content'));
+      }
+      if (metaAuthor && metaAuthor.getAttribute('content')) {
+        author = metaAuthor.getAttribute('content');
+      }
+
+      console.log('Title:', title);
+      console.log('Author:', author);
+      console.log('Date:', date);
+      console.log('Org Unit:', organisationalunit);
+
+      // Create new custom title box with the actual title content
+      const newTitle = document.createElement('div');
+      newTitle.className = 'custom-title custom-element';
+      newTitle.textContent = title; // Use the extracted title
+      document.body.appendChild(newTitle);
+      customElements.push(newTitle); // Track this element
+      
+      // Hide if not on title slide
+      if (!isOnTitleSlide) {
+        newTitle.style.display = 'none';
+      }
+
+      // Add marker to prevent duplicate processing
+      const marker = document.createElement('div');
+      marker.className = 'custom-elements-added';
+      marker.style.display = 'none';
+      titleSlide.appendChild(marker);
+
+      // Add ZHAW logo (top-left) - positioned relative to viewport
+      const logo = document.createElement('div');
+      logo.className = 'title-logo custom-element';
+
+      document.body.appendChild(logo); // Attach to body instead of titleSlide
+  customElements.push(logo); // Track this element
+      
+      // Hide if not on title slide
+      if (!isOnTitleSlide) {
+        logo.style.display = 'none';
+      }
+
+      // Add school text (top-right)
+      const schoolText = document.createElement('div');
+      schoolText.className = 'school-text custom-element';
+      schoolText.textContent = 'School of Engineering';
+      document.body.appendChild(schoolText); // Attach to body instead of titleSlide
+  customElements.push(schoolText); // Track this element
+      
+      // Hide if not on title slide
+      if (!isOnTitleSlide) {
+        schoolText.style.display = 'none';
+      }
+
+      // Add author/date box positioned below title
+      const authorDateBox = document.createElement('div');
+      authorDateBox.className = 'author-date-box custom-element';
+      
+      // Format content with organizational unit on first line, date | author on second line
+      let authorDateContent = '';
+      if (organisationalunit) {
+        authorDateContent = organisationalunit + '<br>';
+      }
+      authorDateContent += date + ' | ' + author;
+      
+      authorDateBox.innerHTML = authorDateContent;
+
+      document.body.appendChild(authorDateBox); // Attach to body
+  customElements.push(authorDateBox); // Track this element
+      
+      // Hide if not on title slide
+      if (!isOnTitleSlide) {
+        authorDateBox.style.display = 'none';
+      }
+
+    }
+  }
+
+  // Function to remove background when leaving title slide
+  function removeBackground() {
+    const titleSlide = document.querySelector('section#title-slide');
+    if (titleSlide) {
+      // Remove any applied background styles when leaving title slide
+      titleSlide.style.backgroundImage = '';
+      titleSlide.style.backgroundColor = '';
+    }
+    
+    // Clean up any duplicate markers
+    const markers = document.querySelectorAll('.custom-elements-added');
+    const marker = markers[markers.length - 1]; // Keep only the last one
+    if (marker) {
+      marker.remove();
+    }
+  }
+  
+  // Function to show custom title slide elements
+  function showTitleSlideElements() {
+    customElements.forEach((element, index) => {
+      if (element && element.style) {
+        element.style.display = 'block';
+        element.style.visibility = 'visible';
+      }
+    });
+  }
+  
+  // Function to hide custom title slide elements
+  function hideTitleSlideElements() {
+    customElements.forEach((element, index) => {
+      if (element && element.style) {
+        element.style.display = 'none';
+        element.style.visibility = 'hidden';
+      }
+    });
+  }
+
+  // Setup title slide immediately
+  setupTitleSlide();
+  
+  // Function to setup Reveal event listeners
+  function setupRevealListeners() {
+    if (window.Reveal && typeof Reveal.addEventListener === 'function') {
+      Reveal.addEventListener('ready', function() {
+        setupTitleSlide();
+      });
+      Reveal.addEventListener('slidechanged', function(event) {
+        if (event.currentSlide && event.currentSlide.id === 'title-slide') {
+          showTitleSlideElements();
+        } else {
+          hideTitleSlideElements();
+          removeBackground();
+        }
+      });
+      return true;
+    }
+    return false;
+  }
+  
+  // Backup mechanism: periodically check if we need to show/hide elements
+  function checkTitleSlideState() {
+    const currentSlide = document.querySelector('section.present');
+    const isOnTitleSlide = currentSlide && currentSlide.id === 'title-slide';
+    
+    if (isOnTitleSlide) {
+      // Check if any elements are hidden when they should be visible
+      let anyHidden = false;
+      customElements.forEach(element => {
+        if (element && element.style && 
+            (element.style.display === 'none' || element.style.visibility === 'hidden')) {
+          anyHidden = true;
+        }
+      });
+      
+      if (anyHidden) {
+        showTitleSlideElements();
+      }
+    } else {
+      // Check if any elements are visible when they should be hidden
+      let anyVisible = false;
+      customElements.forEach(element => {
+        if (element && element.style && 
+            element.style.display !== 'none' && element.style.visibility !== 'hidden') {
+          anyVisible = true;
+        }
+      });
+      
+      if (anyVisible) {
+        hideTitleSlideElements();
+      }
+    }
+  }
+  
+  // Try to setup Reveal listeners immediately
+  if (!setupRevealListeners()) {
+    // If Reveal isn't ready, keep trying
+    let attempts = 0;
+    const maxAttempts = 20;
+    const revealInterval = setInterval(function() {
+      attempts++;
+      if (setupRevealListeners() || attempts >= maxAttempts) {
+        clearInterval(revealInterval);
+        if (attempts >= maxAttempts) {
+        }
+      }
+    }, 200);
+  }
+  
+  // Start backup state checking after a delay to allow everything to initialize
+  setTimeout(function() {
+    setInterval(checkTitleSlideState, 1000); // Check every second
+  }, 2000);
+  
+  // Also try to setup when the page is fully loaded
+  window.addEventListener('load', function() {
+    setTimeout(setupTitleSlide, 100);
+  });
+});
+</script>
 
 </section>
 <section id="association-rules-mining" class="slide level2">
 <h2>Association Rules Mining</h2>
 <p>Synonym: Market basket analysis</p>
 
-<img data-src="http://www.quickmeme.com/img/26/2647c127c4d867ae443f3522452eed68a196a6ff6e2f7d070d20e8fee3f9cd41.jpg" class="quarto-figure quarto-figure-center r-stretch"><p class="caption">Source: <a href="http://www.quickmeme.com/img/26/2647c127c4d867ae443f3522452eed68a196a6ff6e2f7d070d20e8fee3f9cd41.jpg">www.quickmeme.com</a></p></section>
+<img data-src="http://www.quickmeme.com/img/26/2647c127c4d867ae443f3522452eed68a196a6ff6e2f7d070d20e8fee3f9cd41.jpg" class="r-stretch quarto-figure-center"><p class="caption">Source: <a href="http://www.quickmeme.com/img/26/2647c127c4d867ae443f3522452eed68a196a6ff6e2f7d070d20e8fee3f9cd41.jpg">www.quickmeme.com</a></p></section>
 <section id="itemsets" class="slide level2">
 <h2>Itemsets</h2>
 <ul>
@@ -650,8 +914,7 @@ td {
 <p>(A, C): 50%,<br>
 (A,B), (A,D), (B,C), (B,E), (B,F), (E,F): 25%</p>
 </div>
-</div>
-</div>
+</div></div>
 </section>
 <section id="association-rules" class="slide level2">
 <h2>Association rules</h2>
@@ -743,8 +1006,7 @@ td {
 <div class="fragment fade-in">
 <p><span class="math inline">\(s(C\rightarrow A)=0.50, c(C\rightarrow A)=1.0\)</span></p>
 </div>
-</div>
-</div>
+</div></div>
 </section>
 <section id="finding-strong-association-rules" class="slide level2">
 <h2>Finding Strong Association Rules</h2>
@@ -765,73 +1027,18 @@ td {
 <li># 4-itemsets: <span class="math inline">\(\binom{4}{4} = \frac{4!}{4!(4-4)!}=1\)</span></li>
 </ul>
 </div><div class="column" style="width:50%;">
-<div class="cell" data-reveal="true" data-layout-align="default">
+<div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div>
 <p></p><figure class=""><p></p>
 <div>
-<pre class="mermaid mermaid-js">flowchart TB
-%%| fig-align: right
-    emptySet["{}"]
-    A["{A}"]
-    B["{B}"]
-    C["{C}"]
-    D["{D}"]
-    AB["{A,B}"]
-    AC["{A,C}"]
-    AD["{A,D}"]
-    BC["{B,C}"]
-    BD["{B,D}"]
-    CD["{C,D}"]
-    ABC["{A,B,C} "]
-    ABD["{A,B,D} "]
-    ACD["{A,C,D} "]
-    BCD["{B,C,D} "]
-    ABCD["{A,B,C,D}    "]
-
-    emptySet --&gt; A
-    emptySet --&gt; B
-    emptySet --&gt; C
-    emptySet --&gt; D
-
-    A --&gt; AB
-    A --&gt; AC
-    A --&gt; AD
-    B --&gt; AB
-    B --&gt; BC
-    B --&gt; BD
-    C --&gt; AC
-    C --&gt; BC
-    C --&gt; CD
-    D --&gt; AD
-    D --&gt; BD
-    D --&gt; CD
-
-    AB --&gt; ABC
-    AB --&gt; ABD
-    AC --&gt; ABC
-    AC --&gt; ACD
-    AD --&gt; ABD
-    AD --&gt; ACD
-    BC --&gt; ABC
-    BC --&gt; BCD
-    BD --&gt; ABD
-    BD --&gt; BCD
-    CD --&gt; ACD
-    CD --&gt; BCD
-
-    ABC --&gt; ABCD
-    ABD --&gt; ABCD
-    ACD --&gt; ABCD
-    BCD --&gt; ABCD
-</pre>
+<p><img data-src="assoc_rules_files/figure-revealjs/mermaid-figure-1.png" style="width:9.38in;height:5.06in"></p>
 </div>
 <p></p></figure><p></p>
 </div>
 </div>
 </div>
-</div>
-</div>
+</div></div>
 <p>In general for <span class="math inline">\(|I|\)</span> items: <span class="math inline">\(\binom{|I|}{1} + \binom{|I|}{2} + ... + \binom{|I|}{K} = 2^{|I|}-1\)</span> itemsets</p>
 </section>
 <section id="apriori-algorithm" class="slide level2 smaller">
@@ -935,8 +1142,7 @@ td {
   </tr>
 </tbody>
 </table>
-</div>
-</div>
+</div></div>
 </section>
 <section id="example---k1" class="slide level2 smaller">
 <h2>Example - <span class="math inline">\(k=1\)</span></h2>
@@ -1131,8 +1337,7 @@ td {
   </tr>
 </tbody>
 </table>
-</div>
-</div>
+</div></div>
 </section>
 <section id="generate-candidates" class="slide level2">
 <h2>Generate candidates</h2>
@@ -1367,8 +1572,7 @@ td {
   </tr>
 </tbody>
 </table>
-</div>
-</div>
+</div></div>
 </section>
 <section id="example---k3" class="slide level2 smaller">
 <h2>Example - <span class="math inline">\(k=3\)</span></h2>
@@ -1473,8 +1677,7 @@ td {
 
 </tbody>
 </table>
-</div>
-</div>
+</div></div>
 </section>
 <section id="example---k4" class="slide level2">
 <h2>Example - <span class="math inline">\(k=4\)</span></h2>
@@ -1539,14 +1742,14 @@ td {
 <li>Does not allow to build a latent representation of users and/or items</li>
 <li>→ does not offer personalisation</li>
 </ul>
-<div class="quarto-auto-generated-content">
+
+</section>
+    </div>
+  <div class="quarto-auto-generated-content" style="display: none;">
 <div class="footer footer-default">
 
 </div>
-</div>
-</section>
-    </div>
-  </div>
+</div></div>
 
   <script>window.backupDefine = window.define; window.define = undefined;</script>
   <script src="assoc_rules_files/libs/revealjs/dist/reveal.js"></script>
@@ -1575,7 +1778,8 @@ td {
 'autoAnimateEasing': "ease",
 'autoAnimateDuration': 1,
 'autoAnimateUnmatched': true,
-'menu': {"side":"left","useTextContentForMissingTitles":true,"markers":false,"loadIcons":false,"custom":[{"title":"Tools","icon":"<i class=\"fas fa-gear\"></i>","content":"<ul class=\"slide-menu-items\">\n<li class=\"slide-tool-item active\" data-item=\"0\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.fullscreen(event)\"><kbd>f</kbd> Fullscreen</a></li>\n<li class=\"slide-tool-item\" data-item=\"1\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.speakerMode(event)\"><kbd>s</kbd> Speaker View</a></li>\n<li class=\"slide-tool-item\" data-item=\"2\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>o</kbd> Slide Overview</a></li>\n<li class=\"slide-tool-item\" data-item=\"3\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.togglePdfExport(event)\"><kbd>e</kbd> PDF Export Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"4\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.keyboardHelp(event)\"><kbd>?</kbd> Keyboard Help</a></li>\n</ul>"}],"openButton":true},
+'jumpToSlide': true,
+'menu': {"side":"left","useTextContentForMissingTitles":true,"markers":false,"loadIcons":false,"custom":[{"title":"Tools","icon":"<i class=\"fas fa-gear\"></i>","content":"<ul class=\"slide-menu-items\">\n<li class=\"slide-tool-item active\" data-item=\"0\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.fullscreen(event)\"><kbd>f</kbd> Fullscreen</a></li>\n<li class=\"slide-tool-item\" data-item=\"1\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.speakerMode(event)\"><kbd>s</kbd> Speaker View</a></li>\n<li class=\"slide-tool-item\" data-item=\"2\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>o</kbd> Slide Overview</a></li>\n<li class=\"slide-tool-item\" data-item=\"3\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.togglePdfExport(event)\"><kbd>e</kbd> PDF Export Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"4\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleScrollView(event)\"><kbd>r</kbd> Scroll View Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"5\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.keyboardHelp(event)\"><kbd>?</kbd> Keyboard Help</a></li>\n</ul>"}],"openButton":true},
 'smaller': false,
  
         // Display controls in the bottom right corner
@@ -1701,14 +1905,14 @@ td {
         previewLinks: false,
 
         // Transition style (none/fade/slide/convex/concave/zoom)
-        transition: 'none',
+        transition: 'slide',
 
         // Transition speed (default/fast/slow)
         transitionSpeed: 'default',
 
         // Transition style for full page slide backgrounds
         // (none/fade/slide/convex/concave/zoom)
-        backgroundTransition: 'none',
+        backgroundTransition: 'fade',
 
         // Number of slides away from the current that are visible
         viewDistance: 3,
@@ -1726,10 +1930,10 @@ td {
         height: 700,
 
         // Factor of the display size that should remain empty around the content
-        margin: 0.1,
+        margin: 0,
 
         math: {
-          mathjax: 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js',
+          mathjax: 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/MathJax.js',
           config: 'TeX-AMS_HTML-full',
           tex2jax: {
             inlineMath: [['\\(','\\)']],
@@ -1756,159 +1960,172 @@ td {
       });
     </script>
     <script id="quarto-html-after-body" type="application/javascript">
-    window.document.addEventListener("DOMContentLoaded", function (event) {
-      const toggleBodyColorMode = (bsSheetEl) => {
-        const mode = bsSheetEl.getAttribute("data-mode");
-        const bodyEl = window.document.querySelector("body");
-        if (mode === "dark") {
-          bodyEl.classList.add("quarto-dark");
-          bodyEl.classList.remove("quarto-light");
-        } else {
-          bodyEl.classList.add("quarto-light");
-          bodyEl.classList.remove("quarto-dark");
-        }
-      }
-      const toggleBodyColorPrimary = () => {
-        const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
-        if (bsSheetEl) {
-          toggleBodyColorMode(bsSheetEl);
-        }
-      }
-      toggleBodyColorPrimary();  
-      const tabsets =  window.document.querySelectorAll(".panel-tabset-tabby")
-      tabsets.forEach(function(tabset) {
-        const tabby = new Tabby('#' + tabset.id);
-      });
-      const isCodeAnnotation = (el) => {
-        for (const clz of el.classList) {
-          if (clz.startsWith('code-annotation-')) {                     
-            return true;
-          }
-        }
-        return false;
-      }
-      const clipboard = new window.ClipboardJS('.code-copy-button', {
-        text: function(trigger) {
-          const codeEl = trigger.previousElementSibling.cloneNode(true);
-          for (const childEl of codeEl.children) {
-            if (isCodeAnnotation(childEl)) {
-              childEl.remove();
+      window.document.addEventListener("DOMContentLoaded", function (event) {
+        const tabsets =  window.document.querySelectorAll(".panel-tabset-tabby")
+        tabsets.forEach(function(tabset) {
+          const tabby = new Tabby('#' + tabset.id);
+        });
+        const isCodeAnnotation = (el) => {
+          for (const clz of el.classList) {
+            if (clz.startsWith('code-annotation-')) {                     
+              return true;
             }
           }
-          return codeEl.innerText;
+          return false;
         }
-      });
-      clipboard.on('success', function(e) {
-        // button target
-        const button = e.trigger;
-        // don't keep focus
-        button.blur();
-        // flash "checked"
-        button.classList.add('code-copy-button-checked');
-        var currentTitle = button.getAttribute("title");
-        button.setAttribute("title", "Copied!");
-        let tooltip;
-        if (window.bootstrap) {
-          button.setAttribute("data-bs-toggle", "tooltip");
-          button.setAttribute("data-bs-placement", "left");
-          button.setAttribute("data-bs-title", "Copied!");
-          tooltip = new bootstrap.Tooltip(button, 
-            { trigger: "manual", 
-              customClass: "code-copy-button-tooltip",
-              offset: [0, -8]});
-          tooltip.show();    
-        }
-        setTimeout(function() {
-          if (tooltip) {
-            tooltip.hide();
-            button.removeAttribute("data-bs-title");
-            button.removeAttribute("data-bs-toggle");
-            button.removeAttribute("data-bs-placement");
+        const onCopySuccess = function(e) {
+          // button target
+          const button = e.trigger;
+          // don't keep focus
+          button.blur();
+          // flash "checked"
+          button.classList.add('code-copy-button-checked');
+          var currentTitle = button.getAttribute("title");
+          button.setAttribute("title", "Copied!");
+          let tooltip;
+          if (window.bootstrap) {
+            button.setAttribute("data-bs-toggle", "tooltip");
+            button.setAttribute("data-bs-placement", "left");
+            button.setAttribute("data-bs-title", "Copied!");
+            tooltip = new bootstrap.Tooltip(button, 
+              { trigger: "manual", 
+                customClass: "code-copy-button-tooltip",
+                offset: [0, -8]});
+            tooltip.show();    
           }
-          button.setAttribute("title", currentTitle);
-          button.classList.remove('code-copy-button-checked');
-        }, 1000);
-        // clear code selection
-        e.clearSelection();
-      });
-      function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
-        const config = {
-          allowHTML: true,
-          maxWidth: 500,
-          delay: 100,
-          arrow: false,
-          appendTo: function(el) {
-              return el.closest('section.slide') || el.parentElement;
-          },
-          interactive: true,
-          interactiveBorder: 10,
-          theme: 'light-border',
-          placement: 'bottom-start',
-        };
-        if (contentFn) {
-          config.content = contentFn;
+          setTimeout(function() {
+            if (tooltip) {
+              tooltip.hide();
+              button.removeAttribute("data-bs-title");
+              button.removeAttribute("data-bs-toggle");
+              button.removeAttribute("data-bs-placement");
+            }
+            button.setAttribute("title", currentTitle);
+            button.classList.remove('code-copy-button-checked');
+          }, 1000);
+          // clear code selection
+          e.clearSelection();
         }
-        if (onTriggerFn) {
-          config.onTrigger = onTriggerFn;
-        }
-        if (onUntriggerFn) {
-          config.onUntrigger = onUntriggerFn;
-        }
-          config['offset'] = [0,0];
-          config['maxWidth'] = 700;
-        window.tippy(el, config); 
-      }
-      const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
-      for (var i=0; i<noterefs.length; i++) {
-        const ref = noterefs[i];
-        tippyHover(ref, function() {
-          // use id or data attribute instead here
-          let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
-          try { href = new URL(href).hash; } catch {}
-          const id = href.replace(/^#\/?/, "");
-          const note = window.document.getElementById(id);
-          return note.innerHTML;
-        });
-      }
-      const findCites = (el) => {
-        const parentEl = el.parentElement;
-        if (parentEl) {
-          const cites = parentEl.dataset.cites;
-          if (cites) {
-            return {
-              el,
-              cites: cites.split(' ')
-            };
-          } else {
-            return findCites(el.parentElement)
-          }
-        } else {
-          return undefined;
-        }
-      };
-      var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
-      for (var i=0; i<bibliorefs.length; i++) {
-        const ref = bibliorefs[i];
-        const citeInfo = findCites(ref);
-        if (citeInfo) {
-          tippyHover(citeInfo.el, function() {
-            var popup = window.document.createElement('div');
-            citeInfo.cites.forEach(function(cite) {
-              var citeDiv = window.document.createElement('div');
-              citeDiv.classList.add('hanging-indent');
-              citeDiv.classList.add('csl-entry');
-              var biblioDiv = window.document.getElementById('ref-' + cite);
-              if (biblioDiv) {
-                citeDiv.innerHTML = biblioDiv.innerHTML;
+        const getTextToCopy = function(trigger) {
+            const codeEl = trigger.previousElementSibling.cloneNode(true);
+            for (const childEl of codeEl.children) {
+              if (isCodeAnnotation(childEl)) {
+                childEl.remove();
               }
-              popup.appendChild(citeDiv);
-            });
-            return popup.innerHTML;
+            }
+            return codeEl.innerText;
+        }
+        const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+          text: getTextToCopy
+        });
+        clipboard.on('success', onCopySuccess);
+        if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+          const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+            text: getTextToCopy,
+            container: window.document.getElementById('quarto-embedded-source-code-modal')
+          });
+          clipboardModal.on('success', onCopySuccess);
+        }
+          var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+          var mailtoRegex = new RegExp(/^mailto:/);
+            var filterRegex = new RegExp('/' + window.location.host + '/');
+          var isInternal = (href) => {
+              return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+          }
+          // Inspect non-navigation links and adorn them if external
+         var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+          for (var i=0; i<links.length; i++) {
+            const link = links[i];
+            if (!isInternal(link.href)) {
+              // undo the damage that might have been done by quarto-nav.js in the case of
+              // links that we want to consider external
+              if (link.dataset.originalHref !== undefined) {
+                link.href = link.dataset.originalHref;
+              }
+            }
+          }
+        function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+          const config = {
+            allowHTML: true,
+            maxWidth: 500,
+            delay: 100,
+            arrow: false,
+            appendTo: function(el) {
+                return el.closest('section.slide') || el.parentElement;
+            },
+            interactive: true,
+            interactiveBorder: 10,
+            theme: 'light-border',
+            placement: 'bottom-start',
+          };
+          if (contentFn) {
+            config.content = contentFn;
+          }
+          if (onTriggerFn) {
+            config.onTrigger = onTriggerFn;
+          }
+          if (onUntriggerFn) {
+            config.onUntrigger = onUntriggerFn;
+          }
+            config['offset'] = [0,0];
+            config['maxWidth'] = 700;
+          window.tippy(el, config); 
+        }
+        const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+        for (var i=0; i<noterefs.length; i++) {
+          const ref = noterefs[i];
+          tippyHover(ref, function() {
+            // use id or data attribute instead here
+            let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+            try { href = new URL(href).hash; } catch {}
+            const id = href.replace(/^#\/?/, "");
+            const note = window.document.getElementById(id);
+            if (note) {
+              return note.innerHTML;
+            } else {
+              return "";
+            }
           });
         }
-      }
-    });
-    </script>
+        const findCites = (el) => {
+          const parentEl = el.parentElement;
+          if (parentEl) {
+            const cites = parentEl.dataset.cites;
+            if (cites) {
+              return {
+                el,
+                cites: cites.split(' ')
+              };
+            } else {
+              return findCites(el.parentElement)
+            }
+          } else {
+            return undefined;
+          }
+        };
+        var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+        for (var i=0; i<bibliorefs.length; i++) {
+          const ref = bibliorefs[i];
+          const citeInfo = findCites(ref);
+          if (citeInfo) {
+            tippyHover(citeInfo.el, function() {
+              var popup = window.document.createElement('div');
+              citeInfo.cites.forEach(function(cite) {
+                var citeDiv = window.document.createElement('div');
+                citeDiv.classList.add('hanging-indent');
+                citeDiv.classList.add('csl-entry');
+                var biblioDiv = window.document.getElementById('ref-' + cite);
+                if (biblioDiv) {
+                  citeDiv.innerHTML = biblioDiv.innerHTML;
+                }
+                popup.appendChild(citeDiv);
+              });
+              return popup.innerHTML;
+            });
+          }
+        }
+      });
+      </script>
     
 
 </body></html>

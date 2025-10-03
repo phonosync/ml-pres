@@ -7,7 +7,6 @@ format:
   revealjs:
     title-slide-attributes:
       data-menu-title: "Titel"
-    margin: 0.01
 ---
 
 ## Willkommen!
@@ -19,9 +18,9 @@ format:
 :::
 
 ::: {.column .center width="60%"}
-Thomas Järmann<br>
-Leiter Bildung  
-ZHAW School of Engineering
+[Thomas Järmann]{.large style="line-height: 2;font-weight: bold;"}<br>
+Leiter Bildung ZHAW School of Engineering<br>
+[thomas.jaermann@zhaw.ch](mailto:thomas.jaermann@zhaw.ch)
 :::
 
 ::::
@@ -29,14 +28,15 @@ ZHAW School of Engineering
 ## Programm
 
 * Data Science und AI
-* Anwendungsbeispiele
-* Einführung Klassifikation
+* Anwendungsbeispieleffdf
+* Einführung Klassifikationff
 * Teachable Machine
-* Neuronale Netze und Deep Learning
+* Neuronale Netze und Deep Learningffdsfff
 
 ## Ziele
-Sie...
 
-* haben ein grundlegendes Verständnis für die Lösung von Klassifikationsproblemen
-* kennen Grundbegriffe des Deep Learnings
-* können die Teachable Machine für eigene Anwendungen benutzen
+* grundlegendes Verständnis für die Lösung von Klassifikationsproblemen
+* Grundbegriffe des Deep Learningss
+* die Teachable Machine für eigene Anwendungen benutzen
+
+

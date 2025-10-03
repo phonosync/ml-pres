@@ -1,0 +1,276 @@
+// =============================================================================
+// QUARTO REVEAL.JS CUSTOM THEME
+// =============================================================================
+// Erstellt: 2025-10-03
+// Beschreibung: Professionelles Theme mit Größen-Klassen und semantischen Styles
+// Verwendung: theme: [default, custom-presentation.scss]
+// =============================================================================
+
+/*-- scss:defaults --*/
+
+// -----------------------------------------------------------------------------
+// TYPOGRAFIE
+// -----------------------------------------------------------------------------
+
+// Basis-Schriftgröße (Standard: 42px, hier optimiert auf 32px)
+$mainFontSize: 32px;
+
+// Schriftarten
+$mainFont: 'Source Sans Pro', Helvetica, sans-serif;
+$headingFont: 'Source Sans Pro', Helvetica, sans-serif;
+
+// Überschriften-Größen (relativ zur Basis-Schriftgröße)
+$heading1Size: 2.2em;    // ~70px bei 32px Basis
+$heading2Size: 1.6em;    // ~51px bei 32px Basis
+$heading3Size: 1.3em;    // ~42px bei 32px Basis
+$heading4Size: 1.1em;    // ~35px bei 32px Basis
+
+// Überschriften-Stil
+$headingTextTransform: none;           // keine Großbuchstaben-Umwandlung
+$headingFontWeight: 600;               // Semi-Bold
+$headingLetterSpacing: normal;         // normaler Buchstabenabstand
+
+// -----------------------------------------------------------------------------
+// FARBEN
+// -----------------------------------------------------------------------------
+
+$backgroundColor: #ffffff;    // Hintergrund
+$mainColor: #333333;          // Haupttext
+$headingColor: #1a1a1a;       // Überschriften
+$linkColor: #2a76dd;          // Links
+$linkColorHover: #1a5bb8;     // Links beim Hovern
+
+
+/*-- scss:rules --*/
+
+// =============================================================================
+// SCHRIFTGRÖSSEN-KLASSEN
+// =============================================================================
+// Verwendung: [Text]{.large} oder ::: {.small} ... :::
+// -----------------------------------------------------------------------------
+
+.tiny { 
+  font-size: 0.6em !important;     // 60% - für Fußnoten, Quellen
+}
+
+.small { 
+  font-size: 0.75em !important;    // 75% - für Details, Zusatzinfos
+}
+
+.medium { 
+  font-size: 1em !important;       // 100% - Standard (explizit)
+}
+
+.large { 
+  font-size: 1.3em !important;     // 130% - für wichtige Punkte
+}
+
+.huge { 
+  font-size: 1.8em !important;     // 180% - für Highlights, große Überschriften
+}
+
+// =============================================================================
+// SEMANTISCHE KLASSEN
+// =============================================================================
+
+// Hinweis-Box (grau, mit Rand)
+// Verwendung: ::: {.note} Hinweistext :::
+.note {
+  font-size: 0.7em;
+  color: #666;
+  font-style: italic;
+  padding: 0.5em;
+  margin-top: 1em;
+  border-left: 3px solid #ddd;
+  padding-left: 1em;
+}
+
+// Wichtige Ankündigung (rot, zentriert, groß)
+// Verwendung: ::: {.callout} Wichtig! :::
+.callout {
+  font-size: 1.3em;
+  font-weight: bold;
+  color: #e74c3c;
+  text-align: center;
+  padding: 0.5em;
+  margin: 1em 0;
+}
+
+// Gelbe Highlight-Box (Warnung/Achtung)
+// Verwendung: ::: {.highlight-box} **Achtung:** Text :::
+.highlight-box {
+  background-color: #fff3cd;
+  border-left: 4px solid #ffc107;
+  padding: 1em;
+  margin: 1em 0;
+}
+
+// Blaue Info-Box (Information)
+// Verwendung: ::: {.info-box} **Info:** Text :::
+.info-box {
+  background-color: #d1ecf1;
+  border-left: 4px solid #17a2b8;
+  padding: 1em;
+  margin: 1em 0;
+}
+
+// Bildunterschrift (klein, kursiv, zentriert)
+// Verwendung: ::: {.caption} Abbildung 1: ... :::
+.caption {
+  font-size: 0.75em;
+  text-align: center;
+  color: #666;
+  margin-top: 0.5em;
+  font-style: italic;
+}
+
+// =============================================================================
+// TEXT-AUSRICHTUNG
+// =============================================================================
+
+.text-left {
+  text-align: left !important;
+}
+
+.text-center {
+  text-align: center !important;
+}
+
+.text-right {
+  text-align: right !important;
+}
+
+// =============================================================================
+// HERVORHEBUNGEN
+// =============================================================================
+
+// Betonter Text (rot, fett)
+// Verwendung: [Text]{.emphasize}
+.emphasize {
+  font-weight: bold;
+  color: #e74c3c;
+}
+
+// Gelb markierter Text
+// Verwendung: [Text]{.highlight}
+.highlight {
+  background-color: #ffeb3b;
+  padding: 0.1em 0.3em;
+  border-radius: 3px;
+}
+
+// =============================================================================
+// LISTEN-STILE
+// =============================================================================
+
+// Kompakte Liste (weniger Abstand)
+// Verwendung: ::: {.compact-list} - Item 1 ... :::
+.compact-list li {
+  margin-bottom: 0.3em;
+  line-height: 1.4;
+}
+
+// Liste mit mehr Abstand
+// Verwendung: ::: {.spaced-list} - Item 1 ... :::
+.spaced-list li {
+  margin-bottom: 1em;
+  line-height: 1.6;
+}
+
+// =============================================================================
+// CODE-BLÖCKE
+// =============================================================================
+
+.reveal pre {
+  font-size: 0.55em;              // Code kleiner als normaler Text
+  line-height: 1.4;
+}
+
+.reveal code {
+  font-family: 'Courier New', Courier, monospace;
+}
+
+// =============================================================================
+// TABELLEN
+// =============================================================================
+
+.reveal table {
+  font-size: 0.8em;               // Tabellen etwas kleiner
+}
+
+.reveal table th {
+  font-weight: bold;
+  background-color: #f5f5f5;      // Graue Kopfzeile
+}
+
+// =============================================================================
+// LAYOUT-HELFER
+// =============================================================================
+
+// Gleichmäßige Zwei-Spalten
+// Verwendung mit ::: {.columns .columns-equal}
+.columns-equal .column {
+  width: 48%;
+}
+
+// =============================================================================
+// SLIDE-SPEZIFISCHE ANPASSUNGEN
+// =============================================================================
+
+// Titel-Slide größer machen
+.title-slide h1 {
+  font-size: 2.5em;
+}
+
+// =============================================================================
+// QUELLEN UND FUSSZEILEN
+// =============================================================================
+
+// Quellenangabe (klein, rechts, grau)
+// Verwendung: ::: {.source} Quelle: ... :::
+.source {
+  font-size: 0.6em;
+  color: #999;
+  margin-top: 2em;
+  text-align: right;
+}
+
+// =============================================================================
+// VERBESSERUNGEN FÜR LESBARKEIT
+// =============================================================================
+
+.reveal p {
+  line-height: 1.4;
+  margin-bottom: 0.8em;
+}
+
+.reveal ul, .reveal ol {
+  line-height: 1.5;
+}
+
+.reveal li {
+  margin-bottom: 0.5em;
+}
+
+// Bildunterschriften für <figure> Tags
+.reveal figure figcaption {
+  font-size: 0.7em;
+  color: #666;
+  font-style: italic;
+  margin-top: 0.5em;
+}
+
+
+// Oder spezifischer für einzelne Slides
+.reveal .slides section {
+  margin: 0 !important;     // Kein Rand (ganz an den Rand)
+  padding-left: 2% !important;
+  padding-right: 2% !important;
+  padding-top: 0 !important;
+}
+
+
+// =============================================================================
+// ENDE DER CUSTOM STYLES
+// =============================================================================
+

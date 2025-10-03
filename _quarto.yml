@@ -14,7 +14,9 @@ editor:
 
 format: 
   revealjs:
-    theme: default
+    theme: [default, zhaw-theme.scss]
+    margin: 0.0
+    center: false
     transition: slide
     background-transition: fade
     highlight-style: github
